@@ -4,12 +4,12 @@ Large time series models, pre-training datasets, adaptation techniques, and new 
 
 > [!NOTE]
 > OpenLTSM is under a rapid development intending to explore the design philosophy of large foundation models in the time series field. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
-> We aim to provide a neat codebase to develop and evaluate large time series models (LTSM), which covers three milestone of tasks: **supervised training**, **large-scale pre-training**, and **large model adaptation**.
+> We aim to provide a neat codebase to develop and evaluate large time series models (LTSM), which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **large model adaptation**.
 > Anyone interested is welcome to provide interesting works and PR :)
 
-> For deep time series models and task-specific benchmark, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
+> For deep time series models and task-specific benchmarks, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
 
-:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release pre-training logic, and provide evaluation scripts.
+:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release pre-training logic, and provide scripts.
 
 ## Model Checklist
 
@@ -41,7 +41,7 @@ pip install -r requirements.txt
   * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) for domain-specific pre-training (will soon be released).
 - For supervised training / adaptation: Datasets from [TSLib](https://github.com/thuml/Time-Series-Library), accessible in [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing), [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy)
 
-1. Pre-train and evaluate large model. We provide experiment scripts for baseline models under the folder `./scripts/`. You can conduct experiments using following examples:
+1. Pre-train and evaluate large models. We provide experiment scripts for baseline models under the folder `./scripts/`. You can conduct experiments using the following examples:
 
 ```
 # Supervised training
@@ -62,7 +62,7 @@ bash ./scripts/pretrain/ETT_script/timer_xl_era5.sh
 # (3) zero-shot generalization
 ```
 
-3. Develop your own large time series model.
+3. Develop your large time series model.
 
 - Add the model file to the folder `./models`. You can follow the `./models/timer.py`.
 - Include the newly added model in the `Exp_Basic.model_dict` of  `./exp/exp_basic.py`.
@@ -77,14 +77,14 @@ bash ./scripts/pretrain/ETT_script/timer_xl_era5.sh
 | 🥉 3rd         | [PatchTST](https://arxiv.org/abs/2211.14730) | [iTransformer](https://arxiv.org/abs/2310.06625) | [PatchTST](https://arxiv.org/abs/2211.14730)    | [iTransformer](https://arxiv.org/abs/2310.06625)     | [PatchTST](https://arxiv.org/abs/2211.14730)     | [Timer](https://arxiv.org/abs/2402.02368)    |
 
 > [!NOTE]
-> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on the officially reported results. We expect to see more large models included in this leaderborad!
+> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
 
 ## Efficiency
 
 We present a [theoretical derivation](./figures/efficiency.png) of the computational complexity of Transformers for time series, including the parameter counts, memory footprint, and FLOPs. See our [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> Large time series models are still small in scale compared to large models from other modality. We prefer to include and implement models that require affordable training resource as efficiently as possible (for example, using several RTX 4090s, or a single A100 40G).
+> Large time series models are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or a single A100 40G).
 
 ## Citation
 
@@ -105,7 +105,7 @@ If you find this repo helpful, please cite our paper.
 }
 ```
 
-## Acknowledgement
+## Acknowledgment
 
 We appreciate the following GitHub repos a lot for their valuable code and efforts:
 - Time-Series-Library (https://github.com/thuml/Time-Series-Library)
