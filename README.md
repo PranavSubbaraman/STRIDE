@@ -3,13 +3,13 @@
 Large time series models, pre-training datasets, adaptation techniques, and new benchmarks.
 
 > [!NOTE]
-> OpenLTSM is under a rapid development intending to explore the design philosophy of large foundation models in the time series field. It is not intended to be completely compatiable with official codebases and existing checkpoints. Anyone interested is welcome to provide interesting works and PR :)
-
-We aim to provide a neat codebase to develop and evaluate large time series models (LTSM), which covers three milestone of tasks: **supervised training**, **large-scale pre-training**, and **large model adaptation**.
+> OpenLTSM is under a rapid development intending to explore the design philosophy of large foundation models in the time series field. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
+> We aim to provide a neat codebase to develop and evaluate large time series models (LTSM), which covers three milestone of tasks: **supervised training**, **large-scale pre-training**, and **large model adaptation**.
+> Anyone interested is welcome to provide interesting works and PR :)
 
 > For deep time series models and task-specific benchmark, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
 
-:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release the pre-training datasets/dataloaders, and provide evaluation scripts.
+:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release the pre-training logic, and provide evaluation scripts.
 
 ## Model Checklist
 
@@ -73,12 +73,11 @@ bash ./scripts/pretrain/ETT_script/timer_xl_era5.sh
 | Model Ranking | Univariate Forecasting                       | Multivariate Forecasting                         | Rolling Forecasting                             | Forecasting with Covariates                  | Variable Generalization                          | Zero-Shot Generalization                     |
 | ------------- | -------------------------------------------- | ------------------------------------------------ | ----------------------------------------------- | -------------------------------------------- | ------------------------------------------------ | -------------------------------------------- |
 | 🥇 1st         | [Timer-XL](https://arxiv.org/abs/2410.04803) | [Timer-XL](https://arxiv.org/abs/2410.04803)     | [AutoTimes](https://github.com/thuml/AutoTimes) | [Timer-XL](https://arxiv.org/abs/2410.04803) | [Timer-XL](https://arxiv.org/abs/2410.04803)     | [Timer-XL](https://arxiv.org/abs/2410.04803) |
-| 🥈 2nd         | [Timer](https://arxiv.org/abs/2402.02368)    | [Moirai]((https://arxiv.org/abs/2402.02592))     | [Timer-XL](https://arxiv.org/abs/2410.04803)    | [TimeXer](https://arxiv.org/abs/2402.19072)  | [iTransformer](https://arxiv.org/abs/2310.06625) | [Time-MoE](https://arxiv.org/abs/2409.16040) |
+| 🥈 2nd         | [Timer](https://arxiv.org/abs/2402.02368)    | [Moirai](https://arxiv.org/abs/2402.02592)     | [Timer-XL](https://arxiv.org/abs/2410.04803)    | [TimeXer](https://arxiv.org/abs/2402.19072)  | [iTransformer](https://arxiv.org/abs/2310.06625) | [Time-MoE](https://arxiv.org/abs/2409.16040) |
 | 🥉 3rd         | [PatchTST](https://arxiv.org/abs/2211.14730) | [iTransformer](https://arxiv.org/abs/2310.06625) | [PatchTST](https://arxiv.org/abs/2211.14730)    | [iTransformer](https://arxiv.org/abs/2310.06625)     | [PatchTST](https://arxiv.org/abs/2211.14730)     | [Timer](https://arxiv.org/abs/2402.02368)    |
 
 > [!NOTE]
-> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on the officially reported results. We expect to see more large models included in this leaderborad.
-
+> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on the officially reported results. We expect to see more large models included in this leaderborad!
 
 ## Efficiency
 
