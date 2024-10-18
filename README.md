@@ -9,7 +9,7 @@ Large time series models, pre-training datasets, adaptation techniques, and new 
 
 > For deep time series models and task-specific benchmark, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
 
-:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release the pre-training logic, and provide evaluation scripts.
+:triangular_flag_on_post: **News** (2024.10) We include four large time series models, release pre-training logic, and provide evaluation scripts.
 
 ## Model Checklist
 
@@ -41,7 +41,7 @@ pip install -r requirements.txt
   * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) for domain-specific pre-training (will soon be released).
 - For supervised training / adaptation: Datasets from [TSLib](https://github.com/thuml/Time-Series-Library), accessible in [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing), [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy)
 
-1. Pre-train and evaluate large model. We provide experiment scripts for baseline models under the folder `./scripts/`. You can reproduce the experiment results as the following examples:
+1. Pre-train and evaluate large model. We provide experiment scripts for baseline models under the folder `./scripts/`. You can conduct experiments using following examples:
 
 ```
 # Supervised training
