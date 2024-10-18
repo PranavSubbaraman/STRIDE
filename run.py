@@ -20,6 +20,7 @@ if __name__ == '__main__':
     parser.add_argument('--data', type=str, required=True, default='ETTh1', help='dataset type')
     parser.add_argument('--root_path', type=str, default='./dataset/ETT-small/', help='root path of the data file')
     parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')
+    parser.add_argument('--data_type', type=str, default='ETTh1', help='data type')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
     parser.add_argument('--test_flag', type=str, default='T', help='test domain')
 
@@ -33,7 +34,6 @@ if __name__ == '__main__':
     # model define
     parser.add_argument('--dropout', type=float, default=0.1, help='dropout')
     parser.add_argument('--e_layers', type=int, default=1, help='encoder layers')
-    parser.add_argument('--d_layers', type=int, default=1, help='decoder layers')
     parser.add_argument('--d_model', type=int, default=512, help='d model')
     parser.add_argument('--n_heads', type=int, default=8, help='n heads')
     parser.add_argument('--d_ff', type=int, default=2048, help='d ff')
@@ -49,6 +49,11 @@ if __name__ == '__main__':
     parser.add_argument('--visualize', action='store_true', help='visualize', default=False)
     parser.add_argument('--flash_attention', action='store_true', help='flash attention', default=False)
 
+    # adaptation
+    parser.add_argument('--adaptation', action='store_true', help='adaptation', default=False)
+    parser.add_argument('--pretrain_model_path', type=str, default='pretrain_model.pth', help='pretrain model path')
+    parser.add_argument('--subset_rand_ratio', type=float, default=1, help='few shot ratio')
+    
     # optimization
     parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')

@@ -2,10 +2,12 @@ import torch
 from torch import nn
 from layers.Transformer_EncDec import TimerBlock, TimerLayer
 from layers.SelfAttention_Family import AttentionLayer, TimeAttention
-from einops import rearrange
 
 
 class Model(nn.Module):
+    """
+    Paper link: https://arxiv.org/abs/2410.04803
+    """
     def __init__(self, configs):
         super().__init__()
         self.input_token_len = configs.input_token_len
@@ -34,10 +36,9 @@ class Model(nn.Module):
             stdev = torch.sqrt(
                 torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
             x_enc /= stdev
-        # [B, L, C]
         B, _, C = x_enc.shape
         # [B, C, L]
-        x_enc = rearrange(x_enc, 'b l c -> b c l')
+        x_enc = x_enc.permute(0, 2, 1)
         # [B, C, N, P]
         x_enc = x_enc.unfold(
             dimension=-1, size=self.input_token_len, step=self.input_token_len)
@@ -45,13 +46,15 @@ class Model(nn.Module):
         # [B, C, N, D]
         enc_out = self.embedding(x_enc)
         # [B, C * N, D]
-        enc_out = rearrange(enc_out, 'b c n d -> b (c n) d')
+        enc_out = enc_out.reshape(B, C * N, -1)
         enc_out, attns = self.encoder(enc_out, n_vars=C, n_tokens=N)
-        # [B, C * N, P] 
+        # [B, C * N, P]
         dec_out = self.head(enc_out)
+        # [B, C, N * P]
+        dec_out = dec_out.reshape(B, C, N, -1).reshape(B, C, -1)
         # [B, L, C]
-        dec_out = rearrange(dec_out, 'b (c n) p -> b (n p) c', c=C)
-        
+        dec_out = dec_out.permute(0, 2, 1)
+
         if self.use_norm:
             dec_out = dec_out * stdev + means
         if self.output_attention:

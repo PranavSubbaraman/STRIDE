@@ -20,7 +20,7 @@ python -u run.py \
   --e_layers 4 \
   --d_model 512 \
   --d_ff 2048 \
-  --batch_size 5120 \
+  --batch_size 40960 \
   --learning_rate 0.0001 \
   --train_epochs 10 \
   --gpu 0 \

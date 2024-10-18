@@ -11,7 +11,7 @@ python -u run.py \
   --data_path electricity.csv \
   --model_id ECL \
   --model $model_name \
-  --data Custom_Multi  \
+  --data MultivariateDatasetBenchmark  \
   --seq_len $seq_len \
   --input_token_len $token_len \
   --output_token_len $token_len \
@@ -39,7 +39,7 @@ python -u run.py \
   --data_path electricity.csv \
   --model_id ECL \
   --model $model_name \
-  --data Custom_Multi  \
+  --data MultivariateDatasetBenchmark  \
   --seq_len $seq_len \
   --input_token_len $token_len \
   --output_token_len $token_len \

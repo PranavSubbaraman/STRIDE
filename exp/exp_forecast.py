@@ -30,6 +30,9 @@ class Exp_Forecast(Exp_Basic):
         else:
             self.device = self.args.gpu
             model = model.to(self.device)
+            
+        if self.args.adaptation:
+            model.load_state_dict(torch.load(self.args.pretrain_model_path))
         return model
 
     def _get_data(self, flag):
@@ -199,8 +202,7 @@ class Exp_Forecast(Exp_Basic):
             setting = self.args.test_dir
             best_model_path = self.args.test_file_name
             print("loading model from {}".format(os.path.join(self.args.checkpoints, setting, best_model_path)))
-            load_item = torch.load(os.path.join(self.args.checkpoints, setting, best_model_path))
-            self.model.load_state_dict({k.replace('module.', ''): v for k, v in load_item.items()}, strict=False)
+            self.model.load_state_dict(torch.load(os.path.join(self.args.checkpoints, setting, best_model_path)))
         preds = []
         trues = []
         folder_path = './test_results/' + setting + '/'

@@ -6,6 +6,9 @@ from layers.Embed import PositionalEmbedding
 
 
 class Model(nn.Module):
+    """
+    Paper link: https://arxiv.org/abs/2402.02368
+    """
     def __init__(self, configs):
         super().__init__()
         self.input_token_len = configs.input_token_len

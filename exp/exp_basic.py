@@ -1,4 +1,4 @@
-from models import timer, timer_xl, moirai, patchtst, timer_lite
+from models import timer, timer_xl, moirai, patchtst
 
 
 class Exp_Basic(object):
@@ -8,8 +8,7 @@ class Exp_Basic(object):
             'timer': timer,
             'timer_xl': timer_xl,
             'moirai': moirai,
-            'patchtst': patchtst,
-            'timer_lite': timer_lite
+            'patchtst': patchtst
         }
         self.model = self._build_model()
 

@@ -4,6 +4,9 @@ from layers.Transformer_EncDec import TimerBlock, TimerLayer
 from layers.SelfAttention_Family import AttentionLayer, TimeAttention
 
 class Model(nn.Module):
+    """
+    Paper link: https://arxiv.org/pdf/2402.02592
+    """
     def __init__(self, configs):
         super().__init__()
         self.input_token_len = configs.input_token_len

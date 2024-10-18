@@ -8,8 +8,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-class Dataset_ETT_Hour(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+class UnivariateDatasetBenchmark(Dataset):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -17,270 +17,78 @@ class Dataset_ETT_Hour(Dataset):
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.data_type = data_type
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
+        self.subset_rand_ratio = subset_rand_ratio
+        if self.set_type == 0:
+            self.internal = int(1 // self.subset_rand_ratio)
+        else:
+            self.internal = 1
         self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
 
     def __read_data__(self):
         self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
+        dataset_file_path = os.path.join(self.root_path, self.data_path)
+        if dataset_file_path.endswith('.csv'):
+            df_raw = pd.read_csv(dataset_file_path)
+        elif dataset_file_path.endswith('.txt'):
+            df_raw = []
+            with open(dataset_file_path, "r", encoding='utf-8') as f:
+                for line in f.readlines():
+                    line = line.strip('\n').split(',')
+                    data_line = np.stack([float(i) for i in line])
+                    df_raw.append(data_line)
+            df_raw = np.stack(df_raw, 0)
+            df_raw = pd.DataFrame(df_raw)
+        elif dataset_file_path.endswith('.npz'):
+            data = np.load(dataset_file_path, allow_pickle=True)
+            data = data['data'][:, :, 0]
+            df_raw = pd.DataFrame(data)
+        elif dataset_file_path.endswith('.npy'):
+            data = np.load(dataset_file_path)
+            df_raw = pd.DataFrame(data)
+        else:
+            raise ValueError('Unknown data format: {}'.format(dataset_file_path))
 
-        border1s = [0, 12 * 30 * 24 - self.seq_len,
-                    12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
-        border2s = [12 * 30 * 24, 12 * 30 * 24 +
-                    4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
+        if self.data_type == 'ETTh' or self.data_type == 'ETTh1' or self.data_type == 'ETTh2':
+            border1s = [0, 12 * 30 * 24 - self.seq_len, 12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
+            border2s = [12 * 30 * 24, 12 * 30 * 24 + 4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
+        elif self.data_type == 'ETTm' or self.data_type == 'ETTm1' or self.data_type == 'ETTm2':
+            border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
+            border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
+        else:
+            data_len = len(df_raw)
+            num_train = int(data_len * 0.7)
+            num_test = int(data_len * 0.2)
+            num_vali = data_len - num_train - num_test
+            border1s = [0, num_train - self.seq_len, data_len - num_test - self.seq_len]
+            border2s = [num_train, num_train + num_vali, data_len]
+
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]
 
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
+        if isinstance(df_raw[df_raw.columns[0]][2], str):
+            data = df_raw[df_raw.columns[1:]].values
+        else:
+            data = df_raw.values
 
         if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
-        else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_ETT_Minute(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
-
-        border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 *
-                    30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
-        border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 *
-                    30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
-        else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_Custom(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
-        else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_Solar(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = []
-        with open(os.path.join(self.root_path, self.data_path), "r", encoding='utf-8') as f:
-            for line in f.readlines():
-                line = line.strip('\n').split(',')
-                data_line = np.stack([float(i) for i in line])
-                df_raw.append(data_line)
-        df_raw = np.stack(df_raw, 0)
-        df_raw = pd.DataFrame(df_raw)
-
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_valid = int(len(df_raw) * 0.1)
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_valid, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        df_data = df_raw.values
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
+            train_data = data[border1s[0]:border2s[0]]
             self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
+            data = self.scaler.transform(data)
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
+        
+        self.n_var = self.data_x.shape[-1]
+        self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
 
     def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
+        feat_id = index // self.n_timepoint
+        s_begin = index % self.n_timepoint
         s_end = s_begin + self.seq_len
 
         if not self.nonautoregressive:
@@ -303,14 +111,17 @@ class Dataset_Solar(Dataset):
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
+        if self.set_type == 0:
+            return max(int(self.n_var * self.n_timepoint * self.subset_rand_ratio), 1)
+        else:
+            return int(self.n_var * self.n_timepoint)
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
 
-class Dataset_PEMS(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+class MultivariateDatasetBenchmark(Dataset):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='custom', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -318,183 +129,75 @@ class Dataset_PEMS(Dataset):
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.data_type = data_type
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
+        self.subset_rand_ratio = subset_rand_ratio
+        if self.set_type == 0:
+            self.internal = int(1 // self.subset_rand_ratio)
+        else:
+            self.internal = 1
         self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
 
     def __read_data__(self):
         self.scaler = StandardScaler()
-        data_file = os.path.join(self.root_path, self.data_path)
-        data = np.load(data_file, allow_pickle=True)
-        df_raw = data['data'][:, :, 0]
+        dataset_file_path = os.path.join(self.root_path, self.data_path)
+        if dataset_file_path.endswith('.csv'):
+            df_raw = pd.read_csv(dataset_file_path)
+        elif dataset_file_path.endswith('.txt'):
+            df_raw = []
+            with open(dataset_file_path, "r", encoding='utf-8') as f:
+                for line in f.readlines():
+                    line = line.strip('\n').split(',')
+                    data_line = np.stack([float(i) for i in line])
+                    df_raw.append(data_line)
+            df_raw = np.stack(df_raw, 0)
+            df_raw = pd.DataFrame(df_raw)
+        elif dataset_file_path.endswith('.npz'):
+            data = np.load(dataset_file_path, allow_pickle=True)
+            data = data['data'][:, :, 0]
+            df_raw = pd.DataFrame(data)
+        elif dataset_file_path.endswith('.npy'):
+            data = np.load(dataset_file_path)
+            df_raw = pd.DataFrame(data)
+        else:
+            raise ValueError('Unknown data format: {}'.format(dataset_file_path))
 
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
+        if self.data_type == 'ETTh' or self.data_type == 'ETTh1' or self.data_type == 'ETTh2':
+            border1s = [0, 12 * 30 * 24 - self.seq_len, 12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
+            border2s = [12 * 30 * 24, 12 * 30 * 24 + 4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
+        elif self.data_type == 'ETTm' or self.data_type == 'ETTm1' or self.data_type == 'ETTm2':
+            border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
+            border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
+        else:
+            data_len = len(df_raw)
+            num_train = int(data_len * 0.7)
+            num_test = int(data_len * 0.2)
+            num_vali = data_len - num_train - num_test
+            border1s = [0, num_train - self.seq_len, data_len - num_test - self.seq_len]
+            border2s = [num_train, num_train + num_vali, data_len]
+
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]
 
-        df_data = df_raw
+        if isinstance(df_raw[df_raw.columns[0]][2], str):
+            data = df_raw[df_raw.columns[1:]].values
+        else:
+            data = df_raw.values
 
         if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
+            train_data = data[border1s[0]:border2s[0]]
             self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
+            data = self.scaler.transform(data)
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_ERA5(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - \
-            self.output_token_len + 1
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = np.load(os.path.join(self.root_path, self.data_path))
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        df_data = df_raw
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        feat_id = index // self.tot_len
-        s_begin = index % self.tot_len
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return (len(self.data_x) - self.seq_len - self.output_token_len + 1) * self.enc_in
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_ETT_Hour_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
-
-        border1s = [0, 12 * 30 * 24 - self.seq_len,
-                    12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
-        border2s = [12 * 30 * 24, 12 * 30 * 24 +
-                    4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
-        else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
+        
+        self.n_var = self.data_x.shape[-1]
+        self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
+        print(self.n_var, self.n_timepoint)
 
     def __getitem__(self, index):
         s_begin = index
@@ -503,7 +206,6 @@ class Dataset_ETT_Hour_Multi(Dataset):
         if not self.nonautoregressive:
             r_begin = s_begin + self.input_token_len
             r_end = s_end + self.output_token_len
-
             seq_x = self.data_x[s_begin:s_end]
             seq_y = self.data_y[r_begin:r_end]
             seq_y = torch.tensor(seq_y)
@@ -520,369 +222,17 @@ class Dataset_ETT_Hour_Multi(Dataset):
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_ETT_Minute_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
-
-        border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 *
-                    30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
-        border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 *
-                    30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
+        if self.set_type == 0:
+            return max(int(self.n_timepoint * self.subset_rand_ratio), 1)
         else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        s_begin = index
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_Custom_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        cols_data = df_raw.columns[1:]
-        df_data = df_raw[cols_data]
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data.values)
-            data = self.scaler.transform(df_data.values)
-        else:
-            data = df_data.values
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        s_begin = index
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_Solar_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = []
-        with open(os.path.join(self.root_path, self.data_path), "r", encoding='utf-8') as f:
-            for line in f.readlines():
-                line = line.strip('\n').split(',')
-                data_line = np.stack([float(i) for i in line])
-                df_raw.append(data_line)
-        df_raw = np.stack(df_raw, 0)
-        df_raw = pd.DataFrame(df_raw)
-
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_valid = int(len(df_raw) * 0.1)
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_valid, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        df_data = df_raw.values
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        s_begin = index
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_PEMS_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        data_file = os.path.join(self.root_path, self.data_path)
-        data = np.load(data_file, allow_pickle=True)
-        df_raw = data['data'][:, :, 0]
-
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        df_data = df_raw
-
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
-
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        s_begin = index
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
-
-    def inverse_transform(self, data):
-        return self.scaler.inverse_transform(data)
-
-
-class Dataset_ERA5_Multi(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
-        self.seq_len = size[0]
-        self.input_token_len = size[1]
-        self.output_token_len = size[2]
-        self.flag = flag
-        assert flag in ['train', 'test', 'val']
-        type_map = {'train': 0, 'val': 1, 'test': 2}
-        self.set_type = type_map[flag]
-        self.scale = scale
-        self.root_path = root_path
-        self.data_path = data_path
-        self.nonautoregressive = nonautoregressive
-        self.__read_data__()
-
-    def __read_data__(self):
-        self.scaler = StandardScaler()
-        df_raw = np.load(os.path.join(self.root_path, self.data_path))
-        num_train = int(len(df_raw) * 0.7)
-        num_test = int(len(df_raw) * 0.2)
-        num_vali = len(df_raw) - num_train - num_test
-        border1s = [0, num_train - self.seq_len,
-                    len(df_raw) - num_test - self.seq_len]
-        border2s = [num_train, num_train + num_vali, len(df_raw)]
-        border1 = border1s[self.set_type]
-        border2 = border2s[self.set_type]
-
-        df_data = df_raw
-        if self.scale:
-            train_data = df_data[border1s[0]:border2s[0]]
-            self.scaler.fit(train_data)
-            data = self.scaler.transform(df_data)
-        else:
-            data = df_data
-        self.data_x = data[border1:border2]
-        self.data_y = data[border1:border2]
-
-    def __getitem__(self, index):
-        s_begin = index
-        s_end = s_begin + self.seq_len
-
-        if not self.nonautoregressive:
-            r_begin = s_begin + self.input_token_len
-            r_end = s_end + self.output_token_len
-
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-            seq_y = torch.tensor(seq_y)
-            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
-            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
-        else:
-            r_begin = s_end
-            r_end = r_begin + self.output_token_len
-            seq_x = self.data_x[s_begin:s_end]
-            seq_y = self.data_y[r_begin:r_end]
-        seq_x_mark = torch.zeros((seq_x.shape[0], 1))
-        seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
-
-    def __len__(self):
-        return len(self.data_x) - self.seq_len - self.output_token_len + 1
+            return self.n_timepoint
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
 
 class Global_Temp(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -890,9 +240,9 @@ class Global_Temp(Dataset):
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.__read_data__()
 
@@ -936,7 +286,7 @@ class Global_Temp(Dataset):
 
 
 class Global_Wind(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -944,9 +294,9 @@ class Global_Wind(Dataset):
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.__read_data__()
 
@@ -990,7 +340,7 @@ class Global_Wind(Dataset):
 
 
 class Dataset_ERA5_Pretrain(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -998,9 +348,9 @@ class Dataset_ERA5_Pretrain(Dataset):
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.__read_data__()
         self.enc_in = self.data_x.shape[-1]
@@ -1065,7 +415,7 @@ class Dataset_ERA5_Pretrain(Dataset):
 
 
 class Dataset_ERA5_Pretrain_Test(Dataset):
-    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -1073,9 +423,9 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
         assert test_flag in ['T', 'V', 'TandV']
         type_map = {'T': 0, 'V': 1, 'TandV': 2}
         self.test_type = type_map[flag]
-        self.scale = scale
         self.root_path = root_path
         self.data_path = data_path
+        self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.__read_data__()
         self.enc_in = self.data_x.shape[-1]
@@ -1152,7 +502,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
 
 
 class UTSD(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -1162,7 +512,6 @@ class UTSD(Dataset):
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
         self.scale = scale
-        self.root_path = root_path
         self.nonautoregressive = nonautoregressive
         self.split = split
         self.stride = stride
@@ -1247,7 +596,7 @@ class UTSD(Dataset):
 
 
 class UTSD_Npy(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -1263,7 +612,6 @@ class UTSD_Npy(Dataset):
         self.stride = stride
         self.data_list = []
         self.n_window_list = []
-        self.root_path = root_path
         self.__confirm_data__()
 
     def __confirm_data__(self):

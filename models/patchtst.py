@@ -28,6 +28,10 @@ class FlattenHead(nn.Module):
 
 
 class Model(nn.Module):
+    """
+    Paper link: https://arxiv.org/abs/2211.14730
+    The implementation of Moment is basically consistent with patchtst.
+    """
     def __init__(self, configs):
         super().__init__()
         self.seq_len = configs.seq_len

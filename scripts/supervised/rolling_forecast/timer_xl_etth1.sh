@@ -9,9 +9,10 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
+  --data_type ETTh \
   --model_id ETTh1 \
   --model $model_name \
-  --data ETTh1_Multi  \
+  --data MultivariateDatasetBenchmark  \
   --seq_len $seq_len \
   --input_token_len $token_len \
   --output_token_len $token_len \
@@ -36,9 +37,10 @@ python -u run.py \
   --is_training 0 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
+  --data_type ETTh1 \
   --model_id ETTh1 \
   --model $model_name \
-  --data ETTh1_Multi  \
+  --data MultivariateDatasetBenchmark  \
   --seq_len $seq_len \
   --input_token_len $token_len \
   --output_token_len $token_len \
