@@ -3,7 +3,7 @@
 Large time-series models, pre-training datasets, adaptation techniques, and benchmarks.
 
 > [!NOTE]
-> OpenLTM is a open codebase intending to explore the design philosophy of large time-series models (LTM). It is not intended to be completely compatiable with official codebases and existing checkpoints. 
+> OpenLTM is a open codebase intending to explore the design philosophy of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
 > We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **large adaptation**.
 
 > For deep time series models and task-specific benchmarks, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
@@ -12,7 +12,7 @@ Large time-series models, pre-training datasets, adaptation techniques, and benc
 
 ## What is LTM
 
-LTM (Large Time-series Model) is a familiy of scalable deep model built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of heterogenerous time series and diverse downstream tasks. For more information, please refer to [Large-Time-Series-Model](https://github.com/thuml/Large-Time-Series-Model).
+LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep model built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of heterogenerous time series and diverse downstream tasks. For more information, please refer to [Large-Time-Series-Model](https://github.com/thuml/Large-Time-Series-Model).
 
 
 ## Model Checklist
@@ -45,27 +45,27 @@ pip install -r requirements.txt
   * [ERA5-Familiy (40-year span, thousands of variables)](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) for domain-specific model (will soon be released).
 - For supervised training / adaptation: Datasets from [TSLib](https://github.com/thuml/Time-Series-Library), accessible in [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing), [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy)
 
-1. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
+2. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
 
 ```
 # Supervised training
-# (1) one-for-one forecast
+# (a) one-for-one forecasting
 bash ./scripts/supervised/forecast/moirai_ecl.sh
-# (2) one-for-all forecast
+# (b) one-for-all (rolling) forecasting
 bash ./scripts/supervised/rolling_forecast/timer_xl_ecl.sh
 
 # Large-scale pre-training
-# (1) pre-training on UTSD
+# (a) pre-training on UTSD
 bash ./scripts/pretrain/timer_xl_utsd.sh
-# (2) pre-training on ERA5
+# (b) pre-training on ERA5
 bash ./scripts/pretrain/timer_xl_era5.sh
 
 # Model adaptation
-# (1) full-shot fine-tune
+# (a) full-shot fine-tune
 bash ./scripts/adaptation/full_shot/timer_xl_etth1.sh
-# (2) few-shot fine-tune
+# (b) few-shot fine-tune
 bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
-# (3) zero-shot generalization
+# (c) zero-shot generalization
 bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 ```
 
@@ -83,14 +83,14 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 | 🥈 2nd         | [Timer](https://arxiv.org/abs/2402.02368)    | [Moirai](https://arxiv.org/abs/2402.02592)     | [Timer-XL](https://arxiv.org/abs/2410.04803)    | [TimeXer](https://arxiv.org/abs/2402.19072)  | [iTransformer](https://arxiv.org/abs/2310.06625) | [Time-MoE](https://arxiv.org/abs/2409.16040) |
 | 🥉 3rd         | [PatchTST](https://arxiv.org/abs/2211.14730) | [iTransformer](https://arxiv.org/abs/2310.06625) | [PatchTST](https://arxiv.org/abs/2211.14730)    | [iTransformer](https://arxiv.org/abs/2310.06625)     | [PatchTST](https://arxiv.org/abs/2211.14730)     | [Timer](https://arxiv.org/abs/2402.02368)    |
 
-For the first four tasks, in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), see our [paper](https://arxiv.org/abs/2410.04803) for details.
+For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see our [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
 > We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
 
 ## Efficiency
 
-We present a [theoretical derivation](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See our [paper](https://arxiv.org/abs/2410.04803) for details.
+We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See our [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
 > LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or a single A100 40G).
