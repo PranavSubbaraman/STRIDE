@@ -12,7 +12,7 @@ Large time-series models, pre-training datasets, adaptation techniques, and benc
 
 ## What is LTM
 
-LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep model built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we provide [[Slides]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/)!
+LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we provide [[Slides]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/)!
 
 
 ## Model Checklist
@@ -93,7 +93,7 @@ For the first four [forecasting tasks](./figures/forecasting.png), in addition t
 We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See our [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or a single A100 40G).
+> LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
 
 ## Citation
 
