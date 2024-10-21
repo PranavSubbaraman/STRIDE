@@ -501,6 +501,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
         return self.scaler.inverse_transform(data)
 
 
+# Download link: https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 class UTSD(Dataset):
     def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
         self.seq_len = size[0]
