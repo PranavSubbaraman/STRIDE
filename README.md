@@ -41,9 +41,12 @@ pip install -r requirements.txt
 1. Place downloaded data in the folder ```./dataset```. Here is a [dataset summary](./figures/datasets.png).
 
 - For pre-training:
-  * [UTSD (1 billiion scale)](https://huggingface.co/datasets/thuml/UTSD) for domain-universal pre-training. A larger version is on the way!
-  * [ERA5-Familiy (40-year span, thousands of variables)](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) for domain-specific model (will soon be released).
-- For supervised training / adaptation: Datasets from [TSLib](https://github.com/thuml/Time-Series-Library), accessible in [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing), [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy)
+  * [UTSD](https://huggingface.co/datasets/thuml/UTSD) contains 1 billiion time points for large-scale pre-training (in numpy format): [[Download]](https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
+).
+  * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) (40-year span, thousands of variables) for domain-specific model: [[Download]](https://cloud.tsinghua.edu.cn/f/7fe0b95032c64d39bc4a/).
+
+- For superwised training or modeling adaptation
+  * Well-acknowlegded datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
 
 2. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
 
