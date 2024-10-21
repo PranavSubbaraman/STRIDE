@@ -4,7 +4,7 @@ Large time-series models, pre-training datasets, adaptation techniques, and benc
 
 > [!NOTE]
 > OpenLTM is a open codebase intending to explore the design philosophy of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
-> We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **large adaptation**.
+> We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **model adaptation**.
 
 > For deep time series models and task-specific benchmarks, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Suvery](https://arxiv.org/abs/2407.13278).
 
