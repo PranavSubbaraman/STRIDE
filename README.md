@@ -83,14 +83,14 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 | 🥈 2nd         | [Timer](https://arxiv.org/abs/2402.02368)    | [Moirai](https://arxiv.org/abs/2402.02592)     | [Timer-XL](https://arxiv.org/abs/2410.04803)    | [TimeXer](https://arxiv.org/abs/2402.19072)  | [iTransformer](https://arxiv.org/abs/2310.06625) | [Time-MoE](https://arxiv.org/abs/2409.16040) |
 | 🥉 3rd         | [PatchTST](https://arxiv.org/abs/2211.14730) | [iTransformer](https://arxiv.org/abs/2310.06625) | [PatchTST](https://arxiv.org/abs/2211.14730)    | [iTransformer](https://arxiv.org/abs/2310.06625)     | [PatchTST](https://arxiv.org/abs/2211.14730)     | [Timer](https://arxiv.org/abs/2402.02368)    |
 
-For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see our [paper](https://arxiv.org/abs/2410.04803) for details.
+For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
+> We compare LTMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
 
 ## Efficiency
 
-We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See our [paper](https://arxiv.org/abs/2410.04803) for details.
+We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
 > LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
@@ -104,13 +104,6 @@ If you find this repo helpful, please cite our paper.
   title={Timer: Generative Pre-trained Transformers Are Large Time Series Models},
   author={Liu, Yong and Zhang, Haoran and Li, Chenyu and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
   booktitle={Forty-first International Conference on Machine Learning}
-}
-
-@article{liu2024timer,
-  title={Timer-XL: Long-Context Transformers for Unified Time Series Forecasting},
-  author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
-  journal={arXiv preprint arXiv:2410.04803},
-  year={2024}
 }
 ```
 
