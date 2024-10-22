@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('--task_name', type=str, required=True, default='forecast', help='task name, options:[forecast]')
     parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
     parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-    parser.add_argument('--model', type=str, required=True, default='timer_xl_multi', help='model name, options: [timer_xl_multi]')
+    parser.add_argument('--model', type=str, required=True, default='timer_xl', help='model name, options: [timer_xl, timer, moirai, patchtst]')
     parser.add_argument('--seed', type=int, default=2021, help='seed')
     
     # data loader
