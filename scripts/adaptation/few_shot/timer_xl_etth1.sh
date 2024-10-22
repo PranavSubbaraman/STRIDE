@@ -9,7 +9,6 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
-  --data_type ETTh \
   --model_id ETTh1_few_shot \
   --model $model_name \
   --data UnivariateDatasetBenchmark  \

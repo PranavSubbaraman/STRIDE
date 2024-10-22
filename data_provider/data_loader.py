@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 
 class UnivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -19,7 +19,7 @@ class UnivariateDatasetBenchmark(Dataset):
         self.set_type = type_map[flag]
         self.root_path = root_path
         self.data_path = data_path
-        self.data_type = data_type
+        self.data_type = data_path.split('.')[0]
         self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.subset_rand_ratio = subset_rand_ratio
@@ -121,7 +121,7 @@ class UnivariateDatasetBenchmark(Dataset):
 
 
 class MultivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='custom', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -131,7 +131,7 @@ class MultivariateDatasetBenchmark(Dataset):
         self.set_type = type_map[flag]
         self.root_path = root_path
         self.data_path = data_path
-        self.data_type = data_type
+        self.data_type = data_path.split('.')[0]
         self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.subset_rand_ratio = subset_rand_ratio
@@ -232,7 +232,7 @@ class MultivariateDatasetBenchmark(Dataset):
 
 
 class Global_Temp(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -286,7 +286,7 @@ class Global_Temp(Dataset):
 
 
 class Global_Wind(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -340,7 +340,7 @@ class Global_Wind(Dataset):
 
 
 class Dataset_ERA5_Pretrain(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -415,7 +415,7 @@ class Dataset_ERA5_Pretrain(Dataset):
 
 
 class Dataset_ERA5_Pretrain_Test(Dataset):
-    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -502,7 +502,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
 
 
 class UTSD(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -596,7 +596,7 @@ class UTSD(Dataset):
 
 
 class UTSD_Npy(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', data_type='ETTh1', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]

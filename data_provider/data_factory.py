@@ -30,7 +30,6 @@ def data_provider(args, flag):
         data_set = Data(
             root_path=args.root_path,
             data_path=args.data_path,
-            data_type=args.data_type,
             flag=flag,
             size=[args.seq_len, args.input_token_len, args.output_token_len],
             nonautoregressive=args.nonautoregressive,
@@ -41,7 +40,6 @@ def data_provider(args, flag):
         data_set = Data(
             root_path=args.root_path,
             data_path=args.data_path,
-            data_type=args.data_type,
             flag=flag,
             size=[args.test_seq_len, args.input_token_len, args.test_pred_len],
             nonautoregressive=args.nonautoregressive,

@@ -20,7 +20,6 @@ if __name__ == '__main__':
     parser.add_argument('--data', type=str, required=True, default='ETTh1', help='dataset type')
     parser.add_argument('--root_path', type=str, default='./dataset/ETT-small/', help='root path of the data file')
     parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')
-    parser.add_argument('--data_type', type=str, default='ETTh1', help='data type')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
     parser.add_argument('--test_flag', type=str, default='T', help='test domain')
 
