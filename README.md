@@ -12,7 +12,7 @@ Large time-series models, pre-training datasets, adaptation techniques, and benc
 
 ## What is LTM
 
-LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep model built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of heterogenerous time series and diverse downstream tasks. For more information, please refer to [Large-Time-Series-Model](https://github.com/thuml/Large-Time-Series-Model).
+LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we provide [[Slides]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/)!
 
 
 ## Model Checklist
@@ -41,9 +41,12 @@ pip install -r requirements.txt
 1. Place downloaded data in the folder ```./dataset```. Here is a [dataset summary](./figures/datasets.png).
 
 - For pre-training:
-  * [UTSD (1 billiion scale)](https://huggingface.co/datasets/thuml/UTSD) for domain-universal pre-training. A larger version is on the way!
-  * [ERA5-Familiy (40-year span, thousands of variables)](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) for domain-specific model (will soon be released).
-- For supervised training / adaptation: Datasets from [TSLib](https://github.com/thuml/Time-Series-Library), accessible in [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing), [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy)
+  * [UTSD](https://huggingface.co/datasets/thuml/UTSD) contains 1 billiion time points for large-scale pre-training (in numpy format): [[Download]](https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
+).
+  * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) (40-year span, thousands of variables) for domain-specific model: [[Download]](https://cloud.tsinghua.edu.cn/f/7fe0b95032c64d39bc4a/).
+
+- For superwised training or modeling adaptation
+  * Well-acknowlegded datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
 
 2. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
 
@@ -83,17 +86,17 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 | 🥈 2nd         | [Timer](https://arxiv.org/abs/2402.02368)    | [Moirai](https://arxiv.org/abs/2402.02592)     | [Timer-XL](https://arxiv.org/abs/2410.04803)    | [TimeXer](https://arxiv.org/abs/2402.19072)  | [iTransformer](https://arxiv.org/abs/2310.06625) | [Time-MoE](https://arxiv.org/abs/2409.16040) |
 | 🥉 3rd         | [PatchTST](https://arxiv.org/abs/2211.14730) | [iTransformer](https://arxiv.org/abs/2310.06625) | [PatchTST](https://arxiv.org/abs/2211.14730)    | [iTransformer](https://arxiv.org/abs/2310.06625)     | [PatchTST](https://arxiv.org/abs/2211.14730)     | [Timer](https://arxiv.org/abs/2402.02368)    |
 
-For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see our [paper](https://arxiv.org/abs/2410.04803) for details.
+For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> We compare LTSMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
+> We compare LTMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
 
 ## Efficiency
 
-We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See our [paper](https://arxiv.org/abs/2410.04803) for details.
+We present a [theoretical proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or a single A100 40G).
+> LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
 
 ## Citation
 
@@ -104,13 +107,6 @@ If you find this repo helpful, please cite our paper.
   title={Timer: Generative Pre-trained Transformers Are Large Time Series Models},
   author={Liu, Yong and Zhang, Haoran and Li, Chenyu and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
   booktitle={Forty-first International Conference on Machine Learning}
-}
-
-@article{liu2024timer,
-  title={Timer-XL: Long-Context Transformers for Unified Time Series Forecasting},
-  author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
-  journal={arXiv preprint arXiv:2410.04803},
-  year={2024}
 }
 ```
 
