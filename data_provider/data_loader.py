@@ -232,7 +232,7 @@ class MultivariateDatasetBenchmark(Dataset):
 
 
 class Global_Temp(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -286,7 +286,7 @@ class Global_Temp(Dataset):
 
 
 class Global_Wind(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -340,7 +340,7 @@ class Global_Wind(Dataset):
 
 
 class Dataset_ERA5_Pretrain(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -415,7 +415,7 @@ class Dataset_ERA5_Pretrain(Dataset):
 
 
 class Dataset_ERA5_Pretrain_Test(Dataset):
-    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T'):
+    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -503,7 +503,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
 
 # Download link: https://huggingface.co/datasets/thuml/UTSD
 class UTSD(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -598,7 +598,7 @@ class UTSD(Dataset):
 
 # Download link: https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 class UTSD_Npy(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T'):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
