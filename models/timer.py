@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from layers.Transformer_EncDec import Encoder, EncoderLayer
+from layers.Transformer_EncDec import DecoderOnly, DecoderOnlyLayer
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PositionalEmbedding
 
@@ -15,11 +15,9 @@ class Model(nn.Module):
         self.embedding = nn.Linear(self.input_token_len, configs.d_model, bias=False)
         self.position_embedding = PositionalEmbedding(configs.d_model)
         self.dropout = nn.Dropout(configs.dropout)
-        
-        # Timer is a Decoder-only Transformer. Please refer to issue: https://github.com/thuml/Large-Time-Series-Model/issues/23
-        self.blocks = Encoder(
+        self.blocks = DecoderOnly(
             [
-                EncoderLayer(
+                DecoderOnlyLayer(
                     AttentionLayer(
                         FullAttention(True, attention_dropout=configs.dropout, 
                                       output_attention=False), configs.d_model, configs.n_heads),
@@ -34,29 +32,29 @@ class Model(nn.Module):
         self.head = nn.Linear(configs.d_model, configs.output_token_len)
         self.use_norm = configs.use_norm
 
-    def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
+    def forecast(self, x, x_mark, y_mark):
         if self.use_norm:
-            means = x_enc.mean(1, keepdim=True).detach()
-            x_enc = x_enc - means
+            means = x.mean(1, keepdim=True).detach()
+            x = x - means
             stdev = torch.sqrt(
-                torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
-            x_enc /= stdev
+                torch.var(x, dim=1, keepdim=True, unbiased=False) + 1e-5)
+            x /= stdev
         # [B, L, C]
-        B, _, C = x_enc.shape
+        B, _, C = x.shape
         # [B, C, L]
-        x_enc = x_enc.permute(0, 2, 1)
+        x = x.permute(0, 2, 1)
         # [B, C, N, P]
-        x_enc = x_enc.unfold(
+        x = x.unfold(
             dimension=-1, size=self.input_token_len, step=self.input_token_len)
-        N = x_enc.shape[2]
+        N = x.shape[2]
         # [B * C, N, P]
-        x_enc = x_enc.reshape(B * C, N, -1)
+        x = x.reshape(B * C, N, -1)
         # [B * C, N, D]
-        enc_out = self.embedding(x_enc) + self.position_embedding(x_enc)
-        enc_out = self.dropout(enc_out)
-        enc_out, attns = self.blocks(enc_out)
+        embed_out = self.embedding(x) + self.position_embedding(x)
+        embed_out = self.dropout(embed_out)
+        embed_out, attns = self.blocks(embed_out)
         # [B * C, N, P]
-        dec_out = self.head(enc_out)
+        dec_out = self.head(embed_out)
         # [B, C, L]
         dec_out = dec_out.reshape(B, C, -1)
         # [B, L, C]
@@ -65,5 +63,5 @@ class Model(nn.Module):
             dec_out = dec_out * stdev + means
         return dec_out
 
-    def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        return self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+    def forward(self, x, x_mark, y_mark):
+        return self.forecast(x, x_mark, y_mark)
