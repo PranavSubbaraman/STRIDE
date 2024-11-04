@@ -13,7 +13,7 @@ class Model(nn.Module):
         self.input_token_len = configs.input_token_len
         self.embedding = nn.Linear(self.input_token_len, configs.d_model)
         self.output_attention = configs.output_attention
-        self.encoder = TimerBlock(
+        self.blocks = TimerBlock(
             [
                 TimerLayer(
                     AttentionLayer(
@@ -47,7 +47,7 @@ class Model(nn.Module):
         enc_out = self.embedding(x_enc)
         # [B, C * N, D]
         enc_out = enc_out.reshape(B, C * N, -1)
-        enc_out, attns = self.encoder(enc_out, n_vars=C, n_tokens=N)
+        enc_out, attns = self.blocks(enc_out, n_vars=C, n_tokens=N)
         # [B, C * N, P]
         dec_out = self.head(enc_out)
         # [B, C, N * P]

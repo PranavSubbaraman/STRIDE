@@ -15,7 +15,7 @@ class Model(nn.Module):
         self.embedding = nn.Linear(self.input_token_len, configs.d_model, bias=False)
         self.position_embedding = PositionalEmbedding(configs.d_model)
         self.dropout = nn.Dropout(configs.dropout)
-        self.encoder = Encoder(
+        self.blocks = Encoder( # it can be a little misunderstanding to use the term Encoder. Timer is a decoder-only Transformer (mask_flag=True when initializing the FullAttention) 
             [
                 EncoderLayer(
                     AttentionLayer(
@@ -51,7 +51,7 @@ class Model(nn.Module):
         # [B * C, N, D]
         enc_out = self.embedding(x_enc) + self.position_embedding(x_enc)
         enc_out = self.dropout(enc_out)
-        enc_out, attns = self.encoder(enc_out)
+        enc_out, attns = self.blocks(enc_out)
         # [B * C, N, P]
         dec_out = self.head(enc_out)
         # [B, C, L]
