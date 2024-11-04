@@ -15,7 +15,9 @@ class Model(nn.Module):
         self.embedding = nn.Linear(self.input_token_len, configs.d_model, bias=False)
         self.position_embedding = PositionalEmbedding(configs.d_model)
         self.dropout = nn.Dropout(configs.dropout)
-        self.blocks = Encoder( # it can be a little misunderstanding to use the term Encoder. Timer is a decoder-only Transformer (mask_flag=True when initializing the FullAttention) 
+        
+        # Timer is a Decoder-only Transformer. Please refer to issue: https://github.com/thuml/Large-Time-Series-Model/issues/23
+        self.blocks = Encoder(
             [
                 EncoderLayer(
                     AttentionLayer(
