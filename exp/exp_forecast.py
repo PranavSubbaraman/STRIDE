@@ -264,7 +264,7 @@ class Exp_Forecast(Exp_Basic):
         if self.args.covariate:
             preds = preds[:, :, -1]
             trues = trues[:, :, -1]
-        mae, mse, rmse, mape, mspe = metric(preds, trues)
+        mae, mse, rmse, mape, mspe, smape = metric(preds, trues)
         print('mse:{}, mae:{}'.format(mse, mae))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
