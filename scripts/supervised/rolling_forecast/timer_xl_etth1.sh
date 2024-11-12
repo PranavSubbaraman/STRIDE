@@ -35,7 +35,7 @@ python -u run.py \
   --task_name forecast \
   --is_training 0 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTh1.csv \\
+  --data_path ETTh1.csv \
   --model_id ETTh1 \
   --model $model_name \
   --data MultivariateDatasetBenchmark  \
