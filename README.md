@@ -3,7 +3,7 @@
 Large time-series models, pre-training datasets, adaptation techniques, and benchmarks.
 
 > [!NOTE]
-> OpenLTM is a open codebase intending to explore the design philosophy of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
+> OpenLTM is a open codebase intending to explore the **model architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
 > We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **model adaptation**.
 
 > For deep time series models and task-specific benchmarks, we strongly recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
@@ -78,7 +78,7 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 - Include the newly added model in the `Exp_Basic.model_dict` of  `./exp/exp_basic.py`.
 - Create the corresponding scripts under the folder `./scripts`.
 
-## Leaderboard of Large Time-Series Models
+<!-- ## Leaderboard of Large Time-Series Models
 
 | Model Ranking | Univariate Forecasting                       | Multivariate Forecasting                         | Rolling Forecasting                             | Forecasting with Covariates                  | Variable Generalization                          | Zero-Shot Generalization                     |
 | ------------- | -------------------------------------------- | ------------------------------------------------ | ----------------------------------------------- | -------------------------------------------- | ------------------------------------------------ | -------------------------------------------- |
@@ -89,7 +89,7 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> We compare LTMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard!
+> We compare LTMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard! -->
 
 ## Efficiency
 

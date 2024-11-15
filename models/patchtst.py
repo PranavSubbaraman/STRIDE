@@ -50,7 +50,8 @@ class Model(nn.Module):
             [
                 EncoderLayer(
                     AttentionLayer(
-                        FullAttention(False, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
+                        FullAttention(False, attention_dropout=configs.dropout, 
+                                      output_attention=False), configs.d_model, configs.n_heads),
                     configs.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,

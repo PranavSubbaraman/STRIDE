@@ -17,7 +17,9 @@ class Model(nn.Module):
             [
                 TimerLayer(
                     AttentionLayer(
-                        TimeAttention(False, attention_dropout=configs.dropout, output_attention=False, d_model=configs.d_model, num_heads=configs.n_heads), configs.d_model, configs.n_heads),
+                        TimeAttention(False, attention_dropout=configs.dropout, 
+                                      output_attention=False, d_model=configs.d_model, 
+                                      num_heads=configs.n_heads), configs.d_model, configs.n_heads),
                     configs.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,
