@@ -65,19 +65,19 @@ class Model(nn.Module):
         self.head_nf = configs.d_model * int((configs.seq_len - patch_len) / stride + 2)
         self.head = FlattenHead(self.head_nf, configs.test_pred_len, head_dropout=configs.dropout)
 
-    def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
+    def forecast(self, x, x_mark, y_mark):
         if self.use_norm:
             # Normalization from Non-stationary Transformer
-            means = x_enc.mean(1, keepdim=True).detach()
-            x_enc = x_enc - means
+            means = x.mean(1, keepdim=True).detach()
+            x = x - means
             stdev = torch.sqrt(
-                torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
-            x_enc /= stdev
+                torch.var(x, dim=1, keepdim=True, unbiased=False) + 1e-5)
+            x /= stdev
 
         # do patching and embedding
-        x_enc = x_enc.permute(0, 2, 1)
+        x = x.permute(0, 2, 1)
         # u: [bs * nvars x patch_num x d_model]
-        enc_out, n_vars = self.patch_embedding(x_enc)
+        enc_out, n_vars = self.patch_embedding(x)
 
         # Encoder
         # z: [bs * nvars x patch_num x d_model]
@@ -100,6 +100,6 @@ class Model(nn.Module):
                     (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
         return dec_out
 
-    def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+    def forward(self, x, x_mark, y_mark):
+        dec_out = self.forecast(x, x_mark, y_mark)
         return dec_out[:, -self.pred_len:, :]  # [B, L, D]

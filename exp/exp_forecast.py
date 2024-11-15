@@ -70,7 +70,7 @@ class Exp_Forecast(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
                 
-                outputs = self.model(batch_x, batch_x_mark, None, batch_y_mark)
+                outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
                 if is_test or self.args.nonautoregressive:
                         outputs = outputs[:, -self.args.output_token_len:, :]
                         batch_y = batch_y[:, -self.args.output_token_len:, :].to(self.device)
@@ -138,7 +138,7 @@ class Exp_Forecast(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
 
-                outputs = self.model(batch_x, batch_x_mark, None, batch_y_mark)
+                outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
                 if self.args.dp:
                     torch.cuda.synchronize()
                 if self.args.nonautoregressive:
@@ -228,7 +228,7 @@ class Exp_Forecast(Exp_Basic):
                 for j in range(inference_steps):  
                     if len(pred_y) != 0:
                         batch_x = torch.cat([batch_x[:, self.args.input_token_len:, :], pred_y[-1]], dim=1)
-                    outputs = self.model(batch_x, batch_x_mark, None, batch_y_mark)
+                    outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
                     pred_y.append(outputs[:, -self.args.output_token_len:, :])
                 pred_y = torch.cat(pred_y, dim=1)
                 if dis != 0:
@@ -264,7 +264,7 @@ class Exp_Forecast(Exp_Basic):
         if self.args.covariate:
             preds = preds[:, :, -1]
             trues = trues[:, :, -1]
-        mae, mse, rmse, mape, mspe = metric(preds, trues)
+        mae, mse, rmse, mape, mspe, smape = metric(preds, trues)
         print('mse:{}, mae:{}'.format(mse, mae))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")

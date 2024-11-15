@@ -33,27 +33,27 @@ class Model(nn.Module):
         self.head = nn.Linear(configs.d_model, configs.output_token_len)
         self.use_norm = configs.use_norm
 
-    def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
+    def forecast(self, x, x_mark, y_mark):
         if self.use_norm:
-            means = x_enc.mean(1, keepdim=True).detach()
-            x_enc = x_enc - means
+            means = x.mean(1, keepdim=True).detach()
+            x = x - means
             stdev = torch.sqrt(
-                torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
-            x_enc /= stdev
-        B, _, C = x_enc.shape
+                torch.var(x, dim=1, keepdim=True, unbiased=False) + 1e-5)
+            x /= stdev
+        B, _, C = x.shape
         # [B, C, L]
-        x_enc = x_enc.permute(0, 2, 1)
+        x = x.permute(0, 2, 1)
         # [B, C, N, P]
-        x_enc = x_enc.unfold(
+        x = x.unfold(
             dimension=-1, size=self.input_token_len, step=self.input_token_len)
-        N = x_enc.shape[2]
+        N = x.shape[2]
         # [B, C, N, D]
-        enc_out = self.embedding(x_enc)
+        embed_out = self.embedding(x)
         # [B, C * N, D]
-        enc_out = enc_out.reshape(B, C * N, -1)
-        enc_out, attns = self.blocks(enc_out, n_vars=C, n_tokens=N)
+        embed_out = embed_out.reshape(B, C * N, -1)
+        embed_out, attns = self.blocks(embed_out, n_vars=C, n_tokens=N)
         # [B, C * N, P]
-        dec_out = self.head(enc_out)
+        dec_out = self.head(embed_out)
         # [B, C, N * P]
         dec_out = dec_out.reshape(B, C, N, -1).reshape(B, C, -1)
         # [B, L, C]
@@ -65,5 +65,5 @@ class Model(nn.Module):
             return dec_out, attns
         return dec_out
 
-    def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        return self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+    def forward(self, x, x_mark, y_mark):
+        return self.forecast(x, x_mark, y_mark)

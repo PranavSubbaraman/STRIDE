@@ -89,7 +89,7 @@ bash ./scripts/adaptation/zero_shot/timer_xl_etth1.sh
 For the first four [forecasting tasks](./figures/forecasting.png), in addition to supervised training (current leaderboard), a LTM can also be evaluated on full-shot and few-shot tasks, depending on downstream data availability and whether or not a pre-trained model is used. For other two [generalization tasks](./figures/generalization.png), please see the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
-> We compare LTMs currently implemented or to be implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard! -->
+> We compare LTMs currently implemented in this repository. Model rank is based on officially reported results. We expect to see more large models included in this leaderboard! -->
 
 ## Efficiency
 

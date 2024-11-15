@@ -8,7 +8,7 @@ python -u run.py \
   --task_name forecast \
   --is_training 1 \
   --root_path ./dataset/era5_pretrain/ \
-  --data_path temp_data_shuffled_normalized.npy \
+  --data_path pretrain.npy \
   --model_id era5_pretrain \
   --model $model_name \
   --data Era5_Pretrain  \
