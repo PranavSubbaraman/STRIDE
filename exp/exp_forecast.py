@@ -220,8 +220,8 @@ class Exp_Forecast(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
                 
-                inference_steps = self.args.test_pred_len // self.args.input_token_len
-                dis = self.args.test_pred_len - inference_steps * self.args.input_token_len
+                inference_steps = self.args.test_pred_len // self.args.output_token_len
+                dis = self.args.test_pred_len - inference_steps * self.args.output_token_len
                 if dis != 0:
                     inference_steps += 1
                 pred_y = []
@@ -232,7 +232,7 @@ class Exp_Forecast(Exp_Basic):
                     pred_y.append(outputs[:, -self.args.output_token_len:, :])
                 pred_y = torch.cat(pred_y, dim=1)
                 if dis != 0:
-                    pred_y = pred_y[:, :-dis, :]
+                    pred_y = pred_y[:, :-self.args.output_token_len+dis, :]
                 batch_y = batch_y[:, -self.args.test_pred_len:, :].to(self.device)
                 
                 outputs = pred_y.detach().cpu()
