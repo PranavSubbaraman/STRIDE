@@ -20,12 +20,19 @@ class Exp_Forecast(Exp_Basic):
         super(Exp_Forecast, self).__init__(args)
         
     def _build_model(self):
-        model = self.model_dict[self.args.model].Model(self.args)
         if self.args.ddp:
             self.device = torch.device('cuda:{}'.format(self.args.local_rank))
+        else:
+            self.device = self.args.gpu
+        
+        if self.args.model == 'OFA':
+            model = self.model_dict[self.args.model].Model(self.args, device=self.device)
+        else:
+            model = self.model_dict[self.args.model].Model(self.args)
+        
+        if self.args.ddp:
             model = DDP(model.cuda(), device_ids=[self.args.local_rank])
         elif self.args.dp:
-            self.device = self.args.gpu
             model = DataParallel(model, device_ids=self.args.device_ids).to(self.device)
         else:
             self.device = self.args.gpu
@@ -52,7 +59,10 @@ class Exp_Forecast(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        criterion = nn.MSELoss()
+        if self.args.model == 'OFA':
+            criterion = nn.L1Loss()
+        else: criterion = nn.MSELoss()
+        
         return criterion
 
     def vali(self, vali_data, vali_loader, criterion, is_test=False):
@@ -61,7 +71,13 @@ class Exp_Forecast(Exp_Basic):
         time_now = time.time()
         test_steps = len(vali_loader)
         iter_count = 0
-        self.model.eval()
+        
+        if self.args.model == 'OFA':
+            self.model.in_layer.eval()
+            self.model.out_layer.eval()
+        else:
+            self.model.eval()
+            
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(vali_loader):
                 iter_count += 1
@@ -104,7 +120,13 @@ class Exp_Forecast(Exp_Basic):
             total_loss = total_loss.item() / dist.get_world_size()
         else:
             total_loss = np.average(total_loss, weights=total_count)
-        self.model.train()
+            
+        if self.args.model == 'OFA':
+            self.model.in_layer.train()
+            self.model.out_layer.train()
+        else: 
+            self.model.train()
+            
         return total_loss
 
     def train(self, setting):
