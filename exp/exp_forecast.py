@@ -1,17 +1,18 @@
+import os
+import time
+import warnings
+import torch
+import numpy as np
+import torch.nn as nn
+import torch.distributed as dist
+from torch import optim
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.nn import DataParallel
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
 from utils.tools import EarlyStopping, adjust_learning_rate, visual
 from utils.metrics import metric
-import torch
-import torch.nn as nn
-from torch import optim
-import os
-import time
-import warnings
-import numpy as np
-from torch.nn.parallel import DistributedDataParallel as DDP
-import torch.distributed as dist
-from torch.nn import DataParallel
+
 warnings.filterwarnings('ignore')
 
 
@@ -23,12 +24,10 @@ class Exp_Forecast(Exp_Basic):
         if self.args.ddp:
             self.device = torch.device('cuda:{}'.format(self.args.local_rank))
         else:
+            # for methods that do not use ddp (e.g. finetuning-based LLM4TS models)
             self.device = self.args.gpu
         
-        if self.args.model == 'OFA':
-            model = self.model_dict[self.args.model].Model(self.args, device=self.device)
-        else:
-            model = self.model_dict[self.args.model].Model(self.args)
+        model = self.model_dict[self.args.model].Model(self.args)
         
         if self.args.ddp:
             model = DDP(model.cuda(), device_ids=[self.args.local_rank])
@@ -69,12 +68,7 @@ class Exp_Forecast(Exp_Basic):
         test_steps = len(vali_loader)
         iter_count = 0
         
-        if self.args.model == 'OFA':
-            self.model.in_layer.eval()
-            self.model.out_layer.eval()
-        else:
-            self.model.eval()
-            
+        self.model.eval()    
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(vali_loader):
                 iter_count += 1
@@ -118,7 +112,8 @@ class Exp_Forecast(Exp_Basic):
         else:
             total_loss = np.average(total_loss, weights=total_count)
             
-        if self.args.model == 'OFA':
+        if self.args.model == 'gpt4ts':
+            # GPT4TS just requires to train partial layers
             self.model.in_layer.train()
             self.model.out_layer.train()
         else: 

@@ -1,6 +1,6 @@
 import abc
-from functools import cached_property
 import torch
+from functools import cached_property
 from einops import einsum, rearrange, repeat
 from torch import nn
 

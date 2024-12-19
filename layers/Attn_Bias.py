@@ -1,8 +1,8 @@
 import abc
+import math
 import torch
 from einops import rearrange
 from torch import nn
-import math
 
 
 class AttentionBias(nn.Module, abc.ABC):

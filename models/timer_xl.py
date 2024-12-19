@@ -6,7 +6,18 @@ from layers.SelfAttention_Family import AttentionLayer, TimeAttention
 
 class Model(nn.Module):
     """
-    Paper link: https://arxiv.org/abs/2410.04803
+    Timer-XL: Long-Context Transformers for Unified Time Series Forecasting 
+
+    Paper: https://arxiv.org/abs/2410.04803
+    
+    GitHub: https://github.com/thuml/OpenLTM
+    
+    Citation: @article{liu2024timer,
+        title={Timer-XL: Long-Context Transformers for Unified Time Series Forecasting},
+        author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
+        journal={arXiv preprint arXiv:2410.04803},
+        year={2024}
+    }
     """
     def __init__(self, configs):
         super().__init__()
