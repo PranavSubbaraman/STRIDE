@@ -74,8 +74,20 @@ if __name__ == '__main__':
     parser.add_argument('--ddp', action='store_true', help='Distributed Data Parallel', default=False)
     parser.add_argument('--dp', action='store_true', help='Data Parallel', default=False)
     parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')    
-    args = parser.parse_args()
     
+    # OFA LLM model
+    parser.add_argument('--gpt_layers', type=int, default=6)
+    parser.add_argument('--is_gpt', type=int, default=1)
+    parser.add_argument('--patch_size', type=int, default=16)
+    parser.add_argument('--kernel_size', type=int, default=25)
+    parser.add_argument('--pretrain', type=int, default=1)
+    parser.add_argument('--freeze', type=int, default=1)
+    parser.add_argument('--stride', type=int, default=8)
+    parser.add_argument('--max_len', type=int, default=-1)
+    parser.add_argument('--hid_dim', type=int, default=16)
+    parser.add_argument('--n_scale', type=float, default=-1)
+    
+    args = parser.parse_args()
     fix_seed = args.seed
     random.seed(fix_seed)
     torch.manual_seed(fix_seed)
