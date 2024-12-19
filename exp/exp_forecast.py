@@ -59,10 +59,7 @@ class Exp_Forecast(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        if self.args.model == 'OFA':
-            criterion = nn.L1Loss()
-        else: criterion = nn.MSELoss()
-        
+        criterion = nn.MSELoss()
         return criterion
 
     def vali(self, vali_data, vali_loader, criterion, is_test=False):
