@@ -1,6 +1,6 @@
 # OpenLTM (Open-Source Large Time-Series Models)
 
-Large time-series models, pre-training datasets, and adaptation techniques.
+Large time-series models, pre-training datasets, and adaptation techniques (Future Features).
 
 > [!NOTE]
 > OpenLTM is a open codebase intending to explore the **model architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
