@@ -3,14 +3,14 @@
 Large time-series models, pre-training datasets, and adaptation techniques (Future Features).
 
 > [!NOTE]
-> OpenLTM is a open codebase intending to explore the **model architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
-> We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three milestone applications: **supervised training**, **large-scale pre-training**, and **model adaptation**.
+> OpenLTM is a open codebase intending to explore the **architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
+> We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three applications: **supervised training**, **large-scale pre-training**, and **adaptation**.
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
 :triangular_flag_on_post: **News** (2024.12) Many thanks for the implementation of [GPT4TS](https://arxiv.org/abs/2302.11939) from [khairulislam](https://github.com/khairulislam)! LLMs for time series are also welcomed in this library.
 
-:triangular_flag_on_post: **News** (2024.10) We include four large time-series models, release pre-training logic, and provide scripts.
+:triangular_flag_on_post: **News** (2024.10) We include five large time-series models, release pre-training logic, and provide scripts.
 
 ## What is LTM
 
@@ -25,7 +25,7 @@ LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models bu
 - [x] **Timer-XL** - Timer-XL: Long-Context Transformer for Unified Time Series Forecasting. [[arxiv 2024]](https://arxiv.org/abs/2410.04803), [[Code]](https://github.com/thuml/Timer-XL)
 - [x] **GPT4TS** - One Fits All: Power General Time Series Analysis by Pretrained LM. [[arxiv 2024]](https://arxiv.org/abs/2302.11939), [[Code]](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All)
 
-> We will update the following models to the checklist after a comprehensive evaluation. Welcome to give your suggestion about any interesting works 🤗
+> We will update the following models to the checklist after a comprehensive evaluation. Welcome to give your suggestions about any interesting works 🤗
 
 - [ ] AutoTimes: Autoregressive Time Series Forecasters via Large Language Models. [[NeurIPS 2024]](https://arxiv.org/abs/2402.02370), [[Code]](https://github.com/thuml/AutoTimes)
 - [ ] Chronos: Learning the Language of Time Series. [[arxiv 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
@@ -49,7 +49,7 @@ pip install -r requirements.txt
   * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) (40-year span, thousands of variables) for domain-specific model: [[Download]](https://cloud.tsinghua.edu.cn/f/7fe0b95032c64d39bc4a/).
 
 - For superwised training or modeling adaptation
-  * Well-acknowlegded datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
+  * Datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
 
 2. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
 
@@ -85,12 +85,6 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 - TimesFM: https://huggingface.co/google/timesfm-1.0-200m
 - Timer-XL: https://huggingface.co/thuml/timer-base-84m
 - Time-MoE: https://huggingface.co/Maple728/TimeMoE-50M
-
-
-
-## Efficiency
-
-We present a [proof](./figures/efficiency.png) of the computational complexity of Time-Series Transformers. See the [paper](https://arxiv.org/abs/2410.04803) for details.
 
 > [!NOTE]
 > LTMs are still small in scale compared to large models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
