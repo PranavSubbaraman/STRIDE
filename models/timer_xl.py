@@ -10,7 +10,7 @@ class Model(nn.Module):
 
     Paper: https://arxiv.org/abs/2410.04803
     
-    GitHub: https://github.com/thuml/OpenLTM
+    GitHub: https://github.com/thuml/Timer-XL
     
     Citation: @article{liu2024timer,
         title={Timer-XL: Long-Context Transformers for Unified Time Series Forecasting},
