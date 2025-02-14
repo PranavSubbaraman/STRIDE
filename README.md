@@ -97,6 +97,13 @@ If you find this repo helpful, please cite our paper.
   author={Liu, Yong and Zhang, Haoran and Li, Chenyu and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
   booktitle={Forty-first International Conference on Machine Learning}
 }
+
+@article{liu2024timer,
+  title={Timer-XL: Long-Context Transformers for Unified Time Series Forecasting},
+  author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
+  journal={arXiv preprint arXiv:2410.04803},
+  year={2024}
+}
 ```
 
 ## Acknowledgment
