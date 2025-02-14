@@ -1,4 +1,4 @@
-# OpenLTM (Open-Source Large Time-Series Models)
+# OpenLTM
 
 > [!NOTE]
 > OpenLTM is a open codebase intending to explore the **architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
