@@ -96,14 +96,15 @@ if __name__ == '__main__':
     parser.add_argument('--stride', type=int, default=8)
     
     # TTM
-    parser.add_argument("--n_vars", type=int, default=7, help='number of variables')
-    parser.add_argument("--factor", type=int, default=2, help='expansion factor of hidden layer')
-    parser.add_argument("--mode", type=str, default="mix_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--AP_levels", type=int, default=0, help="number of attention patching levels")
+    parser.add_argument("--n_vars", type=int, default=7)
+    parser.add_argument("--e_factor", type=int, default=2)
+    parser.add_argument("--mode", type=str, default="mix_channel")
+    parser.add_argument("--AP_levels", type=int, default=0)
+    parser.add_argument("--head_dropout", type=float, default=0.2)
     parser.add_argument("--use_decoder", action="store_true", help="use decoder", default=True)
-    parser.add_argument("--d_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--d_layers", type=int, default=8, help="number of layers in decoder")
-    parser.add_argument("--d_d_model", type=int, default=16, help="d_model in decoder")
+    parser.add_argument("--decoder_mode", type=str, default="common_channel")
+    parser.add_argument("--decoder_num_layers", type=int, default=8)
+    parser.add_argument("--decoder_d_model", type=int, default=16)
 
     args = parser.parse_args()
     fix_seed = args.seed

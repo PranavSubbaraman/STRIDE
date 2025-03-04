@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from layers.MLP import TTMLayer
+from layers.Mlp import TTMLayer
 
 
 class Model(nn.Module):
@@ -11,16 +11,12 @@ class Model(nn.Module):
 
     GitHub: https://github.com/ibm-granite/granite-tsfm
 
-    Released Model: https://huggingface.co/ibm-granite/granite-timeseries-ttm-r1
-    
     Citation: @inproceedings{Ekambaram2024TTM,
         title={Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series},
         author={Vijay Ekambaram and Arindam Jati and Pankaj Dayama and Sumanta Mukherjee and Nam H. Nguyen and Wesley M. Gifford and Chandra Reddy and Jayant Kalagnanam},
         booktitle={Neural Information Processing Systems},
         year={2024}
     }
-    
-    Note: This implementation is a simplified version of the original implementation. Simplify some settings and model structures.
     """
 
     def __init__(self, configs):
@@ -39,15 +35,15 @@ class Model(nn.Module):
         self.use_norm = configs.use_norm
 
         if configs.use_decoder:
-            self.decoder_adapter = nn.Linear(configs.d_model, configs.d_d_model) # [B M N D] -> [B M N decoder_d_model]
+            self.decoder_adapter = nn.Linear(configs.d_model, configs.decoder_d_model)
             self.decoder = TTMBlock(
-                e_layers=configs.d_layers,
+                e_layers=configs.decoder_num_layers,
                 AP_levels=0,
-                d_model=configs.d_d_model,
+                d_model=configs.decoder_d_model,
                 num_patches=configs.num_patches,
                 n_vars=configs.n_vars,
-                mode=configs.d_mode,
-                dropout=configs.dropout,
+                mode=configs.decoder_mode,
+                dropout=configs.head_dropout,
             )
 
         self.head = TTMPredicationHead(configs=configs)
@@ -85,8 +81,6 @@ class Model(nn.Module):
 
         return y_hat
 
-# adaptive patching block: in TTMBackbone, different TTMAPBlock operate at varying patch lengths and numbers of patches. 
-# which aims to resolve multi-resolution issues in modelling diverse TS datasets.
 class TTMAPBlock(nn.Module):
     def __init__(
         self,
@@ -98,10 +92,6 @@ class TTMAPBlock(nn.Module):
         adapt_patch_level,
         dropout,
     ):
-        """
-            mode: determines how to process the channels, details in TTMLayer
-            adapt_patch_level: the level of adaptive patching, determines the patch length and number of patches
-        """
         super().__init__()
         self.adapt_patch_level = adapt_patch_level
         adaptive_patch_factor = 2**adapt_patch_level
@@ -151,10 +141,6 @@ class TTMBlock(nn.Module):
     def __init__(
         self, e_layers, AP_levels, d_model, num_patches, n_vars, mode, dropout
     ):
-        """
-            mode: determines how to process the channels, details in TTMLayer
-            AP_level: the level of adaptive patching, determines the number of adaptive patching blocks
-        """
         super().__init__()
 
         e_layers = e_layers
@@ -162,7 +148,6 @@ class TTMBlock(nn.Module):
         self.AP_levels = AP_levels
 
         if self.AP_levels > 0:
-            # different TTMAPBlock at varying patch lengths and numbers of patches
             self.mixers = nn.ModuleList(
                 [
                     TTMAPBlock(
@@ -203,9 +188,9 @@ class TTMPredicationHead(nn.Module):
     def __init__(self, configs):
         super().__init__()
 
-        self.dropout_layer = nn.Dropout(configs.dropout)
+        self.dropout_layer = nn.Dropout(configs.head_dropout)
         if configs.use_decoder:
-            head_d_model = configs.d_d_model
+            head_d_model = configs.decoder_d_model
         else:
             head_d_model = configs.d_model
 
