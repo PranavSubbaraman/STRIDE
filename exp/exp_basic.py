@@ -1,4 +1,4 @@
-from models import timer, timer_xl, moirai, moment, gpt4ts, autotimes
+from models import timer, timer_xl, moirai, moment, gpt4ts, autotimes, ttm
 
 
 class Exp_Basic(object):
@@ -10,7 +10,8 @@ class Exp_Basic(object):
             'moirai': moirai,
             'moment': moment,
             'gpt4ts': gpt4ts,
-            'autotimes': autotimes
+            'autotimes': autotimes,
+            'ttm': ttm
             }
         self.model = self._build_model()
 
