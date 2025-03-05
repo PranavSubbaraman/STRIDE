@@ -1,8 +1,7 @@
 # OpenLTM
 
 > [!NOTE]
-> OpenLTM is a open codebase intending to explore the **architecture** of large time-series models. It is not intended to be completely compatiable with official codebases and existing checkpoints. 
-> We aim to provide a neat pipeline to develop and evaluate large time-series models, which covers three applications: **supervised training**, **large-scale pre-training**, and **adaptation**.
+> OpenLTM is a open codebase intending to collect prevailing **architectures** of large time-series models. It is not intended for checkpoint reproduction. We aim to provide a pipeline to develop and evaluate large time-series models, covering three tasks: **supervised training**, **large-scale pre-training**, and **adaptation**.
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
@@ -12,7 +11,7 @@
 
 ## What is LTM
 
-LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we list some related works. [[Slide1]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/), [[Slide2]](https://cloud.tsinghua.edu.cn/f/2d4b660fc05148dc8f30/).
+LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we list some related materials: [[Slide1]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/), [[Slide2]](https://cloud.tsinghua.edu.cn/f/2d4b660fc05148dc8f30/).
 
 
 ## Model Checklist
