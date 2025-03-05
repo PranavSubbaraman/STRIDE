@@ -97,7 +97,7 @@ if __name__ == '__main__':
     
     # TTM
     parser.add_argument("--n_vars", type=int, default=7, help='number of variables')
-    parser.add_argument("--e_factor", type=int, default=2, held='expansion factor of hidden layer')
+    parser.add_argument("--factor", type=int, default=2, help='expansion factor of hidden layer')
     parser.add_argument("--mode", type=str, default="mix_channel", help="allowed values: common_channel, mix_channel")
     parser.add_argument("--AP_levels", type=int, default=0, help="number of attention patching levels")
     parser.add_argument("--use_decoder", action="store_true", help="use decoder", default=True)
