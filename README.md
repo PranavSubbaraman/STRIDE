@@ -5,7 +5,9 @@
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
-:triangular_flag_on_post: **News** (2024.12) Many thanks for the implementation of [GPT4TS](https://arxiv.org/abs/2302.11939) from [khairulislam](https://github.com/khairulislam)! LLMs for time series are also welcomed in this library.
+:triangular_flag_on_post: **News** (2025.03) Many thanks for the implementation of [TTMs](https://arxiv.org/pdf/2401.03955) from [frndtls](https://github.com/frndtls).
+
+:triangular_flag_on_post: **News** (2024.12) Many thanks for the implementation of [GPT4TS](https://arxiv.org/abs/2302.11939) from [khairulislam](https://github.com/khairulislam).
 
 :triangular_flag_on_post: **News** (2024.10) We include five large time-series models, release pre-training logic, and provide scripts.
 
@@ -17,14 +19,15 @@ LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models bu
 ## Model Checklist
 
 - [x] **Timer-XL** - Timer-XL: Long-Context Transformer for Unified Time Series Forecasting. [[ICLR 2025]](https://arxiv.org/abs/2410.04803), [[Code]](https://github.com/thuml/Timer-XL)
-- [x] **Timer** - Timer: Generative Pre-trained Transformers Are Large Time Series Models. [[ICML 2024]](https://arxiv.org/abs/2402.02368), [[Code]](https://github.com/thuml/Large-Time-Series-Model)
 - [x] **Moirai** - Unified Training of Universal Time Series Forecasting Transformers. [[ICML 2024]](https://arxiv.org/abs/2402.02592), [[Code]](https://github.com/SalesforceAIResearch/uni2ts)
+- [x] **Timer** - Timer: Generative Pre-trained Transformers Are Large Time Series Models. [[ICML 2024]](https://arxiv.org/abs/2402.02368), [[Code]](https://github.com/thuml/Large-Time-Series-Model)
 - [x] **Moment** - MOMENT: A Family of Open Time-series Foundation Model. [[ICML 2024]](https://arxiv.org/abs/2402.03885), [[Code]](https://github.com/moment-timeseries-foundation-model/moment)
-- [x] **GPT4TS** - One Fits All: Power General Time Series Analysis by Pretrained LM. [[arxiv 2024]](https://arxiv.org/abs/2302.11939), [[Code]](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All)
+- [x] **TTMs** - Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series. [[Arxiv 2024]](https://arxiv.org/pdf/2401.03955), [[Code]](https://huggingface.co/ibm-research/ttm-research-r2)
+- [x] **GPT4TS** - One Fits All: Power General Time Series Analysis by Pretrained LM. [[NeurIPS 2023]](https://arxiv.org/abs/2302.11939), [[Code]](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All)
 - [ ] AutoTimes: Autoregressive Time Series Forecasters via Large Language Models. [[NeurIPS 2024]](https://arxiv.org/abs/2402.02370), [[Code]](https://github.com/thuml/AutoTimes)
-- [ ] Chronos: Learning the Language of Time Series. [[arxiv 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
-- [ ] Time-MoE: Billion-Scale Time Series Foundation Models With Mixture Of Experts. [[arxiv 2024]](https://arxiv.org/abs/2409.16040), [[Code]](https://github.com/Time-MoE/Time-MoE)
-- [ ] A Decoder-Only Foundation Model for Time-Series Forecasting. [[arxiv]](https://arxiv.org/abs/2310.10688), [[Code]](https://github.com/google-research/timesfm)
+- [ ] Chronos: Learning the Language of Time Series. [[TMLR 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
+- [ ] Time-MoE: Billion-Scale Time Series Foundation Models With Mixture Of Experts. [[ICLR 2025]](https://arxiv.org/abs/2409.16040), [[Code]](https://github.com/Time-MoE/Time-MoE)
+- [ ] A Decoder-Only Foundation Model for Time-Series Forecasting. [[ICML 2024]](https://arxiv.org/abs/2310.10688), [[Code]](https://github.com/google-research/timesfm)
 
 
 ## Usage
