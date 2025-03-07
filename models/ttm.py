@@ -39,14 +39,14 @@ class Model(nn.Module):
         self.use_norm = configs.use_norm
 
         if configs.use_decoder:
-            self.decoder_adapter = nn.Linear(configs.d_model, configs.decoder_d_model) # [B M N D] -> [B M N decoder_d_model]
+            self.decoder_adapter = nn.Linear(configs.d_model, configs.d_d_model) # [B M N D] -> [B M N decoder_d_model]
             self.decoder = TTMBlock(
-                e_layers=configs.decoder_num_layers,
+                e_layers=configs.d_layers,
                 AP_levels=0,
-                d_model=configs.decoder_d_model,
+                d_model=configs.d_d_model,
                 num_patches=configs.num_patches,
                 n_vars=configs.n_vars,
-                mode=configs.decoder_mode,
+                mode=configs.d_mode,
                 dropout=configs.dropout,
             )
 
@@ -205,7 +205,7 @@ class TTMPredicationHead(nn.Module):
 
         self.dropout_layer = nn.Dropout(configs.dropout)
         if configs.use_decoder:
-            head_d_model = configs.decoder_d_model
+            head_d_model = configs.d_d_model
         else:
             head_d_model = configs.d_model
 

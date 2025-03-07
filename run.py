@@ -87,9 +87,9 @@ if __name__ == '__main__':
     parser.add_argument("--mode", type=str, default="mix_channel", help="allowed values: common_channel, mix_channel")
     parser.add_argument("--AP_levels", type=int, default=0, help="number of attention patching levels")
     parser.add_argument("--use_decoder", action="store_true", help="use decoder", default=True)
-    parser.add_argument("--decoder_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--decoder_num_layers", type=int, default=8, help="number of layers in decoder")
-    parser.add_argument("--decoder_d_model", type=int, default=16, help="d_model in decoder")
+    parser.add_argument("--d_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
+    parser.add_argument("--d_layers", type=int, default=8, help="number of layers in decoder")
+    parser.add_argument("--d_d_model", type=int, default=16, help="d_model in decoder")
 
     args = parser.parse_args()
     fix_seed = args.seed
