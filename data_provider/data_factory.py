@@ -1,4 +1,4 @@
-from data_provider.data_loader import UnivariateDatasetBenchmark, MultivariateDatasetBenchmark, Global_Temp, Global_Wind, Dataset_ERA5_Pretrain, Dataset_ERA5_Pretrain_Test, UTSD, UTSD_Npy
+from data_provider.data_loader import UnivariateDatasetBenchmark, MultivariateDatasetBenchmark, Global_Temp, Global_Wind, Dataset_ERA5_Pretrain, Dataset_ERA5_Pretrain_Test, UTSD, UTSD_Npy, Dataset_ETT_hour
 from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 
@@ -10,7 +10,8 @@ data_dict = {
     'Era5_Pretrain': Dataset_ERA5_Pretrain,
     'Era5_Pretrain_Test': Dataset_ERA5_Pretrain_Test,
     'Utsd': UTSD,
-    'Utsd_Npy': UTSD_Npy
+    'Utsd_Npy': UTSD_Npy,
+    'ETTh': Dataset_ETT_hour
 }
 
 

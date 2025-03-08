@@ -13,8 +13,9 @@ if __name__ == '__main__':
     parser.add_argument('--task_name', type=str, required=True, default='forecast', help='task name, options:[forecast]')
     parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
     parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-    parser.add_argument('--model', type=str, required=True, default='timer_xl', help='model name, options: [timer_xl, timer, moirai, moment]')
+    parser.add_argument('--model', type=str, required=True, default='timer_xl', help='model name, options: [timer_xl, timer, moirai, moment, autotimes-LLaMa, autotimes-OPT, autotimes-GPT2]')
     parser.add_argument('--seed', type=int, default=2021, help='seed')
+    parser.add_argument('--model_name', type=str, default='GPT2', help='model name')
     
     # data loader
     parser.add_argument('--data', type=str, required=True, default='ETTh1', help='dataset type')
@@ -29,6 +30,11 @@ if __name__ == '__main__':
     parser.add_argument('--output_token_len', type=int, default=96, help='output token length')
     parser.add_argument('--test_seq_len', type=int, default=672, help='test seq len')
     parser.add_argument('--test_pred_len', type=int, default=96, help='test pred len')
+    parser.add_argument('--label_len', type=int, default=576, help='label length')
+    parser.add_argument('--token_len', type=int, default=96, help='token length')
+    parser.add_argument('--test_label_len', type=int, default=576, help='test label len')
+    
+
 
     # model define
     parser.add_argument('--dropout', type=float, default=0.1, help='dropout')
@@ -47,6 +53,11 @@ if __name__ == '__main__':
     parser.add_argument('--output_attention', action='store_true', help='output attention', default=False)
     parser.add_argument('--visualize', action='store_true', help='visualize', default=False)
     parser.add_argument('--flash_attention', action='store_true', help='flash attention', default=False)
+    parser.add_argument('--llm_ckp_dir', type=str, default='./llama', help='llm checkpoints dir')
+    parser.add_argument('--mlp_hidden_dim', type=int, default=256, help='mlp hidden dim')
+    parser.add_argument('--mlp_hidden_layers', type=int, default=2, help='mlp hidden layers')
+    parser.add_argument('--mlp_activation', type=str, default='tanh', help='mlp activation')
+
 
     # adaptation
     parser.add_argument('--adaptation', action='store_true', help='adaptation', default=False)
@@ -68,7 +79,10 @@ if __name__ == '__main__':
     parser.add_argument('--weight_decay', type=float, default=0)
     parser.add_argument('--valid_last', action='store_true', help='valid last', default=False)
     parser.add_argument('--last_token', action='store_true', help='last token', default=False)
-    
+    parser.add_argument('--use_amp', action='store_true', help='use automatic mixed precision training', default=False)
+    parser.add_argument('--mix_embeds', action='store_true', help='mix embeds', default=False)
+
+
     # GPU
     parser.add_argument('--gpu', type=int, default=0, help='gpu')
     parser.add_argument('--ddp', action='store_true', help='Distributed Data Parallel', default=False)
@@ -82,14 +96,15 @@ if __name__ == '__main__':
     parser.add_argument('--stride', type=int, default=8)
     
     # TTM
-    parser.add_argument("--n_vars", type=int, default=7, help='number of variables')
-    parser.add_argument("--factor", type=int, default=2, help='expansion factor of hidden layer')
-    parser.add_argument("--mode", type=str, default="mix_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--AP_levels", type=int, default=0, help="number of attention patching levels")
+    parser.add_argument("--n_vars", type=int, default=7)
+    parser.add_argument("--e_factor", type=int, default=2)
+    parser.add_argument("--mode", type=str, default="mix_channel")
+    parser.add_argument("--AP_levels", type=int, default=0)
+    parser.add_argument("--head_dropout", type=float, default=0.2)
     parser.add_argument("--use_decoder", action="store_true", help="use decoder", default=True)
-    parser.add_argument("--d_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--d_layers", type=int, default=8, help="number of layers in decoder")
-    parser.add_argument("--d_d_model", type=int, default=16, help="d_model in decoder")
+    parser.add_argument("--decoder_mode", type=str, default="common_channel")
+    parser.add_argument("--decoder_num_layers", type=int, default=8)
+    parser.add_argument("--decoder_d_model", type=int, default=16)
 
     args = parser.parse_args()
     fix_seed = args.seed
