@@ -25,6 +25,7 @@ LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models bu
 - [x] **TTMs** - Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series. [[Arxiv 2024]](https://arxiv.org/pdf/2401.03955), [[Code]](https://huggingface.co/ibm-research/ttm-research-r2)
 - [x] **GPT4TS** - One Fits All: Power General Time Series Analysis by Pretrained LM. [[NeurIPS 2023]](https://arxiv.org/abs/2302.11939), [[Code]](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All)
 - [ ] AutoTimes: Autoregressive Time Series Forecasters via Large Language Models. [[NeurIPS 2024]](https://arxiv.org/abs/2402.02370), [[Code]](https://github.com/thuml/AutoTimes)
+- [ ] LLMTime: Large Language Models Are Zero-Shot Time Series Forecasters. [[NeurIPS 2023]](https://arxiv.org/abs/2310.07820), [[Code]](https://github.com/ngruver/llmtime)
 - [ ] Chronos: Learning the Language of Time Series. [[TMLR 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
 - [ ] Time-MoE: Billion-Scale Time Series Foundation Models With Mixture Of Experts. [[ICLR 2025]](https://arxiv.org/abs/2409.16040), [[Code]](https://github.com/Time-MoE/Time-MoE)
 - [ ] A Decoder-Only Foundation Model for Time-Series Forecasting. [[ICML 2024]](https://arxiv.org/abs/2310.10688), [[Code]](https://github.com/google-research/timesfm)
@@ -82,6 +83,7 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 - TimesFM: https://huggingface.co/google/timesfm-1.0-200m
 - Timer-XL: https://huggingface.co/thuml/timer-base-84m
 - Time-MoE: https://huggingface.co/Maple728/TimeMoE-50M
+- TTMs: https://huggingface.co/ibm-research/ttm-research-r2
 
 > [!NOTE]
 > LTMs are still small in compared to foundation models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
