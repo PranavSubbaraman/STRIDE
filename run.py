@@ -13,8 +13,9 @@ if __name__ == '__main__':
     parser.add_argument('--task_name', type=str, required=True, default='forecast', help='task name, options:[forecast]')
     parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
     parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-    parser.add_argument('--model', type=str, required=True, default='timer_xl', help='model name, options: [timer_xl, timer, moirai, moment]')
+    parser.add_argument('--model', type=str, required=True, default='timer_xl', help='model name, options: [timer_xl, timer, moirai, moment, autotimes-LLaMa, autotimes-OPT, autotimes-GPT2]')
     parser.add_argument('--seed', type=int, default=2021, help='seed')
+    parser.add_argument('--model_name', type=str, default='GPT2', help='model name')
     
     # data loader
     parser.add_argument('--data', type=str, required=True, default='ETTh1', help='dataset type')

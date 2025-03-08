@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 
 class Dataset_ETT_hour(Dataset):
     def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv',
-                 scale=True, seasonal_patterns=None, drop_short=False):
+                 scale=True, seasonal_patterns=None, drop_short=False,nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.label_len = size[1]
         self.pred_len = size[2]

@@ -1,21 +1,51 @@
 import torch
 import torch.nn as nn
 from transformers.models.gpt2.modeling_gpt2 import GPT2Model
+from transformers import LlamaForCausalLM
+from transformers import OPTForCausalLM
 from layers.mlp import MLP
 
 class Model(nn.Module):
+    """
+    AutoTimes: Autoregressive Time Series Forecasters via Large Language Models (NeurIPS 2024)
+
+    Paper: https://arxiv.org/abs/2402.02370
+    
+    GitHub: https://github.com/thuml/AutoTimes
+    
+    Citation: @article{liu2024autotimes,
+        title={AutoTimes: Autoregressive Time Series Forecasters via Large Language Models},
+        author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
+        journal={arXiv preprint arXiv:2402.02370},
+        year={2024}
+    }
+    """
     def __init__(self, configs):
         super(Model, self).__init__()
         self.token_len = configs.token_len
-        if configs.use_multi_gpu:
-            self.device = f"cuda:{configs.local_rank}"
-        else:
-            self.device = f"cuda:{configs.gpu}"
+        self.model_name = configs.model_name
+       
+        self.device = f"cuda:{configs.gpu}"
         print(self.device)
         
-        self.gpt2 = GPT2Model.from_pretrained(configs.llm_ckp_dir) 
-        self.hidden_dim_of_gpt2 = 4096
-        self.mix = configs.mix_embeds
+        if self.model_name == 'LLaMa':
+            self.llama = LlamaForCausalLM.from_pretrained(
+            configs.llm_ckp_dir,
+            device_map=self.device,
+            torch_dtype=torch.float16 if configs.use_amp else torch.float32,
+        )
+            self.hidden_dim_of_llama = 4096
+            
+        if self.model_name == 'OPT':
+            self.opt = OPTForCausalLM.from_pretrained(configs.llm_ckp_dir, torch_dtype=torch.float16)
+            self.opt.model.decoder.project_in = None
+            self.opt.model.decoder.project_out = None
+            self.hidden_dim_of_opt1b = 2048
+            
+        if self.model_name == 'GPT2':
+            self.gpt2 = GPT2Model.from_pretrained(configs.llm_ckp_dir) 
+            self.hidden_dim_of_gpt2 = 768
+            self.mix = configs.mix_embeds
 
         if self.mix:
             self.add_scale = nn.Parameter(torch.ones([]))
@@ -24,13 +54,11 @@ class Model(nn.Module):
             param.requires_grad = False
 
         if configs.mlp_hidden_layers == 0:
-            if not configs.use_multi_gpu or (configs.use_multi_gpu and configs.local_rank == 0):
-                print("use linear as tokenizer and detokenizer")
+            
             self.encoder = nn.Linear(self.token_len, self.hidden_dim_of_gpt2)
             self.decoder = nn.Linear(self.hidden_dim_of_gpt2, self.token_len)
         else:
-            if not configs.use_multi_gpu or (configs.use_multi_gpu and configs.local_rank == 0):
-                print("use mlp as tokenizer and detokenizer")
+            
             self.encoder = MLP(self.token_len, self.hidden_dim_of_gpt2, 
                             configs.mlp_hidden_dim, configs.mlp_hidden_layers, 
                             configs.dropout, configs.mlp_activation)
