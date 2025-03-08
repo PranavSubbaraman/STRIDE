@@ -3,7 +3,7 @@ import torch.nn as nn
 from transformers.models.gpt2.modeling_gpt2 import GPT2Model
 from transformers import LlamaForCausalLM
 from transformers import OPTForCausalLM
-from layers.mlp import MLP
+from layers.Autotimes_MLP import MLP
 
 class Model(nn.Module):
     """
