@@ -13,7 +13,7 @@
 
 ## What is LTM
 
-LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we list some related materials: [[Slide1]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/), [[Slide2]](https://cloud.tsinghua.edu.cn/f/2d4b660fc05148dc8f30/).
+LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g. Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we list some related slides: [[CN]](https://cloud.tsinghua.edu.cn/f/1f3fdcf3304c4a82bc13/), [[Eng]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/).
 
 
 ## Model Checklist
