@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 2. Place downloaded data in the folder ```./dataset```. Here is a [dataset summary](./figures/datasets.png).
 
-- For pre-training:
+- For univariate pre-training:
   * [UTSD](https://huggingface.co/datasets/thuml/UTSD) contains 1 billiion time points for large-scale pre-training (in numpy format): [[Download]](https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 ).
   * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) (40-year span, thousands of variables) for domain-specific model: [[Download]](https://cloud.tsinghua.edu.cn/f/7fe0b95032c64d39bc4a/).
@@ -87,7 +87,7 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 - TTMs: https://huggingface.co/ibm-research/ttm-research-r2
 
 > [!NOTE]
-> LTMs are still small in compared to foundation models of other modalities. We prefer to include and implement models requiring affordable training resources as efficiently as possible (for example, using several RTX 4090s or A100s).
+> LTMs are still small in compared to foundation models of other modalities (for example, it is okay to use RTX 4090s for adaptation or A100s for pre-training).
 
 ## Citation
 
