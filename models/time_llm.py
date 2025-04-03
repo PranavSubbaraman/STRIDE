@@ -58,7 +58,7 @@ class Model(nn.Module):
         self.patch_nums = int((configs.seq_len - self.patch_len) / self.stride + 2)
         self.head_nf = self.d_ff * self.patch_nums # dim of hidden state after flatten
         
-        self.top_k = 5
+        self.top_k = 5 # number of lags
         
         self._get_model_and_tokenizer(configs.llm_model, configs.llm_layers)
         
@@ -82,8 +82,8 @@ class Model(nn.Module):
         self.output_projection = FlattenHead(self.head_nf, self.pred_len, head_dropout=configs.dropout)
 
     def _get_model_and_tokenizer(self, model_name, layers):
-        
         print("> loading model: ", model_name)
+        # you can also load model from local path
         if model_name == 'LLAMA':
             self.llama_config = LlamaConfig.from_pretrained('huggyllama/llama-7b')
             self.llama_config.num_hidden_layers = layers
@@ -119,7 +119,6 @@ class Model(nn.Module):
             self.tokenizer.pad_token = pad_token
 
     def _get_prompt(self, x_enc):
-        # [B L 1]
         # provide statistics info for prompt
         min_values = torch.min(x_enc, dim=1)[0]
         max_values = torch.max(x_enc, dim=1)[0]
@@ -162,7 +161,7 @@ class Model(nn.Module):
         # get prompt embedding
         prompt = self._get_prompt(x_enc)
         prompt = self.tokenizer(prompt, return_tensors="pt", padding=True, truncation=True, max_length=2048).input_ids
-        prompt_embeddings = self.llm_model.get_input_embeddings()(prompt.to(x_enc.device))  # [B*M prompt_token, d_llm]
+        prompt_embeddings = self.llm_model.get_input_embeddings()(prompt.to(x_enc.device))  # [B*M prompt_token d_llm]
 
         # do patching
         x_enc = x_enc.reshape(B, N, T).contiguous() # [B M L]
@@ -175,7 +174,7 @@ class Model(nn.Module):
         enc_out = self.reprogramming_layer(enc_out, source_embeddings, source_embeddings) # [B*M N d_llm]
         
         # concat prompt and time series and fed to LLM
-        llama_enc_out = torch.cat([prompt_embeddings, enc_out], dim=1) # [B*M, prompt_token+N, d_llm]
+        llama_enc_out = torch.cat([prompt_embeddings, enc_out], dim=1) # [B*M prompt_token+N d_llm]
         dec_out = self.llm_model(inputs_embeds=llama_enc_out).last_hidden_state
         
         dec_out = dec_out[:, :, :self.d_ff]
@@ -195,7 +194,6 @@ class Model(nn.Module):
         return dec_out
         
     def calcute_lags(self, x_enc):
-        # [B*M L 1]
         q_fft = torch.fft.rfft(x_enc.permute(0, 2, 1).contiguous(), dim=-1)
         k_fft = torch.fft.rfft(x_enc.permute(0, 2, 1).contiguous(), dim=-1)
         res = q_fft * torch.conj(k_fft)
