@@ -90,7 +90,13 @@ if __name__ == '__main__':
     parser.add_argument("--d_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
     parser.add_argument("--d_layers", type=int, default=8, help="number of layers in decoder")
     parser.add_argument("--d_d_model", type=int, default=16, help="d_model in decoder")
-
+    
+    # Time-LLM
+    parser.add_argument("--ts_vocab_size", type=int, default=1000, help="size of a small collection of text prototypes in llm")
+    parser.add_argument("--domain_des", type=str, default="The Electricity Transformer Temperature (ETT) is a crucial indicator in the electric power long-term deployment.", help="domain description")
+    parser.add_argument("--llm_model", type=str, default="LLAMA", help="LLM model, LLAMA, GPT2, BERT are supported") 
+    parser.add_argument("--llm_layers", type=int, default=6, help="number of layers in llm")
+    
     args = parser.parse_args()
     fix_seed = args.seed
     random.seed(fix_seed)
