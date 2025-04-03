@@ -1,14 +1,8 @@
 from math import sqrt
-
 import torch
 import torch.nn as nn
-
 from transformers import LlamaConfig, LlamaModel, LlamaTokenizer, GPT2Config, GPT2Model, GPT2Tokenizer, BertConfig, BertModel, BertTokenizer
 from layers.Embed import PatchEmbedding
-import transformers
-
-transformers.logging.set_verbosity_error()
-
 
 class FlattenHead(nn.Module):
     def __init__(self, nf, target_window, head_dropout=0):
