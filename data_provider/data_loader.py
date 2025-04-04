@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 
 class UnivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -121,7 +121,7 @@ class UnivariateDatasetBenchmark(Dataset):
 
 
 class MultivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -135,6 +135,7 @@ class MultivariateDatasetBenchmark(Dataset):
         self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.subset_rand_ratio = subset_rand_ratio
+        self.load_time_stamp = load_time_stamp
         if self.set_type == 0:
             self.internal = int(1 // self.subset_rand_ratio)
         else:
@@ -192,6 +193,16 @@ class MultivariateDatasetBenchmark(Dataset):
             self.scaler.fit(train_data)
             data = self.scaler.transform(data)
 
+        if self.load_time_stamp:
+            data_name = self.data_path.split('.')[0]
+            try: 
+                self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
+                self.data_stamp = self.data_stamp[border1:border2]
+            except:
+                self.data_stamp = None
+                raise ValueError(f"load time stamp failed, please check {data_name}.pt exists, \
+                    if not, please refer to the https://github.com/thuml/AutoTimes/blob/main/README.md for download dataset and timestamp preprocessing")
+                    
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
         
@@ -202,6 +213,9 @@ class MultivariateDatasetBenchmark(Dataset):
         s_begin = index
         s_end = s_begin + self.seq_len
 
+        if self.load_time_stamp:
+            return self.__getitem_univariate__(index)
+        
         if not self.nonautoregressive:
             r_begin = s_begin + self.input_token_len
             r_end = s_end + self.output_token_len
@@ -209,7 +223,7 @@ class MultivariateDatasetBenchmark(Dataset):
             seq_y = self.data_y[r_begin:r_end]
             seq_y = torch.tensor(seq_y)
             seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                 step=self.input_token_len).permute(0, 2, 1)
+                                step=self.input_token_len).permute(0, 2, 1)
             seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
         else:
             r_begin = s_end
@@ -220,18 +234,49 @@ class MultivariateDatasetBenchmark(Dataset):
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
-    def __len__(self):
-        if self.set_type == 0:
-            return max(int(self.n_timepoint * self.subset_rand_ratio), 1)
+    def __getitem_univariate__(self, index):
+        feat_id = index // self.n_timepoint
+        s_begin = index % self.n_timepoint
+        s_end = s_begin + self.seq_len
+                
+        if not self.nonautoregressive:
+            r_begin = s_begin + self.input_token_len
+            r_end = s_end + self.output_token_len
+            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
+            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            seq_y = torch.tensor(seq_y)
+            seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
+                                 step=self.input_token_len).permute(0, 2, 1)
+            seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
         else:
-            return self.n_timepoint
+            r_begin = s_end
+            r_end = r_begin + self.output_token_len
+            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
+            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            
+        seq_x_mark = self.data_stamp[s_begin:s_end:self.input_token_len] # [N H]
+        seq_y_mark = torch.zeros((seq_y.shape[0], 1))
+        
+        return seq_x, seq_y, seq_x_mark, seq_y_mark
+    
+    def __len__(self):
+        
+        if self.load_time_stamp:
+            tot_len = self.n_timepoint * self.n_var
+        else:
+            tot_len = self.n_timepoint
+            
+        if self.set_type == 0:
+            return max(int(tot_len * self.subset_rand_ratio), 1)
+        else:
+            return tot_len
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
 
 class Global_Temp(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -285,7 +330,7 @@ class Global_Temp(Dataset):
 
 
 class Global_Wind(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -339,7 +384,7 @@ class Global_Wind(Dataset):
 
 
 class Dataset_ERA5_Pretrain(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -414,7 +459,7 @@ class Dataset_ERA5_Pretrain(Dataset):
 
 
 class Dataset_ERA5_Pretrain_Test(Dataset):
-    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -502,7 +547,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
 
 # Download link: https://huggingface.co/datasets/thuml/UTSD
 class UTSD(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -597,7 +642,7 @@ class UTSD(Dataset):
 
 # Download link: https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 class UTSD_Npy(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
