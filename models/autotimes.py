@@ -72,7 +72,7 @@ class Model(nn.Module):
             self.model.model.decoder.project_out = None
             self.hidden_dim = 2048
         elif model_name == "LLAMA":
-            self.model = LlamaForCausalLM.from_pretrained("meta-llama/Llama-2-7b", device_map=self.device, torch_dtype=torch.float32)
+            self.model = LlamaForCausalLM.from_pretrained("meta-llama/Llama-2-7b", torch_dtype=torch.float32)
             self.hidden_dim = 4096
         elif model_name == "GPT2":
             self.model = GPT2Model.from_pretrained("openai-community/gpt2") 
@@ -82,7 +82,7 @@ class Model(nn.Module):
         print("> loading model done")
         
     def forecast(self, x_enc, x_mark_enc, x_mark_dec):
-        # x_mark_enc: textual embeddings of time stamp
+        # x_mark_enc: textual embeddings of time stamp, shape [B L H]
         stamp_embeds = x_mark_enc
         
         if self.use_norm:
@@ -101,6 +101,11 @@ class Model(nn.Module):
         patch_tokens = x_enc.unfold(dimension=-1, size=self.token_len, step=self.token_len) # [B*M N P]
         times_embeds = self.encoder(patch_tokens) # [B*M N H]
         if self.mix:
+            # select latest time stamp for each patch
+            stamp_embeds = stamp_embeds[:, ::self.token_len, :] # [B N H]
+            # repeat stamp embeds for each vars
+            stamp_embeds = stamp_embeds.repeat(n_vars, 1, 1) # [B*M N H]
+            
             # times_embeds = time series patch embeddings + textual embeddings of time stamp  
             times_embeds = times_embeds / times_embeds.norm(dim=2, keepdim=True)
             stamp_embeds = stamp_embeds / stamp_embeds.norm(dim=2, keepdim=True)

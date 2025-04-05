@@ -22,7 +22,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
     parser.add_argument('--test_flag', type=str, default='T', help='test domain')
-    parser.add_argument('--load_time_stamp', action='store_true', help='load time stamp file', default=False)
+    parser.add_argument('--load_time_stamp', type=str, default='none', help='type of load time stamp')
 
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=672, help='input sequence length')
