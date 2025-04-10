@@ -101,9 +101,6 @@ if __name__ == '__main__':
     parser.add_argument("--llm_model", type=str, default="LLAMA", help="LLM model, LLAMA, GPT2, BERT, OPT are supported") 
     parser.add_argument("--llm_layers", type=int, default=6, help="number of layers in llm")
     
-    # AutoTimes
-    parser.add_argument("--mix_embeds", action="store_true", help="load time stamp embedding from file, mix time series and textual embeddings of time stamp", default=False)
-    
     args = parser.parse_args()
     fix_seed = args.seed
     random.seed(fix_seed)
