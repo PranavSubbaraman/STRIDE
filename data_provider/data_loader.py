@@ -210,7 +210,7 @@ class MultivariateDatasetBenchmark(Dataset):
             seq_y = self.data_y[r_begin:r_end]
             seq_y = torch.tensor(seq_y)
             seq_y = seq_y.unfold(dimension=0, size=self.output_token_len,
-                                step=self.input_token_len).permute(0, 2, 1)
+                                 step=self.input_token_len).permute(0, 2, 1)
             seq_y = seq_y.reshape(seq_y.shape[0] * seq_y.shape[1], -1)
         else:
             r_begin = s_end
@@ -221,12 +221,12 @@ class MultivariateDatasetBenchmark(Dataset):
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
             
         return seq_x, seq_y, seq_x_mark, seq_y_mark
-    
+
     def __len__(self):
         if self.set_type == 0:
             return max(int(self.n_timepoint * self.subset_rand_ratio), 1)
         else:
-            return int(self.n_timepoint)
+            return self.n_timepoint
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)

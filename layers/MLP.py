@@ -119,7 +119,7 @@ class TTMLayer(nn.Module):
         x = self.feature_mixer(x)  # [B M N P]
 
         return x
-    
+
 class AutoTimesMLP(nn.Module):
     '''
     Multilayer perceptron to encode/decode high dimension representation of sequential data

@@ -34,8 +34,7 @@ def data_provider(args, flag):
             size=[args.seq_len, args.input_token_len, args.output_token_len],
             nonautoregressive=args.nonautoregressive,
             test_flag=args.test_flag,
-            subset_rand_ratio=args.subset_rand_ratio,
-            load_time_stamp=args.load_time_stamp,
+            subset_rand_ratio=args.subset_rand_ratio
         )
     else:
         data_set = Data(
@@ -45,8 +44,7 @@ def data_provider(args, flag):
             size=[args.test_seq_len, args.input_token_len, args.test_pred_len],
             nonautoregressive=args.nonautoregressive,
             test_flag=args.test_flag,
-            subset_rand_ratio=args.subset_rand_ratio,
-            load_time_stamp=args.load_time_stamp,
+            subset_rand_ratio=args.subset_rand_ratio
         )
     print(flag, len(data_set))
     if args.ddp:
