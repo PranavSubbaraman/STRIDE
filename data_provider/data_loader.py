@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 
 class UnivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -23,7 +23,6 @@ class UnivariateDatasetBenchmark(Dataset):
         self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.subset_rand_ratio = subset_rand_ratio
-        self.load_time_stamp = load_time_stamp
         if self.set_type == 0:
             self.internal = int(1 // self.subset_rand_ratio)
         else:
@@ -81,30 +80,11 @@ class UnivariateDatasetBenchmark(Dataset):
             self.scaler.fit(train_data)
             data = self.scaler.transform(data)
 
-        # load time stamp
-        self.__get_data_stamp(border1, border2)
-        
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
         
         self.n_var = self.data_x.shape[-1]
         self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
-    
-    def __get_data_stamp(self, border1, border2):
-        if self.load_time_stamp == 'none':
-            self.data_stamp = None
-        elif self.load_time_stamp == 'pt':
-            # load time stamp from pt file, please refer to https://github.com/thuml/AutoTimes for more details
-            data_name = self.data_path.split('.')[0]
-            try: 
-                self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
-                self.data_stamp = self.data_stamp[border1:border2]
-            except:
-                self.data_stamp = None
-                raise ValueError(f"load time stamp failed, please check {data_name}.pt exists, \
-                    if not, please refer to the https://github.com/thuml/AutoTimes/blob/main/README.md for download dataset and timestamp preprocessing")
-        else:
-            raise ValueError('Unknown time stamp format: {}'.format(self.load_time_stamp))
         
     def __getitem__(self, index):
         feat_id = index // self.n_timepoint
@@ -129,9 +109,6 @@ class UnivariateDatasetBenchmark(Dataset):
         seq_x_mark = torch.zeros((seq_x.shape[0], 1))
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
                 
-        if self.data_stamp is not None:
-            seq_x_mark = torch.tensor(self.data_stamp[s_begin:s_end])
-            
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
@@ -145,7 +122,7 @@ class UnivariateDatasetBenchmark(Dataset):
 
 
 class MultivariateDatasetBenchmark(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -159,7 +136,6 @@ class MultivariateDatasetBenchmark(Dataset):
         self.scale = scale
         self.nonautoregressive = nonautoregressive
         self.subset_rand_ratio = subset_rand_ratio
-        self.load_time_stamp = load_time_stamp
         if self.set_type == 0:
             self.internal = int(1 // self.subset_rand_ratio)
         else:
@@ -217,30 +193,11 @@ class MultivariateDatasetBenchmark(Dataset):
             self.scaler.fit(train_data)
             data = self.scaler.transform(data)
 
-        # load time stamp
-        self.__get_data_stamp(border1, border2)
-        
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
         
         self.n_var = self.data_x.shape[-1]
         self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
-        
-    def __get_data_stamp(self, border1, border2):
-        if self.load_time_stamp == 'none':
-            self.data_stamp = None
-        elif self.load_time_stamp == 'pt':
-            # load time stamp from pt file, please refer to https://github.com/thuml/AutoTimes for more details
-            data_name = self.data_path.split('.')[0]
-            try: 
-                self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
-                self.data_stamp = self.data_stamp[border1:border2]
-            except:
-                self.data_stamp = None
-                raise ValueError(f"load time stamp failed, please check {data_name}.pt exists, \
-                    if not, please refer to the https://github.com/thuml/AutoTimes/blob/main/README.md for download dataset and timestamp preprocessing")
-        else:
-            raise ValueError('Unknown time stamp format: {}'.format(self.load_time_stamp))
         
     def __getitem__(self, index):
         s_begin = index
@@ -262,9 +219,6 @@ class MultivariateDatasetBenchmark(Dataset):
             seq_y = self.data_y[r_begin:r_end]
         seq_x_mark = torch.zeros((seq_x.shape[0], 1))
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
-        
-        if self.data_stamp is not None:
-            seq_x_mark = torch.tensor(self.data_stamp[s_begin:s_end])
             
         return seq_x, seq_y, seq_x_mark, seq_y_mark
     
@@ -279,7 +233,7 @@ class MultivariateDatasetBenchmark(Dataset):
 
 
 class Global_Temp(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -333,7 +287,7 @@ class Global_Temp(Dataset):
 
 
 class Global_Wind(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -387,7 +341,7 @@ class Global_Wind(Dataset):
 
 
 class Dataset_ERA5_Pretrain(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -462,7 +416,7 @@ class Dataset_ERA5_Pretrain(Dataset):
 
 
 class Dataset_ERA5_Pretrain_Test(Dataset):
-    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='test', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -550,7 +504,7 @@ class Dataset_ERA5_Pretrain_Test(Dataset):
 
 # Download link: https://huggingface.co/datasets/thuml/UTSD
 class UTSD(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]
@@ -645,7 +599,7 @@ class UTSD(Dataset):
 
 # Download link: https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 class UTSD_Npy(Dataset):
-    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0, load_time_stamp=False):
+    def __init__(self, root_path, flag='train', size=None, data_path='ETTh1.csv', scale=True, nonautoregressive=False, stride=1, split=0.9, test_flag='T', subset_rand_ratio=1.0):
         self.seq_len = size[0]
         self.input_token_len = size[1]
         self.output_token_len = size[2]

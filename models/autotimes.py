@@ -18,7 +18,7 @@ class Model(nn.Module):
         booktitle={Neural Information Processing Systems},
         year={2024}
     }
-    Note: please refer to https://github.com/thuml/AutoTimes/blob/main/README.md for time stamp preprocessing and download the dataset
+    Note: This implementation is a simplified version of  https://github.com/thuml/AutoTimes
     """
     def __init__(self, configs):
         super(Model, self).__init__()
@@ -28,14 +28,9 @@ class Model(nn.Module):
         self.mlp_layers = configs.e_layers
         self.use_norm = configs.use_norm
         
-        self.mix = configs.mix_embeds # if True, use textual embeddings of time stamp 
-        
         # load inner model
         self._get_inner_model(self.model_name)
             
-        if self.mix:
-            self.add_scale = nn.Parameter(torch.ones([]))
-
         # freeze the inner model only need to train tokenizer and detokenizer
         for _, param in self.model.named_parameters():
             param.requires_grad = False
@@ -61,10 +56,6 @@ class Model(nn.Module):
         """
             !!! you can also load model locally or load your own model
         """
-        if model_name != "LLAMA":
-            print("!!! We currently only provide timestamp embedding based on the LLAMA architecture")
-            print("if you want to use other model structures, please refer to https://github.com/thuml/AutoTimes/blob/main/README.md for timestamp preprocessing")
-            
         print("> loading model: ", model_name)
         if model_name == "OPT":
             self.model = OPTForCausalLM.from_pretrained("facebook/opt-125m", torch_dtype=torch.float16)
@@ -82,9 +73,6 @@ class Model(nn.Module):
         print("> loading model done")
         
     def forecast(self, x_enc, x_mark_enc, x_mark_dec):
-        # x_mark_enc: textual embeddings of time stamp, shape [B L H]
-        stamp_embeds = x_mark_enc
-        
         if self.use_norm:
             # Normalization from Non-stationary Transformer
             means = x_enc.mean(1, keepdim=True).detach()    
@@ -100,16 +88,6 @@ class Model(nn.Module):
         # tokenizer
         patch_tokens = x_enc.unfold(dimension=-1, size=self.token_len, step=self.token_len) # [B*M N P]
         times_embeds = self.encoder(patch_tokens) # [B*M N H]
-        if self.mix:
-            # select latest time stamp for each patch
-            stamp_embeds = stamp_embeds[:, ::self.token_len, :] # [B N H]
-            # repeat stamp embeds for each vars
-            stamp_embeds = stamp_embeds.repeat(n_vars, 1, 1) # [B*M N H]
-            
-            # times_embeds = time series patch embeddings + textual embeddings of time stamp  
-            times_embeds = times_embeds / times_embeds.norm(dim=2, keepdim=True)
-            stamp_embeds = stamp_embeds / stamp_embeds.norm(dim=2, keepdim=True)
-            times_embeds = times_embeds + self.add_scale * stamp_embeds
         
         outputs = self.model(inputs_embeds=times_embeds).last_hidden_state # [B*M N H]
         
