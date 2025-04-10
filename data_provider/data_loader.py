@@ -85,7 +85,7 @@ class UnivariateDatasetBenchmark(Dataset):
         
         self.n_var = self.data_x.shape[-1]
         self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
-
+        
     def __getitem__(self, index):
         feat_id = index // self.n_timepoint
         s_begin = index % self.n_timepoint
@@ -108,6 +108,7 @@ class UnivariateDatasetBenchmark(Dataset):
             seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
         seq_x_mark = torch.zeros((seq_x.shape[0], 1))
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
+                
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
@@ -197,7 +198,7 @@ class MultivariateDatasetBenchmark(Dataset):
         
         self.n_var = self.data_x.shape[-1]
         self.n_timepoint =  len(self.data_x) - self.seq_len - self.output_token_len + 1
-
+        
     def __getitem__(self, index):
         s_begin = index
         s_end = s_begin + self.seq_len
@@ -218,6 +219,7 @@ class MultivariateDatasetBenchmark(Dataset):
             seq_y = self.data_y[r_begin:r_end]
         seq_x_mark = torch.zeros((seq_x.shape[0], 1))
         seq_y_mark = torch.zeros((seq_x.shape[0], 1))
+            
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):

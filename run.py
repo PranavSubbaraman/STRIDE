@@ -94,7 +94,10 @@ if __name__ == '__main__':
     # Time-LLM
     parser.add_argument("--ts_vocab_size", type=int, default=1000, help="size of a small collection of text prototypes in llm")
     parser.add_argument("--domain_des", type=str, default="The Electricity Transformer Temperature (ETT) is a crucial indicator in the electric power long-term deployment.", help="domain description")
-    parser.add_argument("--llm_model", type=str, default="LLAMA", help="LLM model, LLAMA, GPT2, BERT are supported") 
+    # @llm_model: 
+    # for Time-LLM: Currently, LLAMA, GPT2, and BERT are supported.
+    # for AutoTimes: Currently, LLAMA, GPT2, and OPT are supported.
+    parser.add_argument("--llm_model", type=str, default="LLAMA", help="LLM model, LLAMA, GPT2, BERT, OPT are supported") 
     parser.add_argument("--llm_layers", type=int, default=6, help="number of layers in llm")
     
     args = parser.parse_args()
