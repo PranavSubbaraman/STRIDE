@@ -1,7 +1,6 @@
 # OpenLTM
 
-> [!NOTE]
-> OpenLTM is a open codebase intending to collect prevailing **architectures** of large time-series models. It is not intended for checkpoint reproduction. We aim to provide a pipeline to develop and evaluate large time-series models, covering three tasks: **supervised training**, **large-scale pre-training**, and **adaptation**.
+OpenLTM is a open codebase aiming to provide a pipeline to develop and evaluate large time-series models.
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
@@ -9,7 +8,7 @@
 
 :triangular_flag_on_post: **News** (2024.12) Many thanks for the implementation of [GPT4TS](https://arxiv.org/abs/2302.11939) from [khairulislam](https://github.com/khairulislam).
 
-:triangular_flag_on_post: **News** (2024.10) We include five large time-series models, release pre-training logic, and provide scripts.
+:triangular_flag_on_post: **News** (2024.10) We include several large time-series models, release pre-training code, and provide scripts.
 
 ## What is LTM
 
@@ -50,7 +49,7 @@ pip install -r requirements.txt
 - For superwised training or modeling adaptation
   * Datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
 
-3. We provide pre-training and adaptation scripts under the folder `./scripts/`. You can conduct experiments using the following examples:
+1. We provide some supervised training, pre-training and adaptation scripts under the folder `./scripts/`:
 
 ```
 # Supervised training
@@ -78,7 +77,7 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 - Include the newly added model in the `Exp_Basic.model_dict` of  `./exp/exp_basic.py`.
 - Create the corresponding scripts under the folder `./scripts`.
 
-5. Or evaluate the zero-shot performance of large time-series models. Here we list some resources:
+To evaluate zero-shot forecasting of large time-series models. Here we list some resources:
 - Chronos: https://huggingface.co/amazon/chronos-t5-base
 - Moirai: https://huggingface.co/Salesforce/moirai-1.0-R-base
 - TimesFM: https://huggingface.co/google/timesfm-1.0-200m
