@@ -26,6 +26,7 @@ LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models bu
 - [x] **Time-LLM**: . Time-LLM: Time Series Forecasting by Reprogramming Large Language Models. [[ICLR 2024]](https://arxiv.org/abs/2310.01728), [[Code]](https://github.com/KimMeen/Time-LLM)
 - [x] **AutoTimes**: Autoregressive Time Series Forecasters via Large Language Models. [[NeurIPS 2024]](https://arxiv.org/abs/2402.02370), [[Code]](https://github.com/thuml/AutoTimes)
 - [ ] LLMTime: Large Language Models Are Zero-Shot Time Series Forecasters. [[NeurIPS 2023]](https://arxiv.org/abs/2310.07820), [[Code]](https://github.com/ngruver/llmtime)
+- [ ] Sundial: A Familiy of Highly Capable Time Series Foundation Models. [[ICML 2025]](https://arxiv.org/abs/2502.00816)
 - [ ] Chronos: Learning the Language of Time Series. [[TMLR 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
 - [ ] Time-MoE: Billion-Scale Time Series Foundation Models With Mixture Of Experts. [[ICLR 2025]](https://arxiv.org/abs/2409.16040), [[Code]](https://github.com/Time-MoE/Time-MoE)
 - [ ] A Decoder-Only Foundation Model for Time-Series Forecasting. [[ICML 2024]](https://arxiv.org/abs/2310.10688), [[Code]](https://github.com/google-research/timesfm)
