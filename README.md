@@ -4,6 +4,8 @@ OpenLTM is a open codebase aiming to provide a pipeline to develop and evaluate 
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
+:triangular_flag_on_post: **News** (2025.05) We release a pre-trained checkpoint of [Timer-XL](https://arxiv.org/abs/2410.04803) for model adaptation.
+
 :triangular_flag_on_post: **News** (2025.04) Many thanks for the implementation of [TTMs](https://arxiv.org/pdf/2401.03955) and other LLM4TS methods from [frndtls](https://github.com/frndtls).
 
 :triangular_flag_on_post: **News** (2024.12) Many thanks for the implementation of [GPT4TS](https://arxiv.org/abs/2302.11939) from [khairulislam](https://github.com/khairulislam).
