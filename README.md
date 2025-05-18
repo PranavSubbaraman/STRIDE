@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 2. Place downloaded data in the folder ```./dataset```. Here is a [dataset summary](./figures/datasets.png).
 
-- For univariate pre-training:
+- For univariate pre-training (skip this step if you use a pre-trained checkpoint):
   * [UTSD](https://huggingface.co/datasets/thuml/UTSD) contains 1 billiion time points for large-scale pre-training (in numpy format): [[Download]](https://cloud.tsinghua.edu.cn/f/93868e3a9fb144fe9719/
 ).
   * [ERA5-Familiy](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) (40-year span, thousands of variables) for domain-specific model: [[Download]](https://cloud.tsinghua.edu.cn/f/7fe0b95032c64d39bc4a/).
@@ -50,7 +50,11 @@ pip install -r requirements.txt
 - For superwised training or modeling adaptation
   * Datasets from [TSLib](https://github.com/thuml/Time-Series-Library) : [[Download]](https://cloud.tsinghua.edu.cn/f/4d83223ad71047e28aec/).
 
-1. We provide some supervised training, pre-training and adaptation scripts under the folder `./scripts/`:
+3. Training from scratch or use our pre-trained checkpoint in the folder ```./checkpoints```
+
+- We provide the checkpoint of [Timer-XL](https://arxiv.org/abs/2410.04803) pre-trained on 260B time points [[Download]](https://cloud.tsinghua.edu.cn/f/01c35ca13f474176be7b/).
+
+4. We provide some supervised training, pre-training and adaptation scripts under the folder `./scripts/`:
 
 ```
 # Supervised training
@@ -78,11 +82,16 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 - Include the newly added model in the `Exp_Basic.model_dict` of  `./exp/exp_basic.py`.
 - Create the corresponding scripts under the folder `./scripts`.
 
-To evaluate zero-shot forecasting of large time-series models. Here we list some resources:
+## Recommended Resources
+
+Here we list some resources of LTMs, which support out-of-box usage (e.g., zero-shot forecasting):
+
+- GIFT-Eval: https://huggingface.co/spaces/Salesforce/GIFT-Eval
+- FEV Leaderboard: https://huggingface.co/spaces/autogluon/fev-leaderboard
+- Timer-XL: https://huggingface.co/thuml/timer-base-84m
 - Chronos: https://huggingface.co/amazon/chronos-t5-base
 - Moirai: https://huggingface.co/Salesforce/moirai-1.0-R-base
 - TimesFM: https://huggingface.co/google/timesfm-1.0-200m
-- Timer-XL: https://huggingface.co/thuml/timer-base-84m
 - Time-MoE: https://huggingface.co/Maple728/TimeMoE-50M
 - TTMs: https://huggingface.co/ibm-research/ttm-research-r2
 
