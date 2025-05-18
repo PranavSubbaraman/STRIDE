@@ -39,11 +39,11 @@ class Model(nn.Module):
         self.use_norm = configs.use_norm
 
         if configs.use_decoder:
-            self.decoder_adapter = nn.Linear(configs.d_model, configs.d_d_model) # [B M N D] -> [B M N decoder_d_model]
+            self.decoder_adapter = nn.Linear(configs.d_model, configs.hidden_dim) # [B M N D] -> [B M N E]
             self.decoder = TTMBlock(
-                e_layers=configs.d_layers,
+                e_layers=configs.layers,
                 AP_levels=0,
-                d_model=configs.d_d_model,
+                d_model=configs.hidden_dim,
                 num_patches=configs.num_patches,
                 n_vars=configs.n_vars,
                 mode=configs.d_mode,
@@ -71,8 +71,8 @@ class Model(nn.Module):
         if self.use_decoder:
             decoder_input = self.decoder_adapter(
                 decoder_input
-            )  # [B M N decoder_d_model]
-            decoder_output = self.decoder(decoder_input)  # [B M N decoder_d_model]
+            )  # [B M N E]
+            decoder_output = self.decoder(decoder_input)  # [B M N E]
         else:
             decoder_output = decoder_input
 
@@ -205,12 +205,12 @@ class TTMPredicationHead(nn.Module):
 
         self.dropout_layer = nn.Dropout(configs.dropout)
         if configs.use_decoder:
-            head_d_model = configs.d_d_model
+            head_dim = configs.hidden_dim
         else:
-            head_d_model = configs.d_model
+            head_dim = configs.d_model
 
         self.base_forecast_block = nn.Linear(
-            (configs.num_patches * head_d_model), configs.test_pred_len
+            (configs.num_patches * head_dim), configs.test_pred_len
         )
 
         self.flatten = nn.Flatten(start_dim=-2)

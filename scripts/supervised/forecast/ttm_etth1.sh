@@ -26,8 +26,8 @@ python -u run.py \
   --dropout 0.2 \
   --use_norm \
   --e_layers 3 \
-  --d_layers 2 \
-  --d_d_model 64 \
+  --layers 2 \
+  --hidden_dim 64 \
   --valid_last \
   --patch_size 96 \
   --nonautoregressive

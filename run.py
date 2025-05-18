@@ -88,8 +88,8 @@ if __name__ == '__main__':
     parser.add_argument("--AP_levels", type=int, default=0, help="number of attention patching levels")
     parser.add_argument("--use_decoder", action="store_true", help="use decoder", default=True)
     parser.add_argument("--d_mode", type=str, default="common_channel", help="allowed values: common_channel, mix_channel")
-    parser.add_argument("--d_layers", type=int, default=8, help="number of layers in decoder")
-    parser.add_argument("--d_d_model", type=int, default=16, help="d_model in decoder")
+    parser.add_argument("--layers", type=int, default=8, help="number of layers in ttm")
+    parser.add_argument("--hidden_dim", type=int, default=16, help="hidden dimension in ttm")
     
     # Time-LLM
     parser.add_argument("--ts_vocab_size", type=int, default=1000, help="size of a small collection of text prototypes in llm")
