@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 3. Training from scratch or using our pre-trained checkpoint in the folder ```./checkpoints```
 
-- We provide the checkpoint of [Timer-XL](https://arxiv.org/abs/2410.04803) pre-trained on 260B time points [[Download]](https://cloud.tsinghua.edu.cn/f/01c35ca13f474176be7b/).
+- We provide the [checkpoint](https://arxiv.org/abs/2410.04803) pre-trained on 260B time points [[Download]](https://cloud.tsinghua.edu.cn/f/01c35ca13f474176be7b/).
 
 4. We provide some supervised training, pre-training, and adaptation scripts under the folder `./scripts/`:
 
