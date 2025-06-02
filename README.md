@@ -90,9 +90,8 @@ bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 
 Here we list some resources of LTMs, which support out-of-box usage (e.g., zero-shot forecasting):
 
-- GIFT-Eval: https://huggingface.co/spaces/Salesforce/GIFT-Eval
-- FEV Leaderboard: https://huggingface.co/spaces/autogluon/fev-leaderboard
-- Timer-XL: https://huggingface.co/thuml/timer-base-84m
+- Sundial: https://huggingface.co/thuml/sundial-base-128m
+- Timer: https://huggingface.co/thuml/timer-base-84m
 - Chronos: https://huggingface.co/amazon/chronos-t5-base
 - Moirai: https://huggingface.co/Salesforce/moirai-1.0-R-base
 - TimesFM: https://huggingface.co/google/timesfm-1.0-200m
