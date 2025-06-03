@@ -4,9 +4,11 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
-:triangular_flag_on_post: **News** (2025.5) [Sundial](https://arxiv.org/abs/2502.00816), a family of generative time series foundation models has been accepted as **ICML 2025 Spotlight** (Top 2.6%). Get your first zero-shot predictions in one second! [[GitHub]](https://github.com/thuml/Sundial), [[HuggingFace]](https://huggingface.co/thuml/sundial-base-128m). 
+## Updates
 
-:triangular_flag_on_post: **News** (2025.05) We release a pre-trained checkpoint of [Timer](https://arxiv.org/abs/2410.04803) for model adaptation. This [notebook](./load_pth_ckpt.ipynb) shows how to load and use the checkpoint :)
+:triangular_flag_on_post: **News** (2025.5) [Sundial](https://arxiv.org/abs/2502.00816), a family of generative time series foundation models has been accepted as **ICML 2025 Spotlight** (Top 2.6%). Get your first zero-shot predictions within milliseconds! [[GitHub]](https://github.com/thuml/Sundial), [[HuggingFace]](https://huggingface.co/thuml/sundial-base-128m). 
+
+:triangular_flag_on_post: **News** (2025.05) We release a pre-trained checkpoint of [Timer](https://arxiv.org/abs/2410.04803) for model adaptation. This [notebook](./load_pth_ckpt.ipynb) shows how to load and use the checkpoint。
 
 :triangular_flag_on_post: **News** (2025.04) Many thanks for the implementation of [TTMs](https://arxiv.org/pdf/2401.03955) and other LLM4TS methods from [frndtls](https://github.com/frndtls).
 
@@ -14,10 +16,13 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 
 :triangular_flag_on_post: **News** (2024.10) We include several large time-series models, release pre-training code, and provide scripts.
 
-## What is LTM
+## What is LTM?
 
 LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models built on foundation backbones (e.g., Transformers) and large-scale pre-training, which will be applied to a variety of time series data and diverse downstream tasks. For more information, here we list some related slides: [[CN]](https://cloud.tsinghua.edu.cn/f/1f3fdcf3304c4a82bc13/), [[Eng]](https://cloud.tsinghua.edu.cn/f/8a585e37f45f46fd97d0/).
 
+<p align="center">
+<img src="./figures/abilities.png" alt="" align=center />
+</p>
 
 ## Model Checklist
 
@@ -29,8 +34,8 @@ LTM (**L**arge **T**ime-Series **M**odel) is a series of scalable deep models bu
 - [x] **GPT4TS** - One Fits All: Power General Time Series Analysis by Pretrained LM. [[NeurIPS 2023]](https://arxiv.org/abs/2302.11939), [[Code]](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All)
 - [x] **Time-LLM**: . Time-LLM: Time Series Forecasting by Reprogramming Large Language Models. [[ICLR 2024]](https://arxiv.org/abs/2310.01728), [[Code]](https://github.com/KimMeen/Time-LLM)
 - [x] **AutoTimes**: Autoregressive Time Series Forecasters via Large Language Models. [[NeurIPS 2024]](https://arxiv.org/abs/2402.02370), [[Code]](https://github.com/thuml/AutoTimes)
-- [ ] LLMTime: Large Language Models Are Zero-Shot Time Series Forecasters. [[NeurIPS 2023]](https://arxiv.org/abs/2310.07820), [[Code]](https://github.com/ngruver/llmtime)
 - [ ] Sundial: A Family of Highly Capable Time Series Foundation Models. [[ICML 2025]](https://arxiv.org/abs/2502.00816)
+- [ ] LLMTime: Large Language Models Are Zero-Shot Time Series Forecasters. [[NeurIPS 2023]](https://arxiv.org/abs/2310.07820), [[Code]](https://github.com/ngruver/llmtime)
 - [ ] Chronos: Learning the Language of Time Series. [[TMLR 2024]](https://arxiv.org/abs/2403.07815), [[Code]](https://github.com/amazon-science/chronos-forecasting)
 - [ ] Time-MoE: Billion-Scale Time Series Foundation Models With Mixture Of Experts. [[ICLR 2025]](https://arxiv.org/abs/2409.16040), [[Code]](https://github.com/Time-MoE/Time-MoE)
 - [ ] A Decoder-Only Foundation Model for Time-Series Forecasting. [[ICML 2024]](https://arxiv.org/abs/2310.10688), [[Code]](https://github.com/google-research/timesfm)
@@ -99,7 +104,7 @@ Here we list some resources of LTMs, which support out-of-box usage (e.g., zero-
 - TTMs: https://huggingface.co/ibm-research/ttm-research-r2
 
 > [!NOTE]
-> LTMs are still small compared to foundation models of other modalities (for example, it is okay to use RTX 4090s for adaptation or A100s for pre-training).
+> LTMs are still small compared to foundation models of other modalities. For example, it is okay to use CPUs for inference, RTX 4090s for adaptation, A100s for pre-training.
 
 ## Citation
 
@@ -117,6 +122,13 @@ If you find this repo helpful, please cite our paper.
   author={Liu, Yong and Qin, Guo and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
   journal={arXiv preprint arXiv:2410.04803},
   year={2024}
+}
+
+@article{liu2025sundial,
+  title={Sundial: A Family of Highly Capable Time Series Foundation Models},
+  author={Liu, Yong and Qin, Guo and Shi, Zhiyuan and Chen, Zhi and Yang, Caiyin and Huang, Xiangdong and Wang, Jianmin and Long, Mingsheng},
+  journal={arXiv preprint arXiv:2502.00816},
+  year={2025}
 }
 ```
 
