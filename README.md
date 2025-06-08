@@ -6,7 +6,7 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 
 ## Updates
 
-:triangular_flag_on_post: **News** (2025.5) [Sundial](https://arxiv.org/abs/2502.00816), a family of generative time series foundation models has been accepted as **ICML 2025 Spotlight** (Top 2.6%). Get your first zero-shot predictions within milliseconds! [[GitHub]](https://github.com/thuml/Sundial), [[HuggingFace]](https://huggingface.co/thuml/sundial-base-128m). 
+:triangular_flag_on_post: **News** (2025.5) [Sundial](https://arxiv.org/abs/2502.00816), a family of generative time series foundation models has been accepted as **ICML 2025 Oral** (Top 1%). Get your first zero-shot predictions within milliseconds! [[GitHub]](https://github.com/thuml/Sundial), [[HuggingFace]](https://huggingface.co/thuml/sundial-base-128m). 
 
 :triangular_flag_on_post: **News** (2025.05) We release a pre-trained checkpoint of [Timer](https://arxiv.org/abs/2410.04803) for model adaptation. This [notebook](./load_pth_ckpt.ipynb) shows how to load and use the checkpoint。
 
