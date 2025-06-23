@@ -4,6 +4,8 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 
 > For deep time series models and task-specific benchmarks, we recommend [Time-Series-Library](https://github.com/thuml/Time-Series-Library) and this comprehensive [Survey](https://arxiv.org/abs/2407.13278).
 
+> You can try out our out-of-the-box time series foundation models in [Large-Time-Series-Model](https://github.com/thuml/Large-Time-Series-Model) or [HuggingFace](https://huggingface.co/collections/thuml/time-series-foundation-models-67c80ace73299239b651d954).
+
 ## Updates
 
 
