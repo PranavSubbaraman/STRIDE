@@ -86,7 +86,7 @@ bash ./scripts/adaptation/full_shot/timer_xl_etth1.sh
 bash ./scripts/adaptation/few_shot/timer_xl_etth1.sh
 ```
 
-4. Develop your large time-series model.
+5. Develop your large time-series model.
 
 - Add the model file to the folder `./models`. You can follow the `./models/timer_xl.py`.
 - Include the newly added model in the `Exp_Basic.model_dict` of  `./exp/exp_basic.py`.
