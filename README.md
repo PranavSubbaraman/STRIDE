@@ -22,7 +22,7 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 LTM (**L**arge **T**ime-Series **M**odel, aka Time Series Foundation Model, TSFM) is a deep time series models built on scalable backbones (e.g., Transformers) via large-scale pre-training, which will be applied to a variety of time series data (e.g., zero-shot forecasting) and downstream tasks (e.g., general feature extraction of time series). For more information, here we list some tutorials: [[CN]](https://cloud.tsinghua.edu.cn/f/7b88e05d38bb40a1be30/), [[EN]](https://cloud.tsinghua.edu.cn/f/c5fca76d6fa54f1d891a/).
 
 <p align="center">
-<img src="./figures/abilities.png" alt="" align=center />
+<img src="./figures/overview.png" alt="" align=center />
 </p>
 
 ## Model Checklist
