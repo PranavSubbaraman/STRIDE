@@ -9,7 +9,7 @@ OpenLTM is an open codebase aiming to provide a pipeline to develop and evaluate
 ## Updates
 
 
-:triangular_flag_on_post: **News** (2025.05) We release 260B pre-trained [Timer](https://arxiv.org/abs/2410.04803) in PyTorch. This version is equivalent to [huggingface version](https://huggingface.co/thuml/timer-base-84m), but more user-friendly for fine-tuning. This [notebook](./load_pth_ckpt.ipynb) shows how to load and use the checkpoint.
+:triangular_flag_on_post: **News** (2025.05) We release 260B pre-trained [Timer in PyTorch](https://cloud.tsinghua.edu.cn/f/01c35ca13f474176be7b/). This version is equivalent to [huggingface version](https://huggingface.co/thuml/timer-base-84m), but more user-friendly for fine-tuning. This [notebook](./load_pth_ckpt.ipynb) shows how to load and use the checkpoint.
 
 :triangular_flag_on_post: **News** (2025.04) Many thanks for the implementation of [TTMs](https://arxiv.org/pdf/2401.03955) and other LLM4TS methods from [frndtls](https://github.com/frndtls).
 
