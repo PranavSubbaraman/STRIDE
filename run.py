@@ -64,6 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('--spec_temp', type=float, default=1.0, help='temperature for sampling in speculation')
     parser.add_argument('--spec_topp', type=float, default=1.0, help='nucleus top-p in speculation (1.0 disables)')
     parser.add_argument('--spec_adaptive', action='store_true', default=False, help='enable adaptive K based on acceptance rate')
+    parser.add_argument('--spec_sigma', type=float, default=0.01, help='stddev for Gaussian sampling over continuous patches')
 
     # adaptation
     parser.add_argument('--adaptation', action='store_true', help='adaptation', default=False)

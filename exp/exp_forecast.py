@@ -12,6 +12,7 @@ from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
 from utils.tools import EarlyStopping, adjust_learning_rate, visual
 from utils.metrics import metric
+from utils.speculative_decoder import SpeculativeDecoder
 
 warnings.filterwarnings('ignore')
 
@@ -243,13 +244,23 @@ class Exp_Forecast(Exp_Basic):
                 dis = self.args.test_pred_len - inference_steps * self.args.output_token_len
                 if dis != 0:
                     inference_steps += 1
-                pred_y = []
-                for j in range(inference_steps):  
-                    if len(pred_y) != 0:
-                        batch_x = torch.cat([batch_x[:, self.args.input_token_len:, :], pred_y[-1]], dim=1)
-                    outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
-                    pred_y.append(outputs[:, -self.args.output_token_len:, :])
-                pred_y = torch.cat(pred_y, dim=1)
+                if self.args.use_speculative:
+                    # build/load draft model via registry and move to same device
+                    draft_module = self.model_dict[self.args.spec_draft_model]
+                    draft_model = draft_module.Model(self.args).to(self.device)
+                    if self.args.spec_draft_ckpt:
+                        draft_model.load_state_dict(torch.load(self.args.spec_draft_ckpt), strict=False)
+                    draft_model.eval()
+                    spec = SpeculativeDecoder(self.model, draft_model, self.args)
+                    pred_y = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
+                else:
+                    pred_y = []
+                    for j in range(inference_steps):
+                        if len(pred_y) != 0:
+                            batch_x = torch.cat([batch_x[:, self.args.input_token_len:, :], pred_y[-1]], dim=1)
+                        outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
+                        pred_y.append(outputs[:, -self.args.output_token_len:, :])
+                    pred_y = torch.cat(pred_y, dim=1)
                 if dis != 0:
                     pred_y = pred_y[:, :-self.args.output_token_len+dis, :]
                 batch_y = batch_y[:, -self.args.test_pred_len:, :].to(self.device)

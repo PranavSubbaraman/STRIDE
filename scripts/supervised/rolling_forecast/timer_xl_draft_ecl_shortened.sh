@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=2
 model_name=timer_xl_draft
 token_num=7
 token_len=96
