@@ -48,6 +48,23 @@ if __name__ == '__main__':
     parser.add_argument('--visualize', action='store_true', help='visualize', default=False)
     parser.add_argument('--flash_attention', action='store_true', help='flash attention', default=False)
 
+    # draft model scaling (only used by --model timer_xl_draft)
+    parser.add_argument('--draft_scale_d_model', type=float, default=0.5, help='scale factor for d_model in draft model')
+    parser.add_argument('--draft_scale_n_heads', type=float, default=0.5, help='scale factor for n_heads in draft model')
+    parser.add_argument('--draft_scale_d_ff', type=float, default=0.5, help='scale factor for d_ff in draft model')
+    parser.add_argument('--draft_scale_e_layers', type=float, default=0.5, help='scale factor for e_layers in draft model')
+    parser.add_argument('--adapter_to_target', action='store_true', help='enable adapter from draft hidden size to target hidden size', default=False)
+    parser.add_argument('--target_d_model', type=int, default=None, help='target hidden size for adapter projection')
+
+    # speculative decoding flags (Phase 4)
+    parser.add_argument('--use_speculative', action='store_true', default=False, help='enable speculative decoding at test time')
+    parser.add_argument('--spec_draft_model', type=str, default='timer_xl_draft', help='draft model name for speculation')
+    parser.add_argument('--spec_draft_ckpt', type=str, default='', help='optional path to draft checkpoint')
+    parser.add_argument('--spec_k', type=int, default=3, help='number of speculative patches K')
+    parser.add_argument('--spec_temp', type=float, default=1.0, help='temperature for sampling in speculation')
+    parser.add_argument('--spec_topp', type=float, default=1.0, help='nucleus top-p in speculation (1.0 disables)')
+    parser.add_argument('--spec_adaptive', action='store_true', default=False, help='enable adaptive K based on acceptance rate')
+
     # adaptation
     parser.add_argument('--adaptation', action='store_true', help='adaptation', default=False)
     parser.add_argument('--pretrain_model_path', type=str, default='pretrain_model.pth', help='pretrain model path')
