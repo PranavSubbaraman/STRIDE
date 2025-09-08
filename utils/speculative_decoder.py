@@ -72,9 +72,17 @@ class SpeculativeDecoder:
                 sigma2 = max(self.args.spec_sigma ** 2, 1e-12)
                 log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - q_i).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
                 ratio = torch.exp(torch.clamp(log_ratio, max=20.0))  # clamp for stability
+                # optional multiplicative bias to relax acceptance (>=1 accepts more)
+                ratio = ratio * max(self.args.spec_accept_bias, 1.0)
                 alpha = torch.minimum(torch.ones_like(ratio), ratio)
                 r = torch.rand_like(alpha)
-                accept_mask = (r <= alpha)
+                # optional MSE tolerance shortcut: accept if MSE <= tol
+                if self.args.spec_accept_mse_tol > 0:
+                    mse = torch.mean((p_next - x_i) ** 2, dim=(1, 2))
+                    tol_accept = (mse <= self.args.spec_accept_mse_tol)
+                else:
+                    tol_accept = torch.zeros_like(r).bool()
+                accept_mask = (r <= alpha) | tol_accept
                 if torch.all(accept_mask):
                     x = torch.cat([x[:, self.args.input_token_len:, :], x_i], dim=1)
                     preds.append(x_i)

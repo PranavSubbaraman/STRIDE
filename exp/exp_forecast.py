@@ -232,6 +232,19 @@ class Exp_Forecast(Exp_Basic):
         test_steps = len(test_loader)
         iter_count = 0
         self.model.eval()
+        gen_time_total = 0.0
+        gen_batches = 0
+        # Prepare speculative decoder once (exclude from timing)
+        spec = None
+        if self.args.use_speculative:
+            draft_module = self.model_dict[self.args.spec_draft_model]
+            if not hasattr(self, '_spec_draft') or self._spec_draft is None:
+                draft_model = draft_module.Model(self.args).to(self.device)
+                if self.args.spec_draft_ckpt:
+                    draft_model.load_state_dict(torch.load(self.args.spec_draft_ckpt), strict=False)
+                draft_model.eval()
+                self._spec_draft = draft_model
+            spec = SpeculativeDecoder(self.model, self._spec_draft, self.args)
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(test_loader):
                 iter_count += 1
@@ -244,14 +257,11 @@ class Exp_Forecast(Exp_Basic):
                 dis = self.args.test_pred_len - inference_steps * self.args.output_token_len
                 if dis != 0:
                     inference_steps += 1
+                # measure only the generation time (ignore data loading)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t0 = time.perf_counter()
                 if self.args.use_speculative:
-                    # build/load draft model via registry and move to same device
-                    draft_module = self.model_dict[self.args.spec_draft_model]
-                    draft_model = draft_module.Model(self.args).to(self.device)
-                    if self.args.spec_draft_ckpt:
-                        draft_model.load_state_dict(torch.load(self.args.spec_draft_ckpt), strict=False)
-                    draft_model.eval()
-                    spec = SpeculativeDecoder(self.model, draft_model, self.args)
                     pred_y = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
                 else:
                     pred_y = []
@@ -261,8 +271,13 @@ class Exp_Forecast(Exp_Basic):
                         outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
                         pred_y.append(outputs[:, -self.args.output_token_len:, :])
                     pred_y = torch.cat(pred_y, dim=1)
-                if dis != 0:
-                    pred_y = pred_y[:, :-self.args.output_token_len+dis, :]
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t1 = time.perf_counter()
+                gen_time_total += (t1 - t0)
+                gen_batches += 1
+                # Ensure exact test_pred_len tokens regardless of speculative overshoot
+                pred_y = pred_y[:, :self.args.test_pred_len, :]
                 batch_y = batch_y[:, -self.args.test_pred_len:, :].to(self.device)
                 
                 outputs = pred_y.detach().cpu()
@@ -296,6 +311,13 @@ class Exp_Forecast(Exp_Basic):
             trues = trues[:, :, -1]
         mae, mse, rmse, mape, mspe, smape = metric(preds, trues)
         print('mse:{}, mae:{}'.format(mse, mae))
+        if gen_batches > 0:
+            mode = 'speculative' if self.args.use_speculative else 'standard'
+            # append timing to a separate results file
+            with open("result_inference_timing.txt", 'a') as f:
+                f.write('inference_mode:{}, total_gen_time_s:{:.6f}, per_batch_s:{:.6f}'.format(
+                    mode, gen_time_total, gen_time_total / gen_batches))
+                f.write('\n')
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}'.format(mse, mae))
