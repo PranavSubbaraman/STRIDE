@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0,1,2
+export CUDA_VISIBLE_DEVICES=1
 model_name=timer_xl_draft
 token_num=32
 token_len=96
@@ -25,17 +25,18 @@ python -u run.py \
   --e_layers 4 \
   --d_model 512 \
   --d_ff 2048 \
-  --batch_size 4096 \
+  --batch_size 4 \
   --learning_rate 0.0001 \
   --train_epochs 10 \
   --gpu 0 \
   --cosine \
   --tmax 10 \
   --dp \
-  --devices 0,1,2 \
+  --devices 0 \
   --draft_scale_d_model 0.5 \
   --draft_scale_n_heads 0.5 \
   --draft_scale_d_ff 0.5 \
-  --draft_scale_e_layers 0.5
+  --draft_scale_e_layers 0.5 \
+  --flash_attention
 
 
