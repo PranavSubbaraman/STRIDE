@@ -67,10 +67,14 @@ class SpeculativeDecoder:
             # Extract p1..pK (target next-patch means for each prefix)
             accepted_in_round = torch.zeros(B, dtype=torch.long, device=x.device)
             done_mask = torch.zeros(B, dtype=torch.bool, device=x.device)
+            attempted_per_sample = torch.zeros(B, dtype=torch.long, device=x.device)
 
             # process proposals sequentially with per-example acceptance
-            proposals_attempted = 0
             for i in range(self.k):
+                # increment attempts for all still-active samples this round
+                active_mask = (~done_mask)
+                if active_mask.any():
+                    attempted_per_sample[active_mask] += 1
                 p_next = target_out[i*B:(i+1)*B, -self.args.output_token_len:, :]
                 q_i = q_list[i]
                 x_i = proposals[i]
@@ -107,7 +111,6 @@ class SpeculativeDecoder:
                         preds_per_sample[b].append(t_full[b])
                         done_mask[b] = True
 
-                proposals_attempted += 1
                 # If all samples are done for this round, early stop
                 if done_mask.all():
                     break
@@ -130,7 +133,7 @@ class SpeculativeDecoder:
 
             # accounting for adaptation
             accepted += int(accepted_in_round.sum().item())
-            attempted += (proposals_attempted * int((~done_mask).numel() > 0))
+            attempted += int(attempted_per_sample.sum().item())
 
             # Adapt K using global acceptance rate
             if self.adaptive and attempted > 0:
