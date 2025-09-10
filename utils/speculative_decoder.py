@@ -34,7 +34,12 @@ class SpeculativeDecoder:
         accepted = 0
         attempted = 0
 
-        preds = []
+        # accumulate variable number of patches per sample, then stack
+        B = x.shape[0]
+        preds_per_sample = [[] for _ in range(B)]
+        patch_len = self.args.output_token_len
+        max_return_len = steps * patch_len
+
         for _ in range(steps):
             # Draft speculation: propose K patches (x1..xk) from q1..qk
             proposals = []  # [x1, ..., xk]
@@ -59,56 +64,75 @@ class SpeculativeDecoder:
             verify_inputs = torch.cat(verify_inputs, dim=0)  # [B*K, L, C]
 
             target_out = self.target_model(verify_inputs, x_mark.repeat(len(proposals), 1, 1), y_mark.repeat(len(proposals), 1, 1))
-            # Extract p1..pk+1 by reading the next patch predictions for each prefix
-            B = x.shape[0]
-            accepted_in_round = 0
+            # Extract p1..pK (target next-patch means for each prefix)
+            accepted_in_round = torch.zeros(B, dtype=torch.long, device=x.device)
+            done_mask = torch.zeros(B, dtype=torch.bool, device=x.device)
+
+            # process proposals sequentially with per-example acceptance
+            proposals_attempted = 0
             for i in range(self.k):
-                # p_{i+1} corresponds to prefix up to i proposals; target predicts next patch for that prefix
                 p_next = target_out[i*B:(i+1)*B, -self.args.output_token_len:, :]
                 q_i = q_list[i]
                 x_i = proposals[i]
-                # acceptance probability alpha = min(1, p(x_i)/q(x_i)) under isotropic Gaussian approx
-                # log p ~ -||x-mu_p||^2/(2*sigma^2), log q ~ -||x-mu_q||^2/(2*sigma^2)
+
                 sigma2 = max(self.args.spec_sigma ** 2, 1e-12)
                 log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - q_i).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
-                ratio = torch.exp(torch.clamp(log_ratio, max=20.0))  # clamp for stability
-                # optional multiplicative bias to relax acceptance (>=1 accepts more)
+                ratio = torch.exp(torch.clamp(log_ratio, max=20.0))
                 ratio = ratio * max(self.args.spec_accept_bias, 1.0)
                 alpha = torch.minimum(torch.ones_like(ratio), ratio)
                 r = torch.rand_like(alpha)
-                # optional MSE tolerance shortcut: accept if MSE <= tol
                 if self.args.spec_accept_mse_tol > 0:
                     mse = torch.mean((p_next - x_i) ** 2, dim=(1, 2))
                     tol_accept = (mse <= self.args.spec_accept_mse_tol)
                 else:
                     tol_accept = torch.zeros_like(r).bool()
-                accept_mask = (r <= alpha) | tol_accept
-                if torch.all(accept_mask):
-                    x = torch.cat([x[:, self.args.input_token_len:, :], x_i], dim=1)
-                    preds.append(x_i)
-                    accepted += 1
-                    accepted_in_round += 1
-                else:
-                    # rejection triggers resampling from p'(x) ~ max(0, p - q)
-                    # continuous analogue: take a convex update toward p and away from q
-                    residual = torch.relu(p_next - q_i)
-                    denom = (residual.abs().sum(dim=(1, 2), keepdim=True) + 1e-8)
-                    residual = residual / denom
-                    t = p_next - residual * self.args.spec_sigma
-                    x = torch.cat([x[:, self.args.input_token_len:, :], t], dim=1)
-                    preds.append(t)
-                    # stop accepting more guesses this round per classical algorithm
+                accept_mask = ((r <= alpha) | tol_accept) & (~done_mask)
+
+                # update accepted samples
+                if accept_mask.any():
+                    # shift-append proposal for accepted ones
+                    for b in torch.where(accept_mask)[0].tolist():
+                        x[b] = torch.cat([x[b, self.args.input_token_len:, :], x_i[b]], dim=0)
+                        preds_per_sample[b].append(x_i[b])
+                        accepted_in_round[b] += 1
+
+                # handle first rejection at this i for samples not yet done
+                reject_mask = (~accept_mask) & (~done_mask)
+                if reject_mask.any():
+                    # draw t ~ N(mu_p=p_next, sigma)
+                    noise = self.args.spec_sigma * torch.randn_like(p_next)
+                    t_full = p_next + noise
+                    for b in torch.where(reject_mask)[0].tolist():
+                        x[b] = torch.cat([x[b, self.args.input_token_len:, :], t_full[b]], dim=0)
+                        preds_per_sample[b].append(t_full[b])
+                        done_mask[b] = True
+
+                proposals_attempted += 1
+                # If all samples are done for this round, early stop
+                if done_mask.all():
                     break
-            attempted += self.k
 
-            # Fallback to target one-step if none accepted
-            if accepted_in_round == 0:
-                target_step = self.target_model(x, x_mark, y_mark)
-                next_patch = target_step[:, -self.args.output_token_len:, :]
-                x = torch.cat([x[:, self.args.input_token_len:, :], next_patch], dim=1)
-                preds.append(next_patch)
+            # For samples that accepted all K proposals (not done), append one more target draw at K+1
+            all_accept_mask = (~done_mask)
+            if all_accept_mask.any():
+                idx = torch.where(all_accept_mask)[0]
+                x_all = x.index_select(0, idx)
+                xm_all = x_mark.index_select(0, idx)
+                ym_all = y_mark.index_select(0, idx)
+                target_step = self.target_model(x_all, xm_all, ym_all)
+                mu_next = target_step[:, -self.args.output_token_len:, :]
+                t_all = mu_next + self.args.spec_sigma * torch.randn_like(mu_next)
+                # update x and preds
+                for j, b in enumerate(idx.tolist()):
+                    x[b] = torch.cat([x[b, self.args.input_token_len:, :], t_all[j]], dim=0)
+                    preds_per_sample[b].append(t_all[j])
+                accepted_in_round[all_accept_mask] += 0  # proposals already counted
 
-            # Adapt K
+            # accounting for adaptation
+            accepted += int(accepted_in_round.sum().item())
+            attempted += (proposals_attempted * int((~done_mask).numel() > 0))
+
+            # Adapt K using global acceptance rate
             if self.adaptive and attempted > 0:
                 acc_rate = accepted / attempted
                 if acc_rate > 0.7:
@@ -116,6 +140,26 @@ class SpeculativeDecoder:
                 elif acc_rate < 0.3:
                     self.k = max(self.k - 1, 1)
 
-        return torch.cat(preds, dim=1)
+        # collate per-sample predictions to fixed length [B, steps*P, C]
+        out_list = []
+        for b in range(B):
+            if len(preds_per_sample[b]) == 0:
+                # unlikely, but pad zeros
+                out_b = torch.zeros((0, x.shape[-1]), device=x.device, dtype=x.dtype)
+            else:
+                out_b = torch.cat(preds_per_sample[b], dim=0)  # [T, C]
+            # truncate to max_return_len
+            if out_b.shape[0] > max_return_len:
+                out_b = out_b[:max_return_len, :]
+            # pad by repeating last patch if needed
+            if out_b.shape[0] < max_return_len:
+                if out_b.shape[0] == 0:
+                    pad = torch.zeros((max_return_len, out_b.shape[-1]), device=x.device, dtype=x.dtype)
+                else:
+                    last = out_b[-1:, :].expand(max_return_len - out_b.shape[0], -1)
+                    pad = last
+                out_b = torch.cat([out_b, pad], dim=0)
+            out_list.append(out_b)
+        return torch.stack(out_list, dim=0)
 
 
