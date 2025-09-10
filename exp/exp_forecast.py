@@ -262,7 +262,7 @@ class Exp_Forecast(Exp_Basic):
                     torch.cuda.synchronize()
                 t0 = time.perf_counter()
                 if self.args.use_speculative:
-                    pred_y = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
+                    pred_y, accepted_cnt, attempted_cnt = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
                 else:
                     pred_y = []
                     for j in range(inference_steps):
@@ -318,6 +318,19 @@ class Exp_Forecast(Exp_Basic):
                 f.write('inference_mode:{}, total_gen_time_s:{:.6f}, per_batch_s:{:.6f}'.format(
                     mode, gen_time_total, gen_time_total / gen_batches))
                 f.write('\n')
+        # write consolidated metrics to a single file
+        with open("result_inference_summary.txt", 'a') as f:
+            f.write('setting:{}\n'.format(setting))
+            f.write('mode:{}\n'.format('speculative' if self.args.use_speculative else 'standard'))
+            f.write('mse:{:.6f}, mae:{:.6f}\n'.format(mse, mae))
+            if gen_batches > 0:
+                f.write('total_gen_time_s:{:.6f}, per_batch_s:{:.6f}\n'.format(gen_time_total, gen_time_total / gen_batches))
+            if self.args.use_speculative:
+                total_acc = accepted_cnt if isinstance(accepted_cnt, int) else int(accepted_cnt)
+                total_att = attempted_cnt if isinstance(attempted_cnt, int) else int(attempted_cnt)
+                acc_pct = (100.0 * total_acc / max(total_att, 1))
+                f.write('accepted:{}, attempted:{}, acceptance_pct:{:.2f}\n'.format(total_acc, total_att, acc_pct))
+            f.write('\n')
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}'.format(mse, mae))

@@ -163,6 +163,6 @@ class SpeculativeDecoder:
                     pad = last
                 out_b = torch.cat([out_b, pad], dim=0)
             out_list.append(out_b)
-        return torch.stack(out_list, dim=0)
+        return torch.stack(out_list, dim=0), int(accepted), int(attempted)
 
 
