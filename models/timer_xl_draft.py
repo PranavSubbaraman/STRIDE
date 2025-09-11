@@ -26,21 +26,33 @@ class Model(nn.Module):
         scale_d_ff = float(getattr(configs, 'draft_scale_d_ff', 0.5))
         scale_e_layers = float(getattr(configs, 'draft_scale_e_layers', 0.5))
 
-        d_model = max(64, int(round(original_d_model * scale_d_model)))
-        n_heads = max(1, int(round(original_n_heads * scale_n_heads)))
+        # More robust scaling that ensures RoPE compatibility
+        # RoPE requires head_dim to be divisible by 4 (since proj_width = head_dim // 2 must be even)
+        target_d_model = int(round(original_d_model * scale_d_model))
+        target_n_heads = int(round(original_n_heads * scale_n_heads))
+        
+        # Find the best compatible combination
+        best_d_model, best_n_heads = None, None
+        min_param_diff = float('inf')
+        
+        # Try different head counts around the target
+        for heads in range(max(1, target_n_heads - 2), target_n_heads + 3):
+            # Find d_model that's divisible by heads and gives head_dim divisible by 4
+            base_head_dim = max(16, (target_d_model // heads // 4) * 4)  # Round down to multiple of 4
+            candidate_d_model = base_head_dim * heads
+            
+            # Prefer staying close to target parameters
+            param_diff = abs(candidate_d_model - target_d_model) + abs(heads - target_n_heads) * 20
+            if param_diff < min_param_diff:
+                min_param_diff = param_diff
+                best_d_model, best_n_heads = candidate_d_model, heads
+        
+        d_model = max(64, best_d_model)
+        n_heads = max(1, best_n_heads)
         d_ff = max(256, int(round(original_d_ff * scale_d_ff)))
         e_layers = max(1, int(round(original_e_layers * scale_e_layers)))
-
-        # Ensure divisibility: d_model % n_heads == 0
-        if d_model % n_heads != 0:
-            # Try decreasing n_heads until it divides, but at least 1
-            for candidate in range(n_heads, 0, -1):
-                if d_model % candidate == 0:
-                    n_heads = candidate
-                    break
-            # If still not divisible, increase d_model to nearest divisible value
-            if d_model % n_heads != 0:
-                d_model = (d_model // n_heads + 1) * n_heads
+        
+        # print(f"Draft model: d_model={d_model}, n_heads={n_heads}, head_dim={d_model//n_heads}, d_ff={d_ff}, e_layers={e_layers}")
 
         self.input_token_len = configs.input_token_len
         self.output_attention = configs.output_attention

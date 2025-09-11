@@ -234,6 +234,8 @@ class Exp_Forecast(Exp_Basic):
         self.model.eval()
         gen_time_total = 0.0
         gen_batches = 0
+        total_accepted = 0
+        total_attempted = 0
         # Prepare speculative decoder once (exclude from timing)
         spec = None
         if self.args.use_speculative:
@@ -263,6 +265,8 @@ class Exp_Forecast(Exp_Basic):
                 t0 = time.perf_counter()
                 if self.args.use_speculative:
                     pred_y, accepted_cnt, attempted_cnt = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
+                    total_accepted += accepted_cnt
+                    total_attempted += attempted_cnt
                 else:
                     pred_y = []
                     for j in range(inference_steps):
@@ -326,10 +330,8 @@ class Exp_Forecast(Exp_Basic):
             if gen_batches > 0:
                 f.write('total_gen_time_s:{:.6f}, per_batch_s:{:.6f}\n'.format(gen_time_total, gen_time_total / gen_batches))
             if self.args.use_speculative:
-                total_acc = accepted_cnt if isinstance(accepted_cnt, int) else int(accepted_cnt)
-                total_att = attempted_cnt if isinstance(attempted_cnt, int) else int(attempted_cnt)
-                acc_pct = (100.0 * total_acc / max(total_att, 1))
-                f.write('accepted:{}, attempted:{}, acceptance_pct:{:.2f}\n'.format(total_acc, total_att, acc_pct))
+                acc_pct = (100.0 * total_accepted / max(total_attempted, 1))
+                f.write('accepted:{}, attempted:{}, acceptance_pct:{:.2f}\n'.format(total_accepted, total_attempted, acc_pct))
             f.write('\n')
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")

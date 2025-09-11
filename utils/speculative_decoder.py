@@ -25,6 +25,28 @@ class SpeculativeDecoder:
         self.temp = args.spec_temp
         self.topp = args.spec_topp
         self.adaptive = args.spec_adaptive
+        
+        # Store normalization statistics for consistent normalization
+        self.use_norm = getattr(args, 'use_norm', False)
+        self.norm_means = None
+        self.norm_stdev = None
+
+    def _compute_norm_stats(self, x):
+        """Compute normalization statistics from input sequence, matching Timer-XL's approach"""
+        if self.use_norm:
+            means = x.mean(1, keepdim=True).detach()
+            stdev = torch.sqrt(torch.var(x, dim=1, keepdim=True, unbiased=False) + 1e-5)
+            return means, stdev
+        return None, None
+    
+    def _normalize_patch(self, patch):
+        """Normalize a patch using stored statistics"""
+        if self.use_norm and self.norm_means is not None and self.norm_stdev is not None:
+            # patch: [B, P, C] where P is patch length
+            # norm stats: [B, 1, C]
+            patch_normalized = (patch - self.norm_means) / self.norm_stdev
+            return patch_normalized
+        return patch
 
     @torch.no_grad()
     def generate(self, x_init, x_mark, y_mark, steps):
@@ -33,6 +55,9 @@ class SpeculativeDecoder:
         x = x_init.clone()
         accepted = 0
         attempted = 0
+        
+        # Compute normalization statistics from initial input
+        self.norm_means, self.norm_stdev = self._compute_norm_stats(x_init)
 
         # accumulate variable number of patches per sample, then stack
         B = x.shape[0]
@@ -78,15 +103,20 @@ class SpeculativeDecoder:
                 p_next = target_out[i*B:(i+1)*B, -self.args.output_token_len:, :]
                 q_i = q_list[i]
                 x_i = proposals[i]
+                
+                # Normalize x_i using training dataset statistics for consistent comparison
+                x_i_norm = self._normalize_patch(x_i)
+                p_next_norm = self._normalize_patch(p_next)
+                q_i_norm = self._normalize_patch(q_i)
 
                 sigma2 = max(self.args.spec_sigma ** 2, 1e-12)
-                log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - q_i).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
+                log_ratio = (-(x_i_norm - p_next_norm).pow(2).sum(dim=(1, 2)) + (x_i_norm - q_i_norm).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
                 ratio = torch.exp(torch.clamp(log_ratio, max=20.0))
                 ratio = ratio * max(self.args.spec_accept_bias, 1.0)
                 alpha = torch.minimum(torch.ones_like(ratio), ratio)
                 r = torch.rand_like(alpha)
                 if self.args.spec_accept_mse_tol > 0:
-                    mse = torch.mean((p_next - x_i) ** 2, dim=(1, 2))
+                    mse = torch.mean((p_next_norm - x_i_norm) ** 2, dim=(1, 2))
                     tol_accept = (mse <= self.args.spec_accept_mse_tol)
                 else:
                     tol_accept = torch.zeros_like(r).bool()
