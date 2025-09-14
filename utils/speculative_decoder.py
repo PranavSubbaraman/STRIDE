@@ -30,6 +30,16 @@ class SpeculativeDecoder:
         self.use_norm = getattr(args, 'use_norm', False)
         self.norm_means = None
         self.norm_stdev = None
+        # debug
+        self.debug_accept = bool(getattr(args, 'spec_debug_accept', False))
+        self.debug_out = getattr(args, 'spec_debug_out', 'spec_accept_debug.csv')
+        self.debug_n = int(getattr(args, 'spec_debug_n', 3))
+        self.debug_max_batches = int(getattr(args, 'spec_debug_max_batches', 3))
+        self.debug_max_rounds = int(getattr(args, 'spec_debug_max_rounds', 4))
+        self._debug_batches_logged = 0
+        # adaptive sigma
+        self.sigma_mode = getattr(args, 'spec_sigma_mode', 'fixed')  # 'fixed' | 'adaptive'
+        self.sigma_adapt_c = float(getattr(args, 'spec_sigma_adapt_c', 1.5))
 
     def _compute_norm_stats(self, x):
         """Compute normalization statistics from input sequence, matching Timer-XL's approach"""
@@ -64,32 +74,110 @@ class SpeculativeDecoder:
         preds_per_sample = [[] for _ in range(B)]
         patch_len = self.args.output_token_len
         max_return_len = steps * patch_len
-
-        for _ in range(steps):
+        # timing breakdowns
+        t_draft = 0.0
+        t_prep_verify = 0.0
+        t_target_verify = 0.0
+        t_target_sample = 0.0
+        t_accept_cpu = 0.0
+        n_draft_calls = 0
+        n_target_verify_calls = 0
+        n_target_sample_calls = 0
+        
+        # Early-exit loop: stop when all samples have produced enough tokens
+        # Each round guarantees at least one patch per sample (via rejection draw)
+        while True:
+            # Check completion
+            all_done = True
+            for b in range(B):
+                if len(preds_per_sample[b]) * patch_len < max_return_len:
+                    all_done = False
+                    break
+            if all_done:
+                break
             # Draft speculation: propose K patches (x1..xk) from q1..qk
             proposals = []  # [x1, ..., xk]
             q_list = []     # [q1, ..., qk]
             context = x
             for _k in range(self.k):
-                draft_out = self.draft_model(context, x_mark, y_mark)
+                # time draft forward
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                import time as _pytime
+                _t0 = _pytime.perf_counter()
+                # AMP autocast for draft forward
+                amp_enabled = bool(getattr(self.args, 'amp', False))
+                amp_dtype_arg = str(getattr(self.args, 'amp_dtype', 'bf16')).lower()
+                amp_dtype = torch.bfloat16 if amp_dtype_arg in ['bf16', 'bfloat16'] else torch.float16
+                with torch.autocast(device_type='cuda', dtype=amp_dtype, enabled=amp_enabled):
+                    draft_out = self.draft_model(context, x_mark, y_mark)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t_draft += (_pytime.perf_counter() - _t0)
+                n_draft_calls += 1
                 # Treat draft output patch as mean of Gaussian q with fixed sigma (continuous tokens)
                 mu_q = draft_out[:, -self.args.output_token_len:, :]
                 q_list.append(mu_q)
                 sampled = mu_q + self.args.spec_sigma * torch.randn_like(mu_q)
                 proposals.append(sampled)
                 context = torch.cat([context[:, self.args.input_token_len:, :], sampled], dim=1)
-
-            # Parallel verification: batch context prefixes
-            # Build contexts: x0, x0+spec1, x0+spec1+spec2, ...
-            verify_inputs = []
-            current = x
-            for p in proposals:
-                verify_inputs.append(current)
-                current = torch.cat([current[:, self.args.input_token_len:, :], p], dim=1)
-            verify_inputs = torch.cat(verify_inputs, dim=0)  # [B*K, L, C]
-
-            target_out = self.target_model(verify_inputs, x_mark.repeat(len(proposals), 1, 1), y_mark.repeat(len(proposals), 1, 1))
-            # Extract p1..pK (target next-patch means for each prefix)
+            
+            # Verification: Prefer single-pass block verification when compatible
+            single_pass_ok = (self.args.output_token_len == self.args.input_token_len)
+            p_list = []  # holds p_next for each proposal index i
+            if single_pass_ok:
+                # Build extended input per sample: x || p1 || p2 || ... || pK
+                import time as _pytime
+                _prep0 = _pytime.perf_counter()
+                ext_inputs = torch.cat([x] + proposals, dim=1)  # [B, L + K*P, C]
+                t_prep_verify += (_pytime.perf_counter() - _prep0)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                _tv0 = _pytime.perf_counter()
+                # AMP autocast for target verify forward
+                amp_enabled = bool(getattr(self.args, 'amp', False))
+                amp_dtype_arg = str(getattr(self.args, 'amp_dtype', 'bf16')).lower()
+                amp_dtype = torch.bfloat16 if amp_dtype_arg in ['bf16', 'bfloat16'] else torch.float16
+                with torch.autocast(device_type='cuda', dtype=amp_dtype, enabled=amp_enabled):
+                    target_full = self.target_model(ext_inputs, x_mark, y_mark)  # [B, N_ext*P_out, C]
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t_target_verify += (_pytime.perf_counter() - _tv0)
+                n_target_verify_calls += 1
+                # Determine window indices for each proposal
+                in_P = self.args.input_token_len
+                out_P = self.args.output_token_len
+                base_N = x.shape[1] // in_P  # number of input windows in the current context
+                for i in range(self.k):
+                    j_idx = base_N - 1 + i
+                    t0 = j_idx * out_P
+                    t1 = (j_idx + 1) * out_P
+                    p_list.append(target_full[:, t0:t1, :])
+            else:
+                # Fallback: Parallel verification by batching K contexts (original method)
+                import time as _pytime
+                _prep0 = _pytime.perf_counter()
+                verify_inputs = []
+                current = x
+                for p in proposals:
+                    verify_inputs.append(current)
+                    current = torch.cat([current[:, self.args.input_token_len:, :], p], dim=1)
+                verify_inputs = torch.cat(verify_inputs, dim=0)  # [B*K, L, C]
+                t_prep_verify += (_pytime.perf_counter() - _prep0)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                _tv0 = _pytime.perf_counter()
+                # AMP autocast for target verify forward
+                amp_enabled = bool(getattr(self.args, 'amp', False))
+                amp_dtype_arg = str(getattr(self.args, 'amp_dtype', 'bf16')).lower()
+                amp_dtype = torch.bfloat16 if amp_dtype_arg in ['bf16', 'bfloat16'] else torch.float16
+                with torch.autocast(device_type='cuda', dtype=amp_dtype, enabled=amp_enabled):
+                    target_out = self.target_model(verify_inputs, x_mark.repeat(len(proposals), 1, 1), y_mark.repeat(len(proposals), 1, 1))
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t_target_verify += (_pytime.perf_counter() - _tv0)
+                n_target_verify_calls += 1
+                # Will slice per i below from target_out
             accepted_in_round = torch.zeros(B, dtype=torch.long, device=x.device)
             done_mask = torch.zeros(B, dtype=torch.bool, device=x.device)
             attempted_per_sample = torch.zeros(B, dtype=torch.long, device=x.device)
@@ -100,7 +188,10 @@ class SpeculativeDecoder:
                 active_mask = (~done_mask)
                 if active_mask.any():
                     attempted_per_sample[active_mask] += 1
-                p_next = target_out[i*B:(i+1)*B, -self.args.output_token_len:, :]
+                if single_pass_ok:
+                    p_next = p_list[i]
+                else:
+                    p_next = target_out[i*B:(i+1)*B, -self.args.output_token_len:, :]
                 q_i = q_list[i]
                 x_i = proposals[i]
                 
@@ -109,7 +200,19 @@ class SpeculativeDecoder:
                 p_next_norm = self._normalize_patch(p_next)
                 q_i_norm = self._normalize_patch(q_i)
 
-                sigma2 = max(self.args.spec_sigma ** 2, 1e-12)
+                import time as _pytime
+                _acc0 = _pytime.perf_counter()
+                # choose sigma
+                if self.sigma_mode == 'adaptive':
+                    # adapt from mean squared diff between p and q (normalized space)
+                    # avoid zeros; cap for stability
+                    mean_sq = torch.mean((p_next_norm - q_i_norm) ** 2, dim=(1, 2))  # [B]
+                    # per-sample sigma^2 = c * mean_sq; we broadcast later
+                    sigma2_vec = torch.clamp(self.sigma_adapt_c * mean_sq, min=1e-6, max=1e6)
+                    # for computation below, we will expand to [B]
+                    sigma2 = sigma2_vec
+                else:
+                    sigma2 = torch.full((x.shape[0],), max(self.args.spec_sigma ** 2, 1e-12), device=x.device, dtype=x.dtype)
                 log_ratio = (-(x_i_norm - p_next_norm).pow(2).sum(dim=(1, 2)) + (x_i_norm - q_i_norm).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
                 ratio = torch.exp(torch.clamp(log_ratio, max=20.0))
                 ratio = ratio * max(self.args.spec_accept_bias, 1.0)
@@ -121,6 +224,47 @@ class SpeculativeDecoder:
                 else:
                     tol_accept = torch.zeros_like(r).bool()
                 accept_mask = ((r <= alpha) | tol_accept) & (~done_mask)
+                # debug log
+                if self.debug_accept and self._debug_batches_logged < self.debug_max_batches and i < self.debug_max_rounds:
+                    try:
+                        import csv
+                        # compute per-sample diagnostics in normalized space
+                        # SSE_p = ||x_i - mu_p||^2, SSE_q = ||x_i - mu_q||^2
+                        sse_p = (x_i_norm - p_next_norm).pow(2).sum(dim=(1, 2))
+                        sse_q = (x_i_norm - q_i_norm).pow(2).sum(dim=(1, 2))
+                        # log densities up to additive const: log p ~ -SSE_p/(2 sigma^2), log q ~ -SSE_q/(2 sigma^2)
+                        denom_vec = 2.0 * sigma2
+                        logp = -sse_p / denom_vec
+                        logq = -sse_q / denom_vec
+                        log_ratio_dbg = logp - logq
+                        # compute scalar diagnostics per sample
+                        with open(self.debug_out, 'a', newline='') as f:
+                            writer = csv.writer(f)
+                            # header once
+                            if f.tell() == 0:
+                                writer.writerow([
+                                    'batch_idx','round_i','sample_idx',
+                                    'alpha','r','tol_accept','accept',
+                                    'mse','sse_p','sse_q','logp','logq','log_ratio','ratio',
+                                    'sigma_eff','sigma_mode','bias'
+                                ])
+                            # pick first N active samples to log
+                            active_indices = torch.where(~done_mask)[0].tolist()
+                            for b in active_indices[:self.debug_n]:
+                                mse_b = torch.mean((p_next_norm[b] - x_i_norm[b]) ** 2).item()
+                                ratio_b = float(torch.exp(torch.clamp(log_ratio_dbg[b], max=20.0)).item())
+                                sigma_eff_b = float(torch.sqrt(sigma2[b]).item())
+                                writer.writerow([
+                                    int(self._debug_batches_logged), int(i), int(b),
+                                    float(alpha[b].item()), float(r[b].item()), bool(tol_accept[b].item()), bool(accept_mask[b].item()),
+                                    float(mse_b), float(sse_p[b].item()), float(sse_q[b].item()), float(logp[b].item()), float(logq[b].item()), float(log_ratio_dbg[b].item()),
+                                    ratio_b,
+                                    sigma_eff_b, str(self.sigma_mode), float(self.args.spec_accept_bias)
+                                ])
+                    except Exception:
+                        pass
+                _acc1 = _pytime.perf_counter()
+                t_accept_cpu += (_acc1 - _acc0)
 
                 # update accepted samples
                 if accept_mask.any():
@@ -152,7 +296,20 @@ class SpeculativeDecoder:
                 x_all = x.index_select(0, idx)
                 xm_all = x_mark.index_select(0, idx)
                 ym_all = y_mark.index_select(0, idx)
-                target_step = self.target_model(x_all, xm_all, ym_all)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                import time as _pytime
+                _ts0 = _pytime.perf_counter()
+                # AMP autocast for target draw forward
+                amp_enabled = bool(getattr(self.args, 'amp', False))
+                amp_dtype_arg = str(getattr(self.args, 'amp_dtype', 'bf16')).lower()
+                amp_dtype = torch.bfloat16 if amp_dtype_arg in ['bf16', 'bfloat16'] else torch.float16
+                with torch.autocast(device_type='cuda', dtype=amp_dtype, enabled=amp_enabled):
+                    target_step = self.target_model(x_all, xm_all, ym_all)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                t_target_sample += (_pytime.perf_counter() - _ts0)
+                n_target_sample_calls += 1
                 mu_next = target_step[:, -self.args.output_token_len:, :]
                 t_all = mu_next + self.args.spec_sigma * torch.randn_like(mu_next)
                 # update x and preds
@@ -164,6 +321,9 @@ class SpeculativeDecoder:
             # accounting for adaptation
             accepted += int(accepted_in_round.sum().item())
             attempted += int(attempted_per_sample.sum().item())
+            # bump batch debug counter once per outer loop
+            if self.debug_accept and self._debug_batches_logged < self.debug_max_batches:
+                self._debug_batches_logged += 1
 
             # Adapt K using global acceptance rate
             if self.adaptive and attempted > 0:
@@ -193,6 +353,16 @@ class SpeculativeDecoder:
                     pad = last
                 out_b = torch.cat([out_b, pad], dim=0)
             out_list.append(out_b)
-        return torch.stack(out_list, dim=0), int(accepted), int(attempted)
+        breakdown = {
+            't_draft': float(t_draft),
+            't_prep_verify': float(t_prep_verify),
+            't_target_verify': float(t_target_verify),
+            't_target_sample': float(t_target_sample),
+            't_accept_cpu': float(t_accept_cpu),
+            'n_draft_calls': int(n_draft_calls),
+            'n_target_verify_calls': int(n_target_verify_calls),
+            'n_target_sample_calls': int(n_target_sample_calls),
+        }
+        return torch.stack(out_list, dim=0), int(accepted), int(attempted), breakdown
 
 

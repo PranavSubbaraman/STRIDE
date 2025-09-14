@@ -236,6 +236,19 @@ class Exp_Forecast(Exp_Basic):
         gen_batches = 0
         total_accepted = 0
         total_attempted = 0
+        # Fine-grained breakdown accumulators (per full test run)
+        breakdown_totals = {
+            't_draft': 0.0,
+            't_prep_verify': 0.0,
+            't_target_verify': 0.0,
+            't_target_sample': 0.0,
+            't_accept_cpu': 0.0,
+            'n_draft_calls': 0,
+            'n_target_verify_calls': 0,
+            'n_target_sample_calls': 0,
+        }
+        baseline_forward_time_total = 0.0
+        baseline_forward_calls = 0
         # Prepare speculative decoder once (exclude from timing)
         spec = None
         if self.args.use_speculative:
@@ -247,6 +260,11 @@ class Exp_Forecast(Exp_Basic):
                 draft_model.eval()
                 self._spec_draft = draft_model
             spec = SpeculativeDecoder(self.model, self._spec_draft, self.args)
+        # AMP config
+        amp_enabled = bool(getattr(self.args, 'amp', False))
+        amp_dtype_arg = str(getattr(self.args, 'amp_dtype', 'bf16')).lower()
+        amp_dtype = torch.bfloat16 if amp_dtype_arg in ['bf16', 'bfloat16'] else torch.float16
+
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(test_loader):
                 iter_count += 1
@@ -264,15 +282,35 @@ class Exp_Forecast(Exp_Basic):
                     torch.cuda.synchronize()
                 t0 = time.perf_counter()
                 if self.args.use_speculative:
-                    pred_y, accepted_cnt, attempted_cnt = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
+                    pred_y, accepted_cnt, attempted_cnt, breakdown = spec.generate(batch_x, batch_x_mark, batch_y_mark, steps=inference_steps)
                     total_accepted += accepted_cnt
                     total_attempted += attempted_cnt
+                    # accumulate per-batch breakdown if provided
+                    if isinstance(breakdown, dict):
+                        breakdown_totals['t_draft'] += float(breakdown.get('t_draft', 0.0))
+                        breakdown_totals['t_prep_verify'] += float(breakdown.get('t_prep_verify', 0.0))
+                        breakdown_totals['t_target_verify'] += float(breakdown.get('t_target_verify', 0.0))
+                        breakdown_totals['t_target_sample'] += float(breakdown.get('t_target_sample', 0.0))
+                        breakdown_totals['t_accept_cpu'] += float(breakdown.get('t_accept_cpu', 0.0))
+                        breakdown_totals['n_draft_calls'] += int(breakdown.get('n_draft_calls', 0))
+                        breakdown_totals['n_target_verify_calls'] += int(breakdown.get('n_target_verify_calls', 0))
+                        breakdown_totals['n_target_sample_calls'] += int(breakdown.get('n_target_sample_calls', 0))
                 else:
                     pred_y = []
                     for j in range(inference_steps):
                         if len(pred_y) != 0:
                             batch_x = torch.cat([batch_x[:, self.args.input_token_len:, :], pred_y[-1]], dim=1)
-                        outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
+                        # time baseline model forward
+                        if torch.cuda.is_available():
+                            torch.cuda.synchronize()
+                        _bf0 = time.perf_counter()
+                        # AMP autocast for baseline forward
+                        with torch.autocast(device_type='cuda', dtype=amp_dtype, enabled=amp_enabled):
+                            outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
+                        if torch.cuda.is_available():
+                            torch.cuda.synchronize()
+                        baseline_forward_time_total += (time.perf_counter() - _bf0)
+                        baseline_forward_calls += 1
                         pred_y.append(outputs[:, -self.args.output_token_len:, :])
                     pred_y = torch.cat(pred_y, dim=1)
                 if torch.cuda.is_available():
@@ -306,8 +344,9 @@ class Exp_Forecast(Exp_Basic):
                     pd = np.array(pred[0, :, -1])
                     visual(gt, pd, os.path.join(dir_path, f'{i}.pdf'))
 
-        preds = torch.cat(preds, dim=0).numpy()
-        trues = torch.cat(trues, dim=0).numpy()
+        # Ensure CPU float32 before NumPy conversion (handles bf16/fp16 tensors under AMP)
+        preds = torch.cat(preds, dim=0).to(torch.float32).cpu().numpy()
+        trues = torch.cat(trues, dim=0).to(torch.float32).cpu().numpy()
         print('preds shape:', preds.shape)
         print('trues shape:', trues.shape)
         if self.args.covariate:
@@ -333,6 +372,20 @@ class Exp_Forecast(Exp_Basic):
                 acc_pct = (100.0 * total_accepted / max(total_attempted, 1))
                 f.write('accepted:{}, attempted:{}, acceptance_pct:{:.2f}\n'.format(total_accepted, total_attempted, acc_pct))
             f.write('\n')
+        # Optional: write a dedicated breakdown file aggregating over the run
+        if getattr(self.args, 'trace_inference_breakdown', False):
+            with open('result_inference_breakdown.txt', 'a') as f:
+                f.write('setting:{}\n'.format(setting))
+                f.write('mode:{}\n'.format('speculative' if self.args.use_speculative else 'standard'))
+                if self.args.use_speculative:
+                    f.write('t_draft_total:{:.6f}, n_draft_calls:{}\n'.format(breakdown_totals['t_draft'], breakdown_totals['n_draft_calls']))
+                    f.write('t_prep_verify_total:{:.6f}\n'.format(breakdown_totals['t_prep_verify']))
+                    f.write('t_target_verify_total:{:.6f}, n_target_verify_calls:{}\n'.format(breakdown_totals['t_target_verify'], breakdown_totals['n_target_verify_calls']))
+                    f.write('t_target_sample_total:{:.6f}, n_target_sample_calls:{}\n'.format(breakdown_totals['t_target_sample'], breakdown_totals['n_target_sample_calls']))
+                    f.write('t_accept_cpu_total:{:.6f}\n'.format(breakdown_totals['t_accept_cpu']))
+                else:
+                    f.write('t_baseline_forward_total:{:.6f}, n_baseline_calls:{}\n'.format(baseline_forward_time_total, baseline_forward_calls))
+                f.write('\n')
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}'.format(mse, mae))

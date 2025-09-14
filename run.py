@@ -47,6 +47,9 @@ if __name__ == '__main__':
     parser.add_argument('--output_attention', action='store_true', help='output attention', default=False)
     parser.add_argument('--visualize', action='store_true', help='visualize', default=False)
     parser.add_argument('--flash_attention', action='store_true', help='flash attention', default=False)
+    # AMP (automatic mixed precision)
+    parser.add_argument('--amp', action='store_true', default=False, help='enable torch.cuda.amp autocast')
+    parser.add_argument('--amp_dtype', type=str, default='bf16', help="amp dtype: 'bf16' or 'fp16'")
 
     # draft model scaling (only used by --model timer_xl_draft)
     parser.add_argument('--draft_scale_d_model', type=float, default=0.5, help='scale factor for d_model in draft model')
@@ -67,6 +70,16 @@ if __name__ == '__main__':
     parser.add_argument('--spec_sigma', type=float, default=0.01, help='stddev for Gaussian sampling over continuous patches')
     parser.add_argument('--spec_accept_mse_tol', type=float, default=-1.0, help='accept if target-vs-proposal MSE <= tol (<=0 disables)')
     parser.add_argument('--spec_accept_bias', type=float, default=1.0, help='multiplicative bias on acceptance ratio (>=1 relaxes acceptance)')
+    parser.add_argument('--spec_sigma_mode', type=str, default='fixed', help="'fixed' or 'adaptive'")
+    parser.add_argument('--spec_sigma_adapt_c', type=float, default=1.5, help='adaptive sigma multiplier c')
+    # tracing & breakdown
+    parser.add_argument('--trace_inference_breakdown', action='store_true', default=False, help='record fine-grained inference time breakdowns')
+    # speculative acceptance debugging
+    parser.add_argument('--spec_debug_accept', action='store_true', default=False, help='log per-proposal acceptance diagnostics to CSV')
+    parser.add_argument('--spec_debug_out', type=str, default='spec_accept_debug.csv', help='CSV path for acceptance debug logs')
+    parser.add_argument('--spec_debug_n', type=int, default=3, help='number of examples to log per batch/round')
+    parser.add_argument('--spec_debug_max_batches', type=int, default=3, help='max number of test batches to log')
+    parser.add_argument('--spec_debug_max_rounds', type=int, default=4, help='max speculative rounds to log per batch')
 
     # adaptation
     parser.add_argument('--adaptation', action='store_true', help='adaptation', default=False)
