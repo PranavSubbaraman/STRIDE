@@ -29,7 +29,7 @@ python -u run.py \
   --valid_last
 
 # testing the model on all forecast lengths
-for test_pred_len in 96 192 336 720
+for test_pred_len in 192
 do
 python -u run.py \
   --task_name forecast \
@@ -54,5 +54,5 @@ python -u run.py \
   --use_norm \
   --e_layers 1 \
   --valid_last \
-  --test_dir forecast_ETTh1_timer_xl_ETTh1_Multi_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+  --test_dir forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
 done

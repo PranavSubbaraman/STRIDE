@@ -243,10 +243,11 @@ class SpeculativeDecoder:
                             # header once
                             if f.tell() == 0:
                                 writer.writerow([
-                                    'batch_idx','round_i','sample_idx',
+                                    'batch_idx','round_i','sample_idx','kind',
                                     'alpha','r','tol_accept','accept',
                                     'mse','sse_p','sse_q','logp','logq','log_ratio','ratio',
-                                    'sigma_eff','sigma_mode','bias'
+                                    'sigma_eff','sigma_mode','bias',
+                                    'mean_xi_minus_q','var_xi_minus_q','mean_xi_minus_p','var_xi_minus_p'
                                 ])
                             # pick first N active samples to log
                             active_indices = torch.where(~done_mask)[0].tolist()
@@ -254,12 +255,20 @@ class SpeculativeDecoder:
                                 mse_b = torch.mean((p_next_norm[b] - x_i_norm[b]) ** 2).item()
                                 ratio_b = float(torch.exp(torch.clamp(log_ratio_dbg[b], max=20.0)).item())
                                 sigma_eff_b = float(torch.sqrt(sigma2[b]).item())
+                                # empirical mean/var of proposal residuals
+                                _dq = (x_i_norm[b] - q_i_norm[b]).reshape(-1)
+                                _dp = (x_i_norm[b] - p_next_norm[b]).reshape(-1)
+                                mean_dq = float(torch.mean(_dq).item())
+                                var_dq = float(torch.var(_dq, unbiased=False).item())
+                                mean_dp = float(torch.mean(_dp).item())
+                                var_dp = float(torch.var(_dp, unbiased=False).item())
                                 writer.writerow([
-                                    int(self._debug_batches_logged), int(i), int(b),
+                                    int(self._debug_batches_logged), int(i), int(b), 'proposal',
                                     float(alpha[b].item()), float(r[b].item()), bool(tol_accept[b].item()), bool(accept_mask[b].item()),
                                     float(mse_b), float(sse_p[b].item()), float(sse_q[b].item()), float(logp[b].item()), float(logq[b].item()), float(log_ratio_dbg[b].item()),
                                     ratio_b,
-                                    sigma_eff_b, str(self.sigma_mode), float(self.args.spec_accept_bias)
+                                    sigma_eff_b, str(self.sigma_mode), float(self.args.spec_accept_bias),
+                                    mean_dq, var_dq, mean_dp, var_dp
                                 ])
                     except Exception:
                         pass
@@ -280,6 +289,29 @@ class SpeculativeDecoder:
                     # draw t ~ N(mu_p=p_next, sigma)
                     noise = self.args.spec_sigma * torch.randn_like(p_next)
                     t_full = p_next + noise
+                    # optional debug for target draws: empirical mean/var of noise
+                    if self.debug_accept and self._debug_batches_logged < self.debug_max_batches and i < self.debug_max_rounds:
+                        try:
+                            import csv
+                            t_full_norm = self._normalize_patch(t_full)
+                            with open(self.debug_out, 'a', newline='') as f:
+                                writer = csv.writer(f)
+                                active_indices = torch.where(reject_mask)[0].tolist()
+                                for b in active_indices[:self.debug_n]:
+                                    sigma_eff_b = float(torch.sqrt(sigma2[b]).item())
+                                    _dp_draw = (t_full_norm[b] - p_next_norm[b]).reshape(-1)
+                                    mean_dp_draw = float(torch.mean(_dp_draw).item())
+                                    var_dp_draw = float(torch.var(_dp_draw, unbiased=False).item())
+                                    writer.writerow([
+                                        int(self._debug_batches_logged), int(i), int(b), 'target_draw',
+                                        float('nan'), float('nan'), '', '',
+                                        float('nan'), float('nan'), float('nan'), float('nan'), float('nan'), float('nan'),
+                                        float('nan'),
+                                        sigma_eff_b, str(self.sigma_mode), float(self.args.spec_accept_bias),
+                                        float('nan'), float('nan'), mean_dp_draw, var_dp_draw
+                                    ])
+                        except Exception:
+                            pass
                     for b in torch.where(reject_mask)[0].tolist():
                         x[b] = torch.cat([x[b, self.args.input_token_len:, :], t_full[b]], dim=0)
                         preds_per_sample[b].append(t_full[b])
