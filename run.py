@@ -86,6 +86,19 @@ if __name__ == '__main__':
     parser.add_argument('--pretrain_model_path', type=str, default='pretrain_model.pth', help='pretrain model path')
     parser.add_argument('--subset_rand_ratio', type=float, default=1, help='few shot ratio')
     
+    # knowledge distillation
+    parser.add_argument('--distill', action='store_true', default=False, help='enable knowledge distillation (train student to mimic target outputs)')
+    parser.add_argument('--distill_target_model', type=str, default='timer_xl', help='teacher/target model name')
+    parser.add_argument('--distill_target_ckpt', type=str, default='', help='path to teacher checkpoint .pth')
+    # optional teacher architecture overrides; if < 0, fall back to current args
+    parser.add_argument('--distill_target_d_model', type=int, default=-1)
+    parser.add_argument('--distill_target_n_heads', type=int, default=-1)
+    parser.add_argument('--distill_target_d_ff', type=int, default=-1)
+    parser.add_argument('--distill_target_e_layers', type=int, default=-1)
+
+    # timing controls
+    parser.add_argument('--time_exclude_norm', action='store_true', default=False, help='exclude normalization compute from per-batch timing')
+    
     # optimization
     parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')

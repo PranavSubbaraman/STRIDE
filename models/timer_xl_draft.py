@@ -20,37 +20,48 @@ class Model(nn.Module):
         original_d_ff = int(getattr(configs, 'd_ff', 2048))
         original_e_layers = int(getattr(configs, 'e_layers', 1))
 
-        # Scaling factors or absolute overrides (optional; default halve)
-        scale_d_model = float(getattr(configs, 'draft_scale_d_model', 0.5))
-        scale_n_heads = float(getattr(configs, 'draft_scale_n_heads', 0.5))
-        scale_d_ff = float(getattr(configs, 'draft_scale_d_ff', 0.5))
-        scale_e_layers = float(getattr(configs, 'draft_scale_e_layers', 0.5))
+        # Scaling factors or absolute overrides (optional)
+        # If not provided, do NOT scale (use original values)
+        scale_d_model = getattr(configs, 'draft_scale_d_model', None)
+        scale_n_heads = getattr(configs, 'draft_scale_n_heads', None)
+        scale_d_ff = getattr(configs, 'draft_scale_d_ff', None)
+        scale_e_layers = getattr(configs, 'draft_scale_e_layers', None)
 
         # More robust scaling that ensures RoPE compatibility
         # RoPE requires head_dim to be divisible by 4 (since proj_width = head_dim // 2 must be even)
-        target_d_model = int(round(original_d_model * scale_d_model))
-        target_n_heads = int(round(original_n_heads * scale_n_heads))
-        
-        # Find the best compatible combination
-        best_d_model, best_n_heads = None, None
-        min_param_diff = float('inf')
-        
-        # Try different head counts around the target
-        for heads in range(max(1, target_n_heads - 2), target_n_heads + 3):
-            # Find d_model that's divisible by heads and gives head_dim divisible by 4
-            base_head_dim = max(16, (target_d_model // heads // 4) * 4)  # Round down to multiple of 4
-            candidate_d_model = base_head_dim * heads
+        # If neither d_model nor n_heads scales are provided, use originals directly (no scaling)
+        if scale_d_model is None and scale_n_heads is None:
+            d_model = int(original_d_model)
+            n_heads = int(original_n_heads)
+        else:
+            # Use provided scales; missing ones default to 1.0 (no change)
+            _sdm = 1.0 if scale_d_model is None else float(scale_d_model)
+            _snh = 1.0 if scale_n_heads is None else float(scale_n_heads)
+            target_d_model = int(round(original_d_model * _sdm))
+            target_n_heads = int(round(original_n_heads * _snh))
             
-            # Prefer staying close to target parameters
-            param_diff = abs(candidate_d_model - target_d_model) + abs(heads - target_n_heads) * 20
-            if param_diff < min_param_diff:
-                min_param_diff = param_diff
-                best_d_model, best_n_heads = candidate_d_model, heads
+            # Find the best compatible combination
+            best_d_model, best_n_heads = None, None
+            min_param_diff = float('inf')
+            
+            # Try different head counts around the target
+            for heads in range(max(1, target_n_heads - 2), target_n_heads + 3):
+                # Find d_model that's divisible by heads and gives head_dim divisible by 4
+                base_head_dim = max(16, (target_d_model // heads // 4) * 4)  # Round down to multiple of 4
+                candidate_d_model = base_head_dim * heads
+                
+                # Prefer staying close to target parameters
+                param_diff = abs(candidate_d_model - target_d_model) + abs(heads - target_n_heads) * 20
+                if param_diff < min_param_diff:
+                    min_param_diff = param_diff
+                    best_d_model, best_n_heads = candidate_d_model, heads
+            
+            d_model = max(64, best_d_model)
+            n_heads = max(1, best_n_heads)
         
-        d_model = max(64, best_d_model)
-        n_heads = max(1, best_n_heads)
-        d_ff = max(256, int(round(original_d_ff * scale_d_ff)))
-        e_layers = max(1, int(round(original_e_layers * scale_e_layers)))
+        # For d_ff and e_layers: if no scale provided, keep originals
+        d_ff = int(original_d_ff) if scale_d_ff is None else max(256, int(round(original_d_ff * float(scale_d_ff))))
+        e_layers = int(original_e_layers) if scale_e_layers is None else max(1, int(round(original_e_layers * float(scale_e_layers))))
         
         # print(f"Draft model: d_model={d_model}, n_heads={n_heads}, head_dim={d_model//n_heads}, d_ff={d_ff}, e_layers={e_layers}")
 

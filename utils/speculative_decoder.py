@@ -40,6 +40,8 @@ class SpeculativeDecoder:
         # adaptive sigma
         self.sigma_mode = getattr(args, 'spec_sigma_mode', 'fixed')  # 'fixed' | 'adaptive'
         self.sigma_adapt_c = float(getattr(args, 'spec_sigma_adapt_c', 1.5))
+        # timing controls
+        self.time_exclude_norm = bool(getattr(args, 'time_exclude_norm', False))
 
     def _compute_norm_stats(self, x):
         """Compute normalization statistics from input sequence, matching Timer-XL's approach"""
@@ -66,8 +68,11 @@ class SpeculativeDecoder:
         accepted = 0
         attempted = 0
         
-        # Compute normalization statistics from initial input
+        # Compute normalization statistics from initial input (track timing)
+        import time as _pytime
+        _tn0 = _pytime.perf_counter()
         self.norm_means, self.norm_stdev = self._compute_norm_stats(x_init)
+        t_norm = _pytime.perf_counter() - _tn0
 
         # accumulate variable number of patches per sample, then stack
         B = x.shape[0]
@@ -195,10 +200,12 @@ class SpeculativeDecoder:
                 q_i = q_list[i]
                 x_i = proposals[i]
                 
-                # Normalize x_i using training dataset statistics for consistent comparison
+                # Normalize x_i using training dataset statistics for consistent comparison (track timing)
+                _tn1 = _pytime.perf_counter()
                 x_i_norm = self._normalize_patch(x_i)
                 p_next_norm = self._normalize_patch(p_next)
                 q_i_norm = self._normalize_patch(q_i)
+                t_norm += (_pytime.perf_counter() - _tn1)
 
                 import time as _pytime
                 _acc0 = _pytime.perf_counter()
@@ -293,7 +300,9 @@ class SpeculativeDecoder:
                     if self.debug_accept and self._debug_batches_logged < self.debug_max_batches and i < self.debug_max_rounds:
                         try:
                             import csv
+                            _tn2 = _pytime.perf_counter()
                             t_full_norm = self._normalize_patch(t_full)
+                            t_norm += (_pytime.perf_counter() - _tn2)
                             with open(self.debug_out, 'a', newline='') as f:
                                 writer = csv.writer(f)
                                 active_indices = torch.where(reject_mask)[0].tolist()
@@ -391,6 +400,7 @@ class SpeculativeDecoder:
             't_target_verify': float(t_target_verify),
             't_target_sample': float(t_target_sample),
             't_accept_cpu': float(t_accept_cpu),
+            't_norm': float(t_norm),
             'n_draft_calls': int(n_draft_calls),
             'n_target_verify_calls': int(n_target_verify_calls),
             'n_target_sample_calls': int(n_target_sample_calls),

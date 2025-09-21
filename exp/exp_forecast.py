@@ -140,6 +140,28 @@ class Exp_Forecast(Exp_Basic):
         model_optim = self._select_optimizer()
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(model_optim, T_max=self.args.tmax, eta_min=1e-8)
         criterion = self._select_criterion()
+        # Optional: build frozen teacher for knowledge distillation
+        teacher = None
+        if bool(getattr(self.args, 'distill', False)):
+            # Clone args for teacher with optional overrides
+            import copy
+            targs = copy.deepcopy(self.args)
+            targs.model = str(getattr(self.args, 'distill_target_model', 'timer_xl'))
+            if int(getattr(self.args, 'distill_target_d_model', -1)) > 0:
+                targs.d_model = int(self.args.distill_target_d_model)
+            if int(getattr(self.args, 'distill_target_n_heads', -1)) > 0:
+                targs.n_heads = int(self.args.distill_target_n_heads)
+            if int(getattr(self.args, 'distill_target_d_ff', -1)) > 0:
+                targs.d_ff = int(self.args.distill_target_d_ff)
+            if int(getattr(self.args, 'distill_target_e_layers', -1)) > 0:
+                targs.e_layers = int(self.args.distill_target_e_layers)
+            teacher = self.model_dict[targs.model].Model(targs).to(self.device)
+            ckpt_path = str(getattr(self.args, 'distill_target_ckpt', ''))
+            if ckpt_path:
+                teacher.load_state_dict(torch.load(ckpt_path), strict=False)
+            for p in teacher.parameters():
+                p.requires_grad = False
+            teacher.eval()
         
         for epoch in range(self.args.train_epochs):
             iter_count = 0
@@ -165,7 +187,15 @@ class Exp_Forecast(Exp_Basic):
                     else:
                         outputs = outputs[:, :, -1]
                         batch_y = batch_y[:, :, -1]
-                loss = criterion(outputs, batch_y)
+                if teacher is not None:
+                    with torch.no_grad():
+                        teacher_out = teacher(batch_x, batch_x_mark, batch_y_mark)
+                    # match the supervision shape
+                    if self.args.nonautoregressive:
+                        teacher_out = teacher_out[:, -self.args.output_token_len:, :]
+                    loss = nn.functional.mse_loss(outputs, teacher_out.detach())
+                else:
+                    loss = criterion(outputs, batch_y)
                 if (i + 1) % 100 == 0:
                     if (self.args.ddp and self.args.local_rank == 0) or not self.args.ddp:
                         print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
@@ -287,11 +317,15 @@ class Exp_Forecast(Exp_Basic):
                     total_attempted += attempted_cnt
                     # accumulate per-batch breakdown if provided
                     if isinstance(breakdown, dict):
+                        # if excluding normalization time, subtract it from totals
+                        t_norm = float(breakdown.get('t_norm', 0.0))
                         breakdown_totals['t_draft'] += float(breakdown.get('t_draft', 0.0))
                         breakdown_totals['t_prep_verify'] += float(breakdown.get('t_prep_verify', 0.0))
                         breakdown_totals['t_target_verify'] += float(breakdown.get('t_target_verify', 0.0))
                         breakdown_totals['t_target_sample'] += float(breakdown.get('t_target_sample', 0.0))
                         breakdown_totals['t_accept_cpu'] += float(breakdown.get('t_accept_cpu', 0.0))
+                        if bool(getattr(self.args, 'time_exclude_norm', False)):
+                            gen_time_total -= t_norm
                         breakdown_totals['n_draft_calls'] += int(breakdown.get('n_draft_calls', 0))
                         breakdown_totals['n_target_verify_calls'] += int(breakdown.get('n_target_verify_calls', 0))
                         breakdown_totals['n_target_sample_calls'] += int(breakdown.get('n_target_sample_calls', 0))
@@ -316,7 +350,11 @@ class Exp_Forecast(Exp_Basic):
                 if torch.cuda.is_available():
                     torch.cuda.synchronize()
                 t1 = time.perf_counter()
-                gen_time_total += (t1 - t0)
+                # Optionally exclude normalization time from per-batch timing for speculative mode
+                if self.args.use_speculative and bool(getattr(self.args, 'time_exclude_norm', False)):
+                    gen_time_total += max(0.0, (t1 - t0) - float(breakdown.get('t_norm', 0.0)))
+                else:
+                    gen_time_total += (t1 - t0)
                 gen_batches += 1
                 # Ensure exact test_pred_len tokens regardless of speculative overshoot
                 pred_y = pred_y[:, :self.args.test_pred_len, :]
