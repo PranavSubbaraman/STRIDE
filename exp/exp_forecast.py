@@ -26,7 +26,10 @@ class Exp_Forecast(Exp_Basic):
             self.device = torch.device('cuda:{}'.format(self.args.local_rank))
         else:
             # for methods that do not use ddp (e.g. finetuning-based LLM4TS models)
-            self.device = self.args.gpu
+            if self.args.gpu < 0:
+                self.device = torch.device('cpu')
+            else:
+                self.device = self.args.gpu
         
         model = self.model_dict[self.args.model].Model(self.args)
         
@@ -35,11 +38,14 @@ class Exp_Forecast(Exp_Basic):
         elif self.args.dp:
             model = DataParallel(model, device_ids=self.args.device_ids).to(self.device)
         else:
-            self.device = self.args.gpu
+            if self.args.gpu < 0:
+                self.device = torch.device('cpu')
+            else:
+                self.device = self.args.gpu
             model = model.to(self.device)
             
         if self.args.adaptation:
-            model.load_state_dict(torch.load(self.args.pretrain_model_path))
+            model.load_state_dict(torch.load(self.args.pretrain_model_path), strict=False)
         return model
 
     def _get_data(self, flag):
@@ -252,6 +258,12 @@ class Exp_Forecast(Exp_Basic):
                 if not param.requires_grad and name not in checkpoint:
                     checkpoint[name] = param
             self.model.load_state_dict(checkpoint)
+           #printing number of parameters
+            print(f"Number of parameters: {sum(p.numel() for p in self.model.parameters())}")
+            # print(self.model.state_dict().keys())
+            # #printing number of parameters in each layer
+            # for name, param in self.model.named_parameters():
+            #     print(f"{name}: {param.numel()}")
             
         preds = []
         trues = []
@@ -279,12 +291,20 @@ class Exp_Forecast(Exp_Basic):
         }
         baseline_forward_time_total = 0.0
         baseline_forward_calls = 0
+        # Fine-grained baseline component accumulators
+        baseline_component_totals = {}
         # Prepare speculative decoder once (exclude from timing)
         spec = None
         if self.args.use_speculative:
             draft_module = self.model_dict[self.args.spec_draft_model]
             if not hasattr(self, '_spec_draft') or self._spec_draft is None:
-                draft_model = draft_module.Model(self.args).to(self.device)
+                # Clone args and override seq_len if draft uses different context
+                import copy
+                draft_args = copy.deepcopy(self.args)
+                if self.args.spec_draft_seq_len > 0:
+                    draft_args.seq_len = self.args.spec_draft_seq_len
+                    draft_args.input_token_len = self.args.spec_draft_seq_len  # For TTM
+                draft_model = draft_module.Model(draft_args).to(self.device)
                 if self.args.spec_draft_ckpt:
                     draft_model.load_state_dict(torch.load(self.args.spec_draft_ckpt), strict=False)
                 draft_model.eval()
@@ -345,6 +365,13 @@ class Exp_Forecast(Exp_Basic):
                             torch.cuda.synchronize()
                         baseline_forward_time_total += (time.perf_counter() - _bf0)
                         baseline_forward_calls += 1
+                        # accumulate component breakdown if available
+                        breakdown = getattr(self.model, 'last_forward_breakdown', None)
+                        if breakdown is None and hasattr(self.model, 'module'):
+                            breakdown = getattr(self.model.module, 'last_forward_breakdown', None)
+                        if isinstance(breakdown, dict):
+                            for k, v in breakdown.items():
+                                baseline_component_totals[k] = baseline_component_totals.get(k, 0.0) + float(v)
                         pred_y.append(outputs[:, -self.args.output_token_len:, :])
                     pred_y = torch.cat(pred_y, dim=1)
                 if torch.cuda.is_available():
@@ -423,6 +450,13 @@ class Exp_Forecast(Exp_Basic):
                     f.write('t_accept_cpu_total:{:.6f}\n'.format(breakdown_totals['t_accept_cpu']))
                 else:
                     f.write('t_baseline_forward_total:{:.6f}, n_baseline_calls:{}\n'.format(baseline_forward_time_total, baseline_forward_calls))
+                    # write per-component totals and averages if collected
+                    if baseline_component_totals and baseline_forward_calls > 0:
+                        # stable key order
+                        for k in sorted(baseline_component_totals.keys()):
+                            tot = baseline_component_totals[k]
+                            avg = tot / max(baseline_forward_calls, 1)
+                            f.write('comp_{}_total:{:.6f}, per_call_avg:{:.6f}\n'.format(k, tot, avg))
                 f.write('\n')
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
