@@ -85,6 +85,11 @@ class Exp_Forecast(Exp_Basic):
                 batch_y_mark = batch_y_mark.float().to(self.device)
                 
                 outputs = self.model(batch_x, batch_x_mark, batch_y_mark)
+                
+                # Handle stochastic draft output (mean, logvar)
+                if isinstance(outputs, tuple):
+                    outputs = outputs[0]  # use mean for validation
+                
                 if is_test or self.args.nonautoregressive:
                         outputs = outputs[:, -self.args.output_token_len:, :]
                         batch_y = batch_y[:, -self.args.output_token_len:, :].to(self.device)
@@ -194,13 +199,48 @@ class Exp_Forecast(Exp_Basic):
                         outputs = outputs[:, :, -1]
                         batch_y = batch_y[:, :, -1]
                 if teacher is not None:
-                    with torch.no_grad():
-                        teacher_out = teacher(batch_x, batch_x_mark, batch_y_mark)
+                    # Optional: add dropout to teacher for stochastic behavior
+                    teacher_dropout = getattr(self.args, 'draft_teacher_dropout', 0.0)
+                    if teacher_dropout > 0:
+                        teacher.train()  # Enable dropout
+                        with torch.no_grad():
+                            teacher_out = teacher(batch_x, batch_x_mark, batch_y_mark)
+                        teacher.eval()  # Restore eval mode
+                    else:
+                        with torch.no_grad():
+                            teacher_out = teacher(batch_x, batch_x_mark, batch_y_mark)
+                    
                     # match the supervision shape
                     if self.args.nonautoregressive:
                         teacher_out = teacher_out[:, -self.args.output_token_len:, :]
-                    loss = nn.functional.mse_loss(outputs, teacher_out.detach())
+                    
+                    # Optional: add noise to teacher outputs for stochastic distillation
+                    teacher_noise = getattr(self.args, 'draft_teacher_noise', 0.0)
+                    if teacher_noise > 0:
+                        teacher_out = teacher_out + teacher_noise * torch.randn_like(teacher_out)
+                    
+                    # Check if draft model outputs (mean, logvar) for NLL training
+                    draft_stochastic = getattr(self.args, 'draft_stochastic', False)
+                    if draft_stochastic and isinstance(outputs, tuple):
+                        mean_out, logvar_out = outputs
+                        # Gaussian NLL: 0.5 * (log(2*pi) + log(var) + (x - mean)^2 / var)
+                        # Simplified: 0.5 * (logvar + (x - mean)^2 / exp(logvar))
+                        var = torch.exp(logvar_out)
+                        sq_error = (mean_out - teacher_out.detach()).pow(2)
+                        nll = 0.5 * (logvar_out + sq_error / var)
+                        loss = nll.mean()
+                        
+                        # Optional: add small regularization to prevent variance collapse
+                        if getattr(self.args, 'draft_nll_var_reg', 0.0) > 0:
+                            # Penalize very small variances
+                            var_reg = self.args.draft_nll_var_reg * torch.relu(-logvar_out - 5).mean()
+                            loss = loss + var_reg
+                    else:
+                        loss = nn.functional.mse_loss(outputs, teacher_out.detach())
                 else:
+                    # For stochastic draft, use only mean for supervised learning
+                    if isinstance(outputs, tuple):
+                        outputs = outputs[0]  # use mean
                     loss = criterion(outputs, batch_y)
                 if (i + 1) % 100 == 0:
                     if (self.args.ddp and self.args.local_rank == 0) or not self.args.ddp:
@@ -305,8 +345,15 @@ class Exp_Forecast(Exp_Basic):
                     draft_args.seq_len = self.args.spec_draft_seq_len
                     draft_args.input_token_len = self.args.spec_draft_seq_len  # For TTM
                 draft_model = draft_module.Model(draft_args).to(self.device)
+                print(f"[DEBUG] Draft model created with draft_stochastic={getattr(draft_args, 'draft_stochastic', False)}")
+                print(f"[DEBUG] Draft model has head_mean: {hasattr(draft_model, 'head_mean')}, has head: {hasattr(draft_model, 'head')}")
                 if self.args.spec_draft_ckpt:
-                    draft_model.load_state_dict(torch.load(self.args.spec_draft_ckpt), strict=False)
+                    ckpt = torch.load(self.args.spec_draft_ckpt)
+                    has_mean_head = any('head_mean' in k for k in ckpt.keys())
+                    has_logvar_head = any('head_logvar' in k for k in ckpt.keys())
+                    has_single_head = any(k.startswith('head.') for k in ckpt.keys())
+                    print(f"[DEBUG] Checkpoint has head_mean: {has_mean_head}, head_logvar: {has_logvar_head}, single head: {has_single_head}")
+                    draft_model.load_state_dict(ckpt, strict=False)
                 draft_model.eval()
                 self._spec_draft = draft_model
             spec = SpeculativeDecoder(self.model, self._spec_draft, self.args)
@@ -372,6 +419,9 @@ class Exp_Forecast(Exp_Basic):
                         if isinstance(breakdown, dict):
                             for k, v in breakdown.items():
                                 baseline_component_totals[k] = baseline_component_totals.get(k, 0.0) + float(v)
+                        # Handle stochastic draft output (mean, logvar)
+                        if isinstance(outputs, tuple):
+                            outputs = outputs[0]  # use mean for testing
                         pred_y.append(outputs[:, -self.args.output_token_len:, :])
                     pred_y = torch.cat(pred_y, dim=1)
                 if torch.cuda.is_available():

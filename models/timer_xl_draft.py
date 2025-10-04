@@ -111,7 +111,15 @@ class Model(nn.Module):
             norm_layer=torch.nn.LayerNorm(self.d_model),
         )
 
-        self.head = nn.Linear(self.d_model, configs.output_token_len)
+        # Stochastic draft: output both mean and log_variance for NLL training
+        self.draft_stochastic = getattr(configs, 'draft_stochastic', False)
+        if self.draft_stochastic:
+            self.head_mean = nn.Linear(self.d_model, configs.output_token_len)
+            self.head_logvar = nn.Linear(self.d_model, configs.output_token_len)
+            # Initialize log_var head to output small values (high confidence initially)
+            nn.init.constant_(self.head_logvar.bias, -2.0)  # log(sigma^2) = -2 => sigma ≈ 0.37
+        else:
+            self.head = nn.Linear(self.d_model, configs.output_token_len)
         # timing controls
         self.enable_timing = bool(getattr(configs, 'trace_inference_breakdown', False))
         self.last_forward_breakdown = None
@@ -164,21 +172,39 @@ class Model(nn.Module):
             self.last_adapted_features = adapted
         _t4b = time.perf_counter() if timing_enabled else None
 
-        # [B, C * N, P]
-        dec_out = self.head(embed_out)
+        # [B, C * N, P] - output mean (and optionally log_variance)
+        if self.draft_stochastic:
+            mean_out = self.head_mean(embed_out)
+            logvar_out = self.head_logvar(embed_out)
+            # Clamp log_variance for numerical stability
+            logvar_out = torch.clamp(logvar_out, min=-10, max=10)
+        else:
+            dec_out = self.head(embed_out)
+        
         if timing_enabled and torch.cuda.is_available():
             torch.cuda.synchronize()
         _t5 = time.perf_counter() if timing_enabled else None
-        # [B, C, N * P]
-        dec_out = dec_out.reshape(B, C, N, -1).reshape(B, C, -1)
-        # [B, L, C]
-        dec_out = dec_out.permute(0, 2, 1)
+        
+        # [B, C, N * P] and [B, L, C]
+        if self.draft_stochastic:
+            mean_out = mean_out.reshape(B, C, N, -1).reshape(B, C, -1).permute(0, 2, 1)
+            logvar_out = logvar_out.reshape(B, C, N, -1).reshape(B, C, -1).permute(0, 2, 1)
+        else:
+            dec_out = dec_out.reshape(B, C, N, -1).reshape(B, C, -1).permute(0, 2, 1)
+        
         if timing_enabled and torch.cuda.is_available():
             torch.cuda.synchronize()
         _t6 = time.perf_counter() if timing_enabled else None
 
-        if self.use_norm:
-            dec_out = dec_out * stdev + means
+        if self.draft_stochastic:
+            if self.use_norm:
+                mean_out = mean_out * stdev + means
+                # Variance scales with stdev^2
+                logvar_out = logvar_out + 2 * torch.log(stdev)
+        else:
+            if self.use_norm:
+                dec_out = dec_out * stdev + means
+        
         if timing_enabled and torch.cuda.is_available():
             torch.cuda.synchronize()
         _t7 = time.perf_counter() if timing_enabled else None
@@ -198,9 +224,16 @@ class Model(nn.Module):
             if isinstance(block_times, dict):
                 prefixed = {f"blocks.{k}": float(v) for k, v in block_times.items()}
                 self.last_forward_breakdown.update(prefixed)
-        if self.output_attention:
-            return dec_out, attns
-        return dec_out
+        
+        # Return based on mode
+        if self.draft_stochastic:
+            if self.output_attention:
+                return (mean_out, logvar_out), attns
+            return mean_out, logvar_out
+        else:
+            if self.output_attention:
+                return dec_out, attns
+            return dec_out
 
     def forward(self, x, x_mark, y_mark):
         return self.forecast(x, x_mark, y_mark)

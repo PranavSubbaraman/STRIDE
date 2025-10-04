@@ -4703,3 +4703,87 @@ mse:0.439619, mae:0.441496
 total_gen_time_s:15.512950, per_batch_s:0.387824
 accepted:14305, attempted:14312, acceptance_pct:99.95
 
+setting:forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0
+mode:speculative
+mse:0.439603, mae:0.441486
+total_gen_time_s:24.336768, per_batch_s:0.608419
+accepted:29834, attempted:29852, acceptance_pct:99.94
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.542956, mae:0.526386
+total_gen_time_s:41.097701, per_batch_s:1.027443
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_draft_distill_stochastic_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0
+mode:standard
+mse:0.431383, mae:0.439816
+total_gen_time_s:2.375302, per_batch_s:0.059383
+
+setting:forecast_ETTh1_draft_distill_stochastic_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0
+mode:standard
+mse:0.431383, mae:0.439816
+total_gen_time_s:3.283968, per_batch_s:0.082099
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+mse:0.474551, mae:0.470950
+total_gen_time_s:16.567752, per_batch_s:0.414194
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.542956, mae:0.526386
+total_gen_time_s:37.859627, per_batch_s:0.946491
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+mse:0.474551, mae:0.470950
+total_gen_time_s:16.770673, per_batch_s:0.419267
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.543241, mae:0.526620
+total_gen_time_s:24.298475, per_batch_s:0.607462
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+mse:0.474551, mae:0.470950
+total_gen_time_s:16.634660, per_batch_s:0.415866
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.542956, mae:0.526386
+total_gen_time_s:40.044519, per_batch_s:1.001113
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.543241, mae:0.526620
+total_gen_time_s:25.130763, per_batch_s:0.628269
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.542956, mae:0.526386
+total_gen_time_s:33.478650, per_batch_s:0.836966
+accepted:0, attempted:10180, acceptance_pct:0.00
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.511252, mae:0.496736
+total_gen_time_s:14.487948, per_batch_s:0.362199
+accepted:7818, attempted:7821, acceptance_pct:99.96
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+mse:0.474551, mae:0.470950
+total_gen_time_s:16.369391, per_batch_s:0.409235
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+mse:0.512300, mae:0.503141
+total_gen_time_s:44.958800, per_batch_s:1.123970
+accepted:15268, attempted:19323, acceptance_pct:79.01
+

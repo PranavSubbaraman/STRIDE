@@ -96,6 +96,12 @@ if __name__ == '__main__':
     parser.add_argument('--distill_target_n_heads', type=int, default=-1)
     parser.add_argument('--distill_target_d_ff', type=int, default=-1)
     parser.add_argument('--distill_target_e_layers', type=int, default=-1)
+    
+    # stochastic draft (for speculative decoding with learned variance)
+    parser.add_argument('--draft_stochastic', action='store_true', default=False, help='enable stochastic draft: output mean and variance, train with NLL')
+    parser.add_argument('--draft_nll_var_reg', type=float, default=0.0, help='regularization weight to prevent variance collapse (0 = no reg)')
+    parser.add_argument('--draft_teacher_noise', type=float, default=0.0, help='add Gaussian noise to teacher outputs during distillation (0 = no noise)')
+    parser.add_argument('--draft_teacher_dropout', type=float, default=0.0, help='apply dropout to teacher during distillation (0 = no dropout, 0.1 = 10% dropout)')
 
     # timing controls
     parser.add_argument('--time_exclude_norm', action='store_true', default=False, help='exclude normalization compute from per-batch timing')

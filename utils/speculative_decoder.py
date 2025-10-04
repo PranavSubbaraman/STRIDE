@@ -114,10 +114,31 @@ class SpeculativeDecoder:
                     torch.cuda.synchronize()
                 t_draft += (_pytime.perf_counter() - _t0)
                 n_draft_calls += 1
-                # Treat draft output patch as mean of Gaussian q with fixed sigma (continuous tokens)
-                mu_q = draft_out[:, -self.args.output_token_len:, :]
-                q_list.append(mu_q)
-                sampled = mu_q + self.args.spec_sigma * torch.randn_like(mu_q)
+                
+                # Handle stochastic draft output (mean, logvar)
+                draft_stochastic = getattr(self.args, 'draft_stochastic', False)
+                if draft_stochastic and isinstance(draft_out, tuple):
+                    mean_draft, logvar_draft = draft_out
+                    mu_q = mean_draft[:, -self.args.output_token_len:, :]
+                    logvar_q = logvar_draft[:, -self.args.output_token_len:, :]
+                    # Store both mean and logvar for acceptance criterion
+                    q_list.append((mu_q, logvar_q))
+                    # Sample using learned variance
+                    sigma_q = torch.exp(0.5 * logvar_q)
+                    sampled = mu_q + sigma_q * torch.randn_like(mu_q)
+                    # Debug: print once per batch
+                    if _k == 0 and len(q_list) == 1:  # First proposal of first round
+                        print(f"[DEBUG] Stochastic draft active: logvar range=[{logvar_q.min():.2f}, {logvar_q.max():.2f}], sigma range=[{sigma_q.min():.4f}, {sigma_q.max():.4f}]")
+                else:
+                    # Original: treat draft output patch as mean of Gaussian q with fixed sigma
+                    mu_q = draft_out[:, -self.args.output_token_len:, :]
+                    q_list.append(mu_q)
+                    sampled = mu_q + self.args.spec_sigma * torch.randn_like(mu_q)
+                    # Debug: print once per batch
+                    if _k == 0 and len(q_list) == 1:  # First proposal of first round
+                        is_tuple = isinstance(draft_out, tuple)
+                        print(f"[DEBUG] Non-stochastic path: draft_stochastic={draft_stochastic}, is_tuple={is_tuple}, output_shape={draft_out.shape if not is_tuple else (draft_out[0].shape, draft_out[1].shape)}")
+                
                 proposals.append(sampled)
                 context = torch.cat([context[:, self.args.input_token_len:, :], sampled], dim=1)
             
@@ -203,18 +224,53 @@ class SpeculativeDecoder:
                 
                 import time as _pytime
                 _acc0 = _pytime.perf_counter()
-                # choose sigma
-                if self.sigma_mode == 'adaptive':
-                    # adapt from mean squared diff between p and q
-                    # avoid zeros; cap for stability
-                    mean_sq = torch.mean((p_next - q_i) ** 2, dim=(1, 2))  # [B]
-                    # per-sample sigma^2 = c * mean_sq; we broadcast later
-                    sigma2_vec = torch.clamp(self.sigma_adapt_c * mean_sq, min=1e-6, max=1e6)
-                    # for computation below, we will expand to [B]
-                    sigma2 = sigma2_vec
+                
+                # Handle stochastic draft (with learned variance)
+                draft_stochastic = getattr(self.args, 'draft_stochastic', False)
+                if draft_stochastic and isinstance(q_i, tuple):
+                    mu_q, logvar_q = q_i
+                    # Use learned variance from draft model
+                    var_q = torch.exp(logvar_q)
+                    # For target, use fixed sigma (since target doesn't output variance)
+                    sigma2_p = self.args.spec_sigma ** 2
+                    
+                    # Simplified acceptance with learned variance
+                    # Use average learned variance as the draft proposal variance
+                    # This makes the math simpler and more stable
+                    avg_var_q = var_q.mean(dim=(1, 2), keepdim=True)  # [B, 1, 1]
+                    sigma2_q = avg_var_q.squeeze()  # [B]
+                    
+                    # Standard speculative decoding acceptance ratio with learned sigma_q:
+                    # log p(x|target) / p(x|draft) ≈ [||x-μ_q||²/(2σ²_q) - ||x-p||²/(2σ²_p)]
+                    sse_p = (x_i - p_next).pow(2).sum(dim=(1, 2))  # [B]
+                    sse_q = (x_i - mu_q).pow(2).sum(dim=(1, 2))  # [B]
+                    
+                    log_ratio = -(sse_p / (2.0 * sigma2_p)) + (sse_q / (2.0 * sigma2_q))
+                    
+                    # Debug: print acceptance stats once
+                    if i == 0 and len(proposals) == self.k:  # First proposal after all generated
+                        print(f"[DEBUG ACCEPT] sigma2_q range=[{sigma2_q.min():.4f}, {sigma2_q.max():.4f}], sigma2_p={sigma2_p:.4f}")
+                        print(f"[DEBUG ACCEPT] sse_p range=[{sse_p.min():.2f}, {sse_p.max():.2f}]")
+                        print(f"[DEBUG ACCEPT] sse_q range=[{sse_q.min():.2f}, {sse_q.max():.2f}]")
+                        print(f"[DEBUG ACCEPT] log_ratio range=[{log_ratio.min():.2f}, {log_ratio.max():.2f}]")
+                        ratio_dbg = torch.exp(torch.clamp(log_ratio, max=20.0)) * self.args.spec_accept_bias
+                        alpha_dbg = torch.minimum(torch.ones_like(ratio_dbg), ratio_dbg)
+                        print(f"[DEBUG ACCEPT] alpha range=[{alpha_dbg.min():.4f}, {alpha_dbg.max():.4f}], mean={alpha_dbg.mean():.4f}")
                 else:
-                    sigma2 = torch.full((x.shape[0],), max(self.args.spec_sigma ** 2, 1e-12), device=x.device, dtype=x.dtype)
-                log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - q_i).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
+                    # Original: extract mean if tuple (but shouldn't happen in non-stochastic mode)
+                    mu_q = q_i[0] if isinstance(q_i, tuple) else q_i
+                    # choose sigma
+                    if self.sigma_mode == 'adaptive':
+                        # adapt from mean squared diff between p and q
+                        # avoid zeros; cap for stability
+                        mean_sq = torch.mean((p_next - mu_q) ** 2, dim=(1, 2))  # [B]
+                        # per-sample sigma^2 = c * mean_sq; we broadcast later
+                        sigma2_vec = torch.clamp(self.sigma_adapt_c * mean_sq, min=1e-6, max=1e6)
+                        # for computation below, we will expand to [B]
+                        sigma2 = sigma2_vec
+                    else:
+                        sigma2 = torch.full((x.shape[0],), max(self.args.spec_sigma ** 2, 1e-12), device=x.device, dtype=x.dtype)
+                    log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - mu_q).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
                 ratio = torch.exp(torch.clamp(log_ratio, max=20.0))
                 ratio = ratio * max(self.args.spec_accept_bias, 1.0)
                 alpha = torch.minimum(torch.ones_like(ratio), ratio)
@@ -231,10 +287,20 @@ class SpeculativeDecoder:
                         import csv
                         # compute per-sample diagnostics (no extra normalization)
                         # SSE_p = ||x_i - mu_p||^2, SSE_q = ||x_i - mu_q||^2
+                        draft_stochastic = getattr(self.args, 'draft_stochastic', False)
+                        if draft_stochastic and isinstance(q_i, tuple):
+                            mu_q_dbg, logvar_q_dbg = q_i
+                            sse_q = (x_i - mu_q_dbg).pow(2).sum(dim=(1, 2))
+                        else:
+                            mu_q_dbg = q_i[0] if isinstance(q_i, tuple) else q_i
+                            sse_q = (x_i - mu_q_dbg).pow(2).sum(dim=(1, 2))
                         sse_p = (x_i - p_next).pow(2).sum(dim=(1, 2))
-                        sse_q = (x_i - q_i).pow(2).sum(dim=(1, 2))
                         # log densities up to additive const: log p ~ -SSE_p/(2 sigma^2), log q ~ -SSE_q/(2 sigma^2)
-                        denom_vec = 2.0 * sigma2
+                        if draft_stochastic and isinstance(q_i, tuple):
+                            sigma2_dbg = self.args.spec_sigma ** 2
+                            denom_vec = 2.0 * sigma2_dbg
+                        else:
+                            denom_vec = 2.0 * sigma2
                         logp = -sse_p / denom_vec
                         logq = -sse_q / denom_vec
                         log_ratio_dbg = logp - logq
