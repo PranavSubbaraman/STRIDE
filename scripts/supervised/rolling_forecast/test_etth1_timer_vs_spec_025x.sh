@@ -69,7 +69,7 @@ python -u run.py \
   --draft_scale_d_ff 0.25 \
   --draft_scale_e_layers 0.25 \
   --spec_debug_accept \
-  --spec_debug_out spec_decoding_fix_025x.csv \
+  --spec_debug_out spec_decoding_new_025x.csv \
   --trace_inference_breakdown \
 
 # Print acceptance rate from the latest speculative run
