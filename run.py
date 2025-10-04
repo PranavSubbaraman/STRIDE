@@ -63,6 +63,7 @@ if __name__ == '__main__':
     parser.add_argument('--use_speculative', action='store_true', default=False, help='enable speculative decoding at test time')
     parser.add_argument('--spec_draft_model', type=str, default='timer_xl_draft', help='draft model name for speculation')
     parser.add_argument('--spec_draft_ckpt', type=str, default='', help='optional path to draft checkpoint')
+    parser.add_argument('--spec_draft_seq_len', type=int, default=-1, help='draft model seq_len (if different from target); -1 uses target seq_len')
     parser.add_argument('--spec_k', type=int, default=3, help='number of speculative patches K')
     parser.add_argument('--spec_temp', type=float, default=1.0, help='temperature for sampling in speculation')
     parser.add_argument('--spec_topp', type=float, default=1.0, help='nucleus top-p in speculation (1.0 disables)')
