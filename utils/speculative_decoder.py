@@ -122,7 +122,10 @@ class SpeculativeDecoder:
                 context = torch.cat([context[:, self.args.input_token_len:, :], sampled], dim=1)
             
             # Verification: Prefer single-pass block verification when compatible
-            single_pass_ok = (self.args.output_token_len == self.args.input_token_len)
+            # NOTE: Single-pass is currently disabled because it gives the target model
+            # visibility to future proposals when extracting p_next[i], causing mismatch
+            # with draft predictions. Use parallel verification instead.
+            single_pass_ok = False  # (self.args.output_token_len == self.args.input_token_len)
             p_list = []  # holds p_next for each proposal index i
             if single_pass_ok:
                 # Build extended input per sample: x || p1 || p2 || ... || pK
@@ -144,13 +147,13 @@ class SpeculativeDecoder:
                 t_target_verify += (_pytime.perf_counter() - _tv0)
                 n_target_verify_calls += 1
                 # Determine window indices for each proposal
-                in_P = self.args.input_token_len
+                # For proposal i, we want the target's prediction for what comes after x || x_0 || ... || x_{i-1}
+                # The original context x has length L, so those predictions start at position L + i*out_P
                 out_P = self.args.output_token_len
-                base_N = x.shape[1] // in_P  # number of input windows in the current context
+                L = x.shape[1]
                 for i in range(self.k):
-                    j_idx = base_N - 1 + i
-                    t0 = j_idx * out_P
-                    t1 = (j_idx + 1) * out_P
+                    t0 = L + i * out_P
+                    t1 = t0 + out_P
                     p_list.append(target_full[:, t0:t1, :])
             else:
                 # Fallback: Parallel verification by batching K contexts (original method)
