@@ -3,11 +3,11 @@ set -euo pipefail
 export CUDA_VISIBLE_DEVICES=4
 
 # ETTh1 target checkpoint (Timer-XL standard config)
-TARGET_TEST_DIR="forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0"
+TARGET_TEST_DIR="forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0"
 TARGET_CKPT="checkpoint.pth"
 
 
-DRAFT_TEST_DIR="forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0"
+DRAFT_TEST_DIR="forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0"
 DRAFT_CKPT="checkpoint.pth"
 
 # echo "[1/2] Baseline test: timer_xl on ETTh1"
@@ -42,7 +42,7 @@ python -u run.py \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
   --model_id ETTh1 \
-  --model timer_xl \
+  --model timer_xl_draft \
   --data MultivariateDatasetBenchmark \
   --seq_len 1536 \
   --input_token_len 96 \
@@ -61,8 +61,8 @@ python -u run.py \
   --use_speculative \
   --spec_draft_model timer_xl_draft \
   --spec_draft_ckpt ./checkpoints/${DRAFT_TEST_DIR}/${DRAFT_CKPT} \
-  --spec_k 3 \
-  --spec_sigma 0.25 \
+  --spec_k 5 \
+  --spec_sigma 0.01 \
   --spec_accept_bias 1.0 \
   --draft_scale_d_model 0.25 \
   --draft_scale_n_heads 0.25 \

@@ -27,4 +27,4 @@ python -u run.py \
   --use_norm \
   --e_layers 1 \
   --valid_last \
-  --nonautoregressive
+  --nonautoregressive \

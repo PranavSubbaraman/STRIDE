@@ -1,6 +1,6 @@
 export CUDA_VISIBLE_DEVICES=0
 model_name=timer_xl
-token_num=7
+token_num=16
 token_len=96
 seq_len=$[$token_num*$token_len]
 # training one model with a context length
@@ -17,8 +17,8 @@ seq_len=$[$token_num*$token_len]
 #   --input_token_len $token_len \
 #   --output_token_len $token_len \
 #   --test_seq_len $seq_len \
-#   --test_pred_len 96 \
-#   --batch_size 32 \
+#   --test_pred_len 192 \
+#   --batch_size 64 \
 #   --learning_rate 0.0001 \
 #   --train_epochs 10 \
 #   --d_model 1024 \
@@ -27,10 +27,10 @@ seq_len=$[$token_num*$token_len]
 #   --lradj type1 \
 #   --use_norm \
 #   --e_layers 1 \
-#   --valid_last
+#   --valid_last \
 
 # testing the model on all forecast lengths
-for test_pred_len in 96
+for test_pred_len in 336
 do
 python -u run.py \
   --task_name forecast \
@@ -45,18 +45,19 @@ python -u run.py \
   --output_token_len $token_len \
   --test_seq_len $seq_len \
   --test_pred_len $test_pred_len \
-  --batch_size 32 \
+  --batch_size 64 \
   --learning_rate 0.0001 \
   --train_epochs 10 \
   --d_model 1024 \
   --d_ff 2048 \
-  --gpu 0 \
+  --n_heads 8 \
   --lradj type1 \
   --use_norm \
   --e_layers 1 \
   --valid_last \
-  --test_dir forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0 \
+  --test_dir forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0 \
   --trace_inference_breakdown
+
   # print timing for this test
   if [ -f result_inference_summary.txt ]; then
     echo "Timing (summary):"

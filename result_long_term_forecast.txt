@@ -1,0 +1,2686 @@
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.13037317991256714, mae:0.2258593589067459
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.36947083473205566, mae:0.4006190896034241
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.4113098084926605, mae:0.42626917362213135
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.4327385425567627, mae:0.4412476718425751
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.4430074095726013, mae:0.46358251571655273
+
+forecast_ETTh1_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.36947083473205566, mae:0.4006190896034241
+
+forecast_ETTh1_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.4111103415489197, mae:0.42453691363334656
+
+forecast_ETTh1_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.432415246963501, mae:0.4384293556213379
+
+forecast_ETTh1_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.43763789534568787, mae:0.4588761031627655
+
+forecast_ECL_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el4_dm256_dff1024_nh8_cosTrue_test_0  
+mse:0.14253443479537964, mae:0.23908407986164093
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.13255099952220917, mae:0.2313053458929062
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+inference_mode:standard, total_gen_time_s:8.780406, per_batch_s:0.050174
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+inference_mode:speculative, total_gen_time_s:23.544254, per_batch_s:0.134539
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.36874303221702576, mae:0.400190144777298
+
+inference_mode:standard, total_gen_time_s:3.638464, per_batch_s:0.020791
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.36817020177841187, mae:0.39907851815223694
+
+inference_mode:speculative, total_gen_time_s:10.801705, per_batch_s:0.061724
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687414526939392, mae:0.4001884460449219
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687414526939392, mae:0.4001884460449219
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.368741899728775, mae:0.4001884460449219
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.368741899728775, mae:0.4001884460449219
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687399923801422, mae:0.40018585324287415
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3691350221633911, mae:0.4006299078464508
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3687438666820526, mae:0.40019088983535767
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3691350221633911, mae:0.4006299078464508
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3691350221633911, mae:0.4006299078464508
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3688392639160156, mae:0.4002983868122101
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3684949278831482, mae:0.4000324308872223
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3807671070098877, mae:0.40602779388427734
+
+./test  
+mse:0.37940657138824463, mae:0.4113161563873291
+
+./test  
+mse:1.3682366609573364, mae:0.9204390645027161
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:101.55384826660156, mae:8.042393684387207
+
+./test  
+mse:5.117761135101318, mae:1.7992939949035645
+
+./test  
+mse:0.5036700963973999, mae:0.513232946395874
+
+./test  
+mse:0.5036700963973999, mae:0.513232946395874
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.8603156805038452, mae:0.7028245329856873
+
+./test  
+mse:0.8579424023628235, mae:0.7020724415779114
+
+./test  
+mse:0.8635953664779663, mae:0.7039015889167786
+
+./test  
+mse:1.7487890720367432, mae:1.0292484760284424
+
+./test  
+mse:1.7472624778747559, mae:1.0292073488235474
+
+./test  
+mse:1.7512186765670776, mae:1.030320644378662
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.8603156805038452, mae:0.7028245329856873
+
+./test  
+mse:0.8579424023628235, mae:0.7020724415779114
+
+./test  
+mse:0.8635953664779663, mae:0.7039015889167786
+
+./test  
+mse:1.7487890720367432, mae:1.0292484760284424
+
+./test  
+mse:1.7472624778747559, mae:1.0292073488235474
+
+./test  
+mse:1.7512186765670776, mae:1.030320644378662
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.8603156805038452, mae:0.7028245329856873
+
+./test  
+mse:0.8579424023628235, mae:0.7020724415779114
+
+./test  
+mse:0.8635953664779663, mae:0.7039015889167786
+
+./test  
+mse:1.7487890720367432, mae:1.0292484760284424
+
+./test  
+mse:1.7472624778747559, mae:1.0292073488235474
+
+./test  
+mse:1.7512186765670776, mae:1.030320644378662
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.7539470791816711, mae:0.6638636589050293
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.7547116279602051, mae:0.6641244292259216
+
+./test  
+mse:0.8603156805038452, mae:0.7028245329856873
+
+./test  
+mse:0.8579424023628235, mae:0.7020724415779114
+
+./test  
+mse:0.8635953664779663, mae:0.7039015889167786
+
+./test  
+mse:1.7487890720367432, mae:1.0292484760284424
+
+./test  
+mse:1.7472624778747559, mae:1.0292073488235474
+
+./test  
+mse:1.7512186765670776, mae:1.030320644378662
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:2.3872175216674805, mae:1.2145330905914307
+
+./test  
+mse:2.3830838203430176, mae:1.213326096534729
+
+./test  
+mse:2.3759260177612305, mae:1.2115306854248047
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:2.3872175216674805, mae:1.2145330905914307
+
+./test  
+mse:2.3830838203430176, mae:1.213326096534729
+
+./test  
+mse:2.3759260177612305, mae:1.2115306854248047
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:2.3872175216674805, mae:1.2145330905914307
+
+./test  
+mse:2.3830838203430176, mae:1.213326096534729
+
+./test  
+mse:2.3759260177612305, mae:1.2115306854248047
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:1.5046905279159546, mae:0.9676396250724792
+
+./test  
+mse:1.5013760328292847, mae:0.966651439666748
+
+./test  
+mse:1.5059688091278076, mae:0.9677765369415283
+
+./test  
+mse:2.3872175216674805, mae:1.2145330905914307
+
+./test  
+mse:2.3830838203430176, mae:1.213326096534729
+
+./test  
+mse:2.3759260177612305, mae:1.2115306854248047
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:2.7558984756469727, mae:1.3199169635772705
+
+./test  
+mse:2.749737024307251, mae:1.318557858467102
+
+./test  
+mse:2.7574410438537598, mae:1.319838285446167
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:4.507574081420898, mae:1.6917915344238281
+
+./test  
+mse:4.497767448425293, mae:1.6900525093078613
+
+./test  
+mse:4.509129524230957, mae:1.691515326499939
+
+./test  
+mse:0.7526875734329224, mae:0.663140594959259
+
+./test  
+mse:0.5036700963973999, mae:0.513232946395874
+
+forecast_ETTh1_draft_07x_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3932453393936157, mae:0.42577341198921204
+
+forecast_ETTh1_draft_07x_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6428168416023254, mae:0.6040875911712646
+
+forecast_ETTh1_draft_07x_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:25.492347717285156, mae:4.028240203857422
+
+pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.13560287654399872, mae:0.23145608603954315
+
+pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.6577803492546082, mae:0.6052808165550232
+
+pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:100.98594665527344, mae:8.020698547363281
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.4004349112510681, mae:0.4325006604194641
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6499646306037903, mae:0.6081134080886841
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:4.396581172943115, mae:1.6708247661590576
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:101.1000747680664, mae:8.02354621887207
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.3991661071777344, mae:0.9314796924591064
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.5352073907852173, mae:0.541593074798584
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6495318412780762, mae:0.6079171895980835
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6495318412780762, mae:0.6079171895980835
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6495318412780762, mae:0.6079171895980835
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6495318412780762, mae:0.6079171895980835
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.398577332496643, mae:0.9313622713088989
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.398577332496643, mae:0.9313622713088989
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.398577332496643, mae:0.9313622713088989
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.398577332496643, mae:0.9313622713088989
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.5352073907852173, mae:0.541593074798584
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6693178415298462, mae:0.617708683013916
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6687523126602173, mae:0.6179238557815552
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6693178415298462, mae:0.617708683013916
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6687523126602173, mae:0.6179238557815552
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7856810688972473, mae:0.6841586828231812
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.7840893268585205, mae:0.6833277344703674
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6693178415298462, mae:0.617708683013916
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.6687523126602173, mae:0.6179238557815552
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.0985925197601318, mae:0.8220310807228088
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.09590744972229, mae:0.8209789395332336
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5366206169128418, mae:0.9802550673484802
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.5326429605484009, mae:0.9790582060813904
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:1.1478489637374878, mae:0.8328049182891846
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt16_wd0_el1_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.9138678312301636, mae:0.7372878789901733
+
+pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.5231375694274902, mae:0.5047433376312256
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.7574940919876099, mae:1.0526134967803955
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.9902650117874146, mae:1.132791519165039
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.5184569358825684, mae:0.9687252640724182
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.5184569358825684, mae:0.9687252640724182
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.5362870693206787, mae:0.5225574970245361
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.909260630607605, mae:0.7068679332733154
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.9070783853530884, mae:1.109758973121643
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.8774760961532593, mae:0.7089793682098389
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:1.9070783853530884, mae:1.109758973121643
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.873427152633667, mae:0.705833375453949
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.7879065871238708, mae:0.6696099042892456
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.6834773421287537, mae:0.6093239784240723
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.7879065871238708, mae:0.6696099042892456
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.909260630607605, mae:0.7068679332733154
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7387349009513855, mae:0.6551904678344727
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.7879065871238708, mae:0.6696099042892456
+
+forecast_ECL_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0005_bt4_wd0_el5_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.7879065871238708, mae:0.6696099042892456
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6646694540977478, mae:0.6003521680831909
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7821046710014343, mae:0.6783180236816406
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.8134602308273315, mae:0.6649616360664368
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0707447528839111, mae:0.7876362204551697
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.3021342754364014, mae:0.8898885250091553
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0707447528839111, mae:0.7876362204551697
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.3021342754364014, mae:0.8898885250091553
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0703436136245728, mae:0.787447988986969
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.3032974004745483, mae:0.8901746869087219
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.009738802909851, mae:0.777696967124939
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7520208358764648, mae:0.6463884115219116
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.47690969705581665, mae:0.46651148796081543
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.47690969705581665, mae:0.46651148796081543
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7645201086997986, mae:0.651953935623169
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.625599980354309, mae:0.9960224032402039
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:5.095172882080078, mae:1.7899971008300781
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.48435014486312866, mae:0.47140100598335266
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4737081825733185, mae:0.4685656726360321
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4737081825733185, mae:0.4685656726360321
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4733743369579315, mae:0.4677375853061676
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4733743369579315, mae:0.4677375853061676
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4737742841243744, mae:0.46762508153915405
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4737742841243744, mae:0.46762508153915405
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4786185324192047, mae:0.4617457389831543
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4737742841243744, mae:0.46762508153915405
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4733743369579315, mae:0.4677375853061676
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7957329750061035, mae:0.611070454120636
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.7957329750061035, mae:0.611070454120636
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.5419757962226868, mae:0.500443696975708
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4786185324192047, mae:0.4617457389831543
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.46366915106773376, mae:0.4546531140804291
+
+forecast_ETTh1_target_finetune_e8d1024_lr5e-5_ep5_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.46938225626945496, mae:0.4515416622161865
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4786185324192047, mae:0.4617457389831543
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.46090084314346313, mae:0.45319369435310364
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4786185324192047, mae:0.4617457389831543
+
+forecast_ETTh1_target_finetune_e8d1024_lr5e-5_ep5_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.46177545189857483, mae:0.44984424114227295
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4042094349861145, mae:0.42337116599082947
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4148153066635132, mae:0.43292710185050964
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4148153066635132, mae:0.43292710185050964
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4148153066635132, mae:0.43292710185050964
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4148153066635132, mae:0.43292710185050964
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37589237093925476, mae:0.4074169099330902
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_draft_finetuned_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt16_wd0_el2_dm512_dff2048_nh8_cosFalse_test_0  
+mse:0.3940249979496002, mae:0.41475412249565125
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37829500436782837, mae:0.40931934118270874
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37808921933174133, mae:0.4084474444389343
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.3775317072868347, mae:0.4087541401386261
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37623679637908936, mae:0.40790873765945435
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37589237093925476, mae:0.4074169099330902
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37589237093925476, mae:0.4074169099330902
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37589237093925476, mae:0.4074169099330902
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.37589237093925476, mae:0.4074169099330902
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.3761778771877289, mae:0.4078613817691803
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.3782903850078583, mae:0.40931466221809387
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4148073196411133, mae:0.4329390823841095
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.4719468355178833, mae:0.9500901103019714
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6781473755836487, mae:0.6154047846794128
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.38938793540000916, mae:0.41849473118782043
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4012220799922943, mae:0.42895999550819397
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4258025884628296, mae:0.4433835446834564
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.38938793540000916, mae:0.41849473118782043
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0095901489257812, mae:0.7749242186546326
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0089296102523804, mae:0.7745200991630554
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.0089296102523804, mae:0.7745200991630554
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4258025884628296, mae:0.4433835446834564
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4570709466934204, mae:0.4701383709907532
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6779151558876038, mae:0.6151658892631531
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1.4676811695098877, mae:0.948728084564209
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:1032682.125, mae:810.8368530273438
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.38938793540000916, mae:0.41849473118782043
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el4_dm768_dff3072_nh12_cosTrue_test_0  
+mse:0.394208163022995, mae:0.419960618019104
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el4_dm768_dff3072_nh12_cosTrue_test_0  
+mse:0.39533424377441406, mae:0.4214935302734375
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el4_dm768_dff3072_nh12_cosTrue_test_0  
+mse:0.38287341594696045, mae:0.41177085041999817
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6779151558876038, mae:0.6151658892631531
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0.0001_el4_dm768_dff3072_nh12_cosTrue_test_0  
+mse:0.3946487307548523, mae:0.42046183347702026
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6779151558876038, mae:0.6151658892631531
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el4_dm768_dff3072_nh12_cosTrue_test_0  
+mse:0.39533424377441406, mae:0.4214935302734375
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6779151558876038, mae:0.6151658892631531
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.38938793540000916, mae:0.41849473118782043
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4012220799922943, mae:0.42895999550819397
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4154607355594635, mae:0.4338332712650299
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.40870746970176697, mae:0.42943811416625977
+
+forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.6779151558876038, mae:0.6151658892631531
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_finetune_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4042094349861145, mae:0.42337116599082947
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_target_finetune_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0  
+mse:0.4396275579929352, mae:0.42827263474464417
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.3928129971027374, mae:0.4107604920864105
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.3928129971027374, mae:0.4107604920864105
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+pretrain_draft_pretrain_ecl_01x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.14979931712150574, mae:0.24597005546092987
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.367698073387146, mae:0.3967830538749695
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.367698073387146, mae:0.3967830538749695
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3651212453842163, mae:0.39971596002578735
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3651212453842163, mae:0.39971596002578735
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35647815465927124, mae:0.3877226710319519
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35647815465927124, mae:0.3877226710319519
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35647815465927124, mae:0.3877226710319519
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35647815465927124, mae:0.3877226710319519
+
+pretrain_draft_pretrain_ecl_03x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.14414332807064056, mae:0.24132485687732697
+
+pretrain_draft_pretrain_ecl_005x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.1497993916273117, mae:0.24596980214118958
+
+pretrain_draft_pretrain_ecl_04x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.14322708547115326, mae:0.24050186574459076
+
+pretrain_draft_pretrain_ecl_001x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.1497991383075714, mae:0.2459697276353836
+
+pretrain_draft_pretrain_ecl_05x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.14166294038295746, mae:0.23785537481307983
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35635051131248474, mae:0.3878026604652405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.43029922246932983, mae:0.4319210648536682
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.3677457571029663, mae:0.3968023657798767
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.3677457571029663, mae:0.3968023657798767
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.46167686581611633, mae:0.47609439492225647
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.46167686581611633, mae:0.47609439492225647
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3626592755317688, mae:0.39634278416633606
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3626592755317688, mae:0.39634278416633606
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.3897320032119751
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.3897320032119751
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.3897320032119751
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3626592755317688, mae:0.39634278416633606
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.35967716574668884, mae:0.38973233103752136
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4100761413574219, mae:0.4234716296195984
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.36265915632247925, mae:0.39634275436401367
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4042094349861145, mae:0.42337116599082947
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4361119270324707, mae:0.43911272287368774
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.3605542778968811, mae:0.39294421672821045
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4234742820262909, mae:0.43226492404937744
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.6908585429191589, mae:0.6251725554466248
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.6908585429191589, mae:0.6251725554466248
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:1.0306514501571655, mae:0.7875062823295593
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4361119270324707, mae:0.43911272287368774
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.36770275235176086, mae:0.3967832624912262
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4361119270324707, mae:0.43911272287368774
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0  
+mse:0.4361119270324707, mae:0.43911272287368774
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.6908585429191589, mae:0.6251725554466248
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.6908585429191589, mae:0.6251725554466248
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+pretrain_draft_pretrain_ecl_001x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.2605377733707428, mae:0.34911277890205383
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251826286316, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251826286316, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251826286316, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265593886375427, mae:0.43865394592285156
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265594780445099, mae:0.43865397572517395
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251528263092, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265594780445099, mae:0.43865397572517395
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251528263092, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265594780445099, mae:0.43865397572517395
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251528263092, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4265594780445099, mae:0.43865397572517395
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4366251528263092, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.7227616906166077, mae:0.6438021063804626
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4375463128089905, mae:0.4498836100101471
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43659770488739014, mae:0.44919246435165405
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+pretrain_ttm_pretrain_ecl_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr0.0001_bt4_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.12672753632068634, mae:0.22239939868450165
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4765453040599823, mae:0.48140570521354675
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3858065903186798, mae:0.419216126203537
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3858065903186798, mae:0.419216126203537
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3858065903186798, mae:0.419216126203537
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4108002185821533, mae:0.4368254244327545
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3858065903186798, mae:0.419216126203537
+
+forecast_ETTh1_draft_ttm_MultivariateDatasetBenchmark_sl1536_it1536_ot96_lr5e-05_bt32_wd0_el3_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3555344343185425, mae:0.39051103591918945
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.45432049036026, mae:0.4649932086467743
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4390794038772583, mae:0.45241212844848633
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3811873495578766, mae:0.413286030292511
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3625197112560272, mae:0.3951834738254547
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3625197112560272, mae:0.3951834738254547
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3625197112560272, mae:0.3951834738254547
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3625197112560272, mae:0.3951834738254547
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3625197112560272, mae:0.3951834738254547
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43662509322166443, mae:0.4492206573486328
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4526667594909668, mae:0.47544965147972107
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43627306818962097, mae:0.45793935656547546
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4493679702281952, mae:0.44757315516471863
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41867879033088684, mae:0.4366697669029236
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41867879033088684, mae:0.4366697669029236
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+pretrain_draft_pretrain_ecl_05x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14082688093185425, mae:0.23741556704044342
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3877274692058563, mae:0.4094076156616211
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.40344491600990295, mae:0.42204198241233826
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.6642654538154602, mae:0.6117426156997681
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4446496367454529, mae:0.4616665840148926
+
+pretrain_draft_pretrain_ecl_05x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14252758026123047, mae:0.2389332503080368
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+pretrain_draft_pretrain_ecl_038x_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14473600685596466, mae:0.24082118272781372
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3974420428276062, mae:0.4147210419178009
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3974420428276062, mae:0.4147210419178009
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3974420428276062, mae:0.4147210419178009
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3974420428276062, mae:0.4147210419178009
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4432668387889862, mae:0.46103981137275696
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3957802355289459, mae:0.4136850833892822
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.44776320457458496, mae:0.4630575478076935
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4709033668041229, mae:0.4822702407836914
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.40699848532676697, mae:0.4243791997432709
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4149981141090393, mae:0.42590224742889404
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4252370595932007, mae:0.4375242590904236
+
+pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14252758026123047, mae:0.2389332503080368
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.39708587527275085, mae:0.4154711961746216
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.40344473719596863, mae:0.4220418930053711
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.40344473719596863, mae:0.4220418930053711
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.39708587527275085, mae:0.4154711961746216
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.39708587527275085, mae:0.4154711961746216
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.39708587527275085, mae:0.4154711961746216
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631163239479065
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631160259246826
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4180941581726074, mae:0.43631160259246826
+
+pretrain_draft_pretrain_ecl_05x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14082688093185425, mae:0.23741556704044342
+
+forecast_ETTh2_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3659212291240692, mae:0.3997454345226288
+
+forecast_ETTh2_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3659212291240692, mae:0.3997454345226288
+
+forecast_ETTh2_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3659212291240692, mae:0.3997454345226288
+
+forecast_ETTh2_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.3659212291240692, mae:0.3997454345226288
+
+forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.35297510027885437, mae:0.38807639479637146
+
+forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.35297510027885437, mae:0.38807639479637146
+
+forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.35297510027885437, mae:0.38807639479637146
+
+forecast_ETTh2_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.39162883162498474, mae:0.42649245262145996
+
+forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3778236210346222, mae:0.4136710464954376
+
+forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3778236210346222, mae:0.4136710464954376
+
+forecast_ETTh1_moirai_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4199449121952057, mae:0.43384498357772827
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.40344473719596863, mae:0.4220418930053711
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4034450054168701, mae:0.4220419228076935
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.3970855474472046, mae:0.41547131538391113
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4875878691673279, mae:0.47236305475234985
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4409043490886688, mae:0.45113977789878845
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4409043490886688, mae:0.45113977789878845
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4050087630748749, mae:0.41646549105644226
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4050087630748749, mae:0.41646549105644226
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4409043490886688, mae:0.45113977789878845
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4409043490886688, mae:0.45113977789878845
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4050087630748749, mae:0.41646549105644226
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4050087630748749, mae:0.41646549105644226
+
+pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.15624383091926575, mae:0.25287753343582153
+
+pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.14251670241355896, mae:0.2389078587293625
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4447144567966461, mae:0.45311373472213745
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4447144567966461, mae:0.45311373472213745
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.441989928483963, mae:0.44923529028892517
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.441989928483963, mae:0.44923529028892517
+
+pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.15624383091926575, mae:0.25287753343582153
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41034188866615295, mae:0.4211120009422302
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41034188866615295, mae:0.4211120009422302
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41034188866615295, mae:0.4211120009422302
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.41034188866615295, mae:0.4211120009422302
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.44198983907699585, mae:0.44923534989356995
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47455093264579773, mae:0.4709499776363373
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43948760628700256, mae:0.44137540459632874
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.528812825679779, mae:0.5155043601989746
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4835076332092285, mae:0.4840821325778961
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5000020265579224, mae:0.49636322259902954
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47455093264579773, mae:0.4709499776363373
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5000020265579224, mae:0.49636322259902954
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43845972418785095, mae:0.4373224973678589
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47455093264579773, mae:0.4709499776363373
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4999520182609558, mae:0.4960319697856903
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:10158.7099609375, mae:80.41085052490234
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43948760628700256, mae:0.44137540459632874
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47455093264579773, mae:0.4709499776363373
+
+pretrain_draft_pretrain_ecl_001x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.33583948016166687, mae:0.41252246499061584
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251706838607788, mae:0.515417218208313
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251706838607788, mae:0.515417218208313
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251706838607788, mae:0.515417218208313
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251706838607788, mae:0.515417218208313
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251706838607788, mae:0.515417218208313
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251759886741638, mae:0.5154191255569458
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.5251759886741638, mae:0.5154191255569458
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43845972418785095, mae:0.4373224973678589
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.525107741355896, mae:0.5154377818107605
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:9.917752265930176, mae:2.512012004852295
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:2.858891725540161, mae:1.3428013324737549
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.851784348487854, mae:0.7056188583374023
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.8519421815872192, mae:0.7055553793907166
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.525107741355896, mae:0.5154377818107605
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43845972418785095, mae:0.4373224973678589
+
+forecast_ETTh1_draft_distill_from_target_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.439882755279541, mae:0.4384686052799225
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.525107741355896, mae:0.5154377818107605
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.525107741355896, mae:0.5154377818107605
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47455093264579773, mae:0.4709499776363373
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43948760628700256, mae:0.44137540459632874
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.525107741355896, mae:0.5154377818107605
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.8089339733123779, mae:0.6789611577987671
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4372014105319977, mae:0.4659460484981537
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43751275539398193, mae:0.466193825006485
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4372014105319977, mae:0.4659460484981537
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4372014105319977, mae:0.4659460484981537
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.43751275539398193, mae:0.466193825006485
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4387795329093933, mae:0.4675470292568207
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4387795329093933, mae:0.4675470292568207
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.41735899448394775, mae:0.4410029351711273
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.39234840869903564, mae:0.4208696782588959
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4550100564956665, mae:0.4770215153694153
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.4550100564956665, mae:0.4770215153694153
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:1.5441607236862183, mae:0.9779060482978821
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:6.98073673248291, mae:2.1056272983551025
+
+forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0  
+mse:0.47466492652893066, mae:0.4710504412651062
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.4396097660064697, mae:0.4414922893047333
+
+forecast_ETTh1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0  
+mse:0.43961867690086365, mae:0.44149571657180786
+

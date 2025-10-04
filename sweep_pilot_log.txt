@@ -1,0 +1,84 @@
+[RUN] ETTh1_specK3_fixed_s0p5
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6317s/iter, left time: 362.5971s
+	iters: 200, speed: 0.6319s/iter, left time: 299.4992s
+	iters: 300, speed: 0.6220s/iter, left time: 232.6404s
+	iters: 400, speed: 0.6276s/iter, left time: 171.9529s
+	iters: 500, speed: 0.6304s/iter, left time: 109.6830s
+	iters: 600, speed: 0.6345s/iter, left time: 46.9555s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:0.7645201086997986, mae:0.651953935623169
+[RUN] ETTh1_specK3_fixed_s1p0
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6448s/iter, left time: 370.0929s
+	iters: 200, speed: 0.3631s/iter, left time: 172.1188s
+	iters: 300, speed: 0.6325s/iter, left time: 236.5522s
+	iters: 400, speed: 0.6263s/iter, left time: 171.6052s
+	iters: 500, speed: 0.6200s/iter, left time: 107.8766s
+	iters: 600, speed: 0.6086s/iter, left time: 45.0330s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:1.625599980354309, mae:0.9960224032402039
+[RUN] ETTh1_specK3_fixed_s2p0
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6509s/iter, left time: 373.5976s
+	iters: 200, speed: 0.2924s/iter, left time: 138.6067s
+	iters: 300, speed: 0.2672s/iter, left time: 99.9214s
+	iters: 400, speed: 0.3115s/iter, left time: 85.3381s
+	iters: 500, speed: 0.6395s/iter, left time: 111.2795s
+	iters: 600, speed: 0.6359s/iter, left time: 47.0529s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:5.095172882080078, mae:1.7899971008300781
+[RUN] ETTh1_specK3_adapt_c2
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6406s/iter, left time: 367.7007s
+	iters: 200, speed: 0.6348s/iter, left time: 300.8830s
+	iters: 300, speed: 0.6187s/iter, left time: 231.3789s
+	iters: 400, speed: 0.6286s/iter, left time: 172.2457s
+	iters: 500, speed: 0.6242s/iter, left time: 108.6057s
+	iters: 600, speed: 0.6274s/iter, left time: 46.4281s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:0.48435014486312866, mae:0.47140100598335266
+[RUN] ETTh1_specK3_adapt_c4
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6472s/iter, left time: 371.4728s
+	iters: 200, speed: 0.6319s/iter, left time: 299.5142s
+	iters: 300, speed: 0.6570s/iter, left time: 245.7099s
+	iters: 400, speed: 0.6222s/iter, left time: 170.4715s
+	iters: 500, speed: 0.6256s/iter, left time: 108.8604s
+	iters: 600, speed: 0.6212s/iter, left time: 45.9688s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:0.48435014486312866, mae:0.47140100598335266
+[RUN] ETTh1_specK3_adapt_c8
+test 2689
+info: 672 96 96 192
+loading model
+loading model from ./checkpoints/forecast_ETTh1_large_target_e8d1024_timer_xl_MultivariateDatasetBenchmark_sl672_it96_ot96_lr0.0001_bt4_wd0_el8_dm1024_dff4096_nh16_cosTrue_test_0/checkpoint.pth
+	iters: 100, speed: 0.6279s/iter, left time: 360.4316s
+	iters: 200, speed: 0.4053s/iter, left time: 192.1169s
+	iters: 300, speed: 0.6274s/iter, left time: 234.6369s
+	iters: 400, speed: 0.6342s/iter, left time: 173.7794s
+	iters: 500, speed: 0.6305s/iter, left time: 109.7054s
+	iters: 600, speed: 0.6207s/iter, left time: 45.9336s
+preds shape: (2689, 192, 7)
+trues shape: (2689, 192, 7)
+mse:0.48435014486312866, mae:0.47140100598335266
