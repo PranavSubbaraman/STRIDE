@@ -67,12 +67,6 @@ class SpeculativeDecoder:
         x = x_init.clone()
         accepted = 0
         attempted = 0
-        
-        # Compute normalization statistics from initial input (track timing)
-        import time as _pytime
-        _tn0 = _pytime.perf_counter()
-        self.norm_means, self.norm_stdev = self._compute_norm_stats(x_init)
-        t_norm = _pytime.perf_counter() - _tn0
 
         # accumulate variable number of patches per sample, then stack
         B = x.shape[0]
@@ -200,33 +194,30 @@ class SpeculativeDecoder:
                 q_i = q_list[i]
                 x_i = proposals[i]
                 
-                # Normalize x_i using training dataset statistics for consistent comparison (track timing)
-                _tn1 = _pytime.perf_counter()
-                x_i_norm = self._normalize_patch(x_i)
-                p_next_norm = self._normalize_patch(p_next)
-                q_i_norm = self._normalize_patch(q_i)
-                t_norm += (_pytime.perf_counter() - _tn1)
-
+                # Note: When use_norm=True, both draft and target models internally normalize inputs
+                # and denormalize outputs. So x_i, p_next, q_i are already in the original scale.
+                # We should NOT normalize them again here - just use them directly for comparison.
+                
                 import time as _pytime
                 _acc0 = _pytime.perf_counter()
                 # choose sigma
                 if self.sigma_mode == 'adaptive':
-                    # adapt from mean squared diff between p and q (normalized space)
+                    # adapt from mean squared diff between p and q
                     # avoid zeros; cap for stability
-                    mean_sq = torch.mean((p_next_norm - q_i_norm) ** 2, dim=(1, 2))  # [B]
+                    mean_sq = torch.mean((p_next - q_i) ** 2, dim=(1, 2))  # [B]
                     # per-sample sigma^2 = c * mean_sq; we broadcast later
                     sigma2_vec = torch.clamp(self.sigma_adapt_c * mean_sq, min=1e-6, max=1e6)
                     # for computation below, we will expand to [B]
                     sigma2 = sigma2_vec
                 else:
                     sigma2 = torch.full((x.shape[0],), max(self.args.spec_sigma ** 2, 1e-12), device=x.device, dtype=x.dtype)
-                log_ratio = (-(x_i_norm - p_next_norm).pow(2).sum(dim=(1, 2)) + (x_i_norm - q_i_norm).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
+                log_ratio = (-(x_i - p_next).pow(2).sum(dim=(1, 2)) + (x_i - q_i).pow(2).sum(dim=(1, 2))) / (2.0 * sigma2)
                 ratio = torch.exp(torch.clamp(log_ratio, max=20.0))
                 ratio = ratio * max(self.args.spec_accept_bias, 1.0)
                 alpha = torch.minimum(torch.ones_like(ratio), ratio)
                 r = torch.rand_like(alpha)
                 if self.args.spec_accept_mse_tol > 0:
-                    mse = torch.mean((p_next_norm - x_i_norm) ** 2, dim=(1, 2))
+                    mse = torch.mean((p_next - x_i) ** 2, dim=(1, 2))
                     tol_accept = (mse <= self.args.spec_accept_mse_tol)
                 else:
                     tol_accept = torch.zeros_like(r).bool()
@@ -235,10 +226,10 @@ class SpeculativeDecoder:
                 if self.debug_accept and self._debug_batches_logged < self.debug_max_batches and i < self.debug_max_rounds:
                     try:
                         import csv
-                        # compute per-sample diagnostics in normalized space
+                        # compute per-sample diagnostics (no extra normalization)
                         # SSE_p = ||x_i - mu_p||^2, SSE_q = ||x_i - mu_q||^2
-                        sse_p = (x_i_norm - p_next_norm).pow(2).sum(dim=(1, 2))
-                        sse_q = (x_i_norm - q_i_norm).pow(2).sum(dim=(1, 2))
+                        sse_p = (x_i - p_next).pow(2).sum(dim=(1, 2))
+                        sse_q = (x_i - q_i).pow(2).sum(dim=(1, 2))
                         # log densities up to additive const: log p ~ -SSE_p/(2 sigma^2), log q ~ -SSE_q/(2 sigma^2)
                         denom_vec = 2.0 * sigma2
                         logp = -sse_p / denom_vec
@@ -259,12 +250,12 @@ class SpeculativeDecoder:
                             # pick first N active samples to log
                             active_indices = torch.where(~done_mask)[0].tolist()
                             for b in active_indices[:self.debug_n]:
-                                mse_b = torch.mean((p_next_norm[b] - x_i_norm[b]) ** 2).item()
+                                mse_b = torch.mean((p_next[b] - x_i[b]) ** 2).item()
                                 ratio_b = float(torch.exp(torch.clamp(log_ratio_dbg[b], max=20.0)).item())
                                 sigma_eff_b = float(torch.sqrt(sigma2[b]).item())
                                 # empirical mean/var of proposal residuals
-                                _dq = (x_i_norm[b] - q_i_norm[b]).reshape(-1)
-                                _dp = (x_i_norm[b] - p_next_norm[b]).reshape(-1)
+                                _dq = (x_i[b] - q_i[b]).reshape(-1)
+                                _dp = (x_i[b] - p_next[b]).reshape(-1)
                                 mean_dq = float(torch.mean(_dq).item())
                                 var_dq = float(torch.var(_dq, unbiased=False).item())
                                 mean_dp = float(torch.mean(_dp).item())
@@ -300,15 +291,12 @@ class SpeculativeDecoder:
                     if self.debug_accept and self._debug_batches_logged < self.debug_max_batches and i < self.debug_max_rounds:
                         try:
                             import csv
-                            _tn2 = _pytime.perf_counter()
-                            t_full_norm = self._normalize_patch(t_full)
-                            t_norm += (_pytime.perf_counter() - _tn2)
                             with open(self.debug_out, 'a', newline='') as f:
                                 writer = csv.writer(f)
                                 active_indices = torch.where(reject_mask)[0].tolist()
                                 for b in active_indices[:self.debug_n]:
                                     sigma_eff_b = float(torch.sqrt(sigma2[b]).item())
-                                    _dp_draw = (t_full_norm[b] - p_next_norm[b]).reshape(-1)
+                                    _dp_draw = (t_full[b] - p_next[b]).reshape(-1)
                                     mean_dp_draw = float(torch.mean(_dp_draw).item())
                                     var_dp_draw = float(torch.var(_dp_draw, unbiased=False).item())
                                     writer.writerow([
@@ -400,7 +388,6 @@ class SpeculativeDecoder:
             't_target_verify': float(t_target_verify),
             't_target_sample': float(t_target_sample),
             't_accept_cpu': float(t_accept_cpu),
-            't_norm': float(t_norm),
             'n_draft_calls': int(n_draft_calls),
             'n_target_verify_calls': int(n_target_verify_calls),
             'n_target_sample_calls': int(n_target_sample_calls),
