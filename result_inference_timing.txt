@@ -875,3 +875,9 @@ inference_mode:speculative, total_gen_time_s:33.478650, per_batch_s:0.836966
 inference_mode:speculative, total_gen_time_s:14.487948, per_batch_s:0.362199
 inference_mode:standard, total_gen_time_s:16.369391, per_batch_s:0.409235
 inference_mode:speculative, total_gen_time_s:44.958800, per_batch_s:1.123970
+inference_mode:standard, total_gen_time_s:16.395119, per_batch_s:0.409878
+inference_mode:speculative, total_gen_time_s:46.595112, per_batch_s:1.164878
+inference_mode:standard, total_gen_time_s:16.239516, per_batch_s:0.405988
+inference_mode:standard, total_gen_time_s:16.410615, per_batch_s:0.410265
+inference_mode:standard, total_gen_time_s:16.355511, per_batch_s:0.408888
+inference_mode:speculative, total_gen_time_s:45.995394, per_batch_s:1.149885

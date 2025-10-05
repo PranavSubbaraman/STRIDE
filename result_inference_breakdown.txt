@@ -3276,3 +3276,85 @@ t_target_verify_total:15.260863, n_target_verify_calls:142
 t_target_sample_total:8.320843, n_target_sample_calls:110
 t_accept_cpu_total:1.726798
 
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+t_baseline_forward_total:16.187144, n_baseline_calls:160
+comp_blocks_total:15.042852, per_call_avg:0.094018
+comp_blocks.attn_total:13.493612, per_call_avg:0.084335
+comp_blocks.mlp_conv1_act_total:0.365732, per_call_avg:0.002286
+comp_blocks.mlp_conv2_total:0.266436, per_call_avg:0.001665
+comp_blocks.norm1_total:0.213297, per_call_avg:0.001333
+comp_blocks.residual1_dropout_total:0.229422, per_call_avg:0.001434
+comp_blocks.residual2_norm2_total:0.238600, per_call_avg:0.001491
+comp_denorm_out_total:0.209324, per_call_avg:0.001308
+comp_embedding_total:0.412282, per_call_avg:0.002577
+comp_head_total:0.220194, per_call_avg:0.001376
+comp_norm_in_total:0.276607, per_call_avg:0.001729
+comp_patch_permute_unfold_total:0.004480, per_call_avg:0.000028
+comp_reshape_permute_out_total:0.003347, per_call_avg:0.000021
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:11.074000, n_draft_calls:426
+t_prep_verify_total:0.007110
+t_target_verify_total:15.363799, n_target_verify_calls:142
+t_target_sample_total:8.227160, n_target_sample_calls:110
+t_accept_cpu_total:1.825994setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+t_baseline_forward_total:16.151469, n_baseline_calls:160
+comp_blocks_total:15.212819, per_call_avg:0.095080
+comp_blocks.attn_total:13.669247, per_call_avg:0.085433
+comp_blocks.mlp_conv1_act_total:0.380323, per_call_avg:0.002377
+comp_blocks.mlp_conv2_total:0.241003, per_call_avg:0.001506
+comp_blocks.norm1_total:0.269328, per_call_avg:0.001683
+comp_blocks.residual1_dropout_total:0.303739, per_call_avg:0.001898
+comp_blocks.residual2_norm2_total:0.182861, per_call_avg:0.001143
+comp_denorm_out_total:0.114055, per_call_avg:0.000713
+comp_embedding_total:0.400544, per_call_avg:0.002503
+comp_head_total:0.140666, per_call_avg:0.000879
+comp_norm_in_total:0.263869, per_call_avg:0.001649
+comp_patch_permute_unfold_total:0.004423, per_call_avg:0.000028
+comp_reshape_permute_out_total:0.003114, per_call_avg:0.000019
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+t_baseline_forward_total:16.207428, n_baseline_calls:160
+comp_blocks_total:15.095875, per_call_avg:0.094349
+comp_blocks.attn_total:13.498568, per_call_avg:0.084366
+comp_blocks.mlp_conv1_act_total:0.447788, per_call_avg:0.002799
+comp_blocks.mlp_conv2_total:0.260656, per_call_avg:0.001629
+comp_blocks.norm1_total:0.210049, per_call_avg:0.001313
+comp_blocks.residual1_dropout_total:0.227738, per_call_avg:0.001423
+comp_blocks.residual2_norm2_total:0.233060, per_call_avg:0.001457
+comp_denorm_out_total:0.205666, per_call_avg:0.001285
+comp_embedding_total:0.389513, per_call_avg:0.002434
+comp_head_total:0.214951, per_call_avg:0.001343
+comp_norm_in_total:0.280809, per_call_avg:0.001755
+comp_patch_permute_unfold_total:0.004881, per_call_avg:0.000031
+comp_reshape_permute_out_total:0.003245, per_call_avg:0.000020
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+t_baseline_forward_total:16.146443, n_baseline_calls:160
+comp_blocks_total:14.961984, per_call_avg:0.093512
+comp_blocks.attn_total:13.400943, per_call_avg:0.083756
+comp_blocks.mlp_conv1_act_total:0.370656, per_call_avg:0.002317
+comp_blocks.mlp_conv2_total:0.264256, per_call_avg:0.001652
+comp_blocks.norm1_total:0.222185, per_call_avg:0.001389
+comp_blocks.residual1_dropout_total:0.230236, per_call_avg:0.001439
+comp_blocks.residual2_norm2_total:0.240936, per_call_avg:0.001506
+comp_denorm_out_total:0.216085, per_call_avg:0.001351
+comp_embedding_total:0.410939, per_call_avg:0.002568
+comp_head_total:0.219544, per_call_avg:0.001372
+comp_norm_in_total:0.315948, per_call_avg:0.001975
+comp_patch_permute_unfold_total:0.004494, per_call_avg:0.000028
+comp_reshape_permute_out_total:0.003206, per_call_avg:0.000020
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.820885, n_draft_calls:426
+t_prep_verify_total:0.007067
+t_target_verify_total:15.428971, n_target_verify_calls:142
+t_target_sample_total:8.250341, n_target_sample_calls:110
+t_accept_cpu_total:1.842265
+
