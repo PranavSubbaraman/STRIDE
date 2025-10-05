@@ -64,7 +64,7 @@ python -u run.py \
   --spec_draft_ckpt ./checkpoints/${DRAFT_TEST_DIR}/${DRAFT_CKPT} \
   --spec_k 3 \
   --spec_sigma 0.3 \
-  --spec_accept_bias 1.0 \
+  --spec_accept_bias 3 \
   --draft_scale_d_model 0.25 \
   --draft_scale_n_heads 0.25 \
   --draft_scale_d_ff 0.25 \

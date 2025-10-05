@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=5
 
 model_name=timer_xl_draft
 token_num=16        # because seq_len=1536 and token_len=96 → 16*96 = 1536

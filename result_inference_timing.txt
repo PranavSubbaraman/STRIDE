@@ -934,3 +934,17 @@ inference_mode:speculative, total_gen_time_s:34.209924, per_batch_s:0.855248
 inference_mode:speculative, total_gen_time_s:36.443427, per_batch_s:0.911086
 inference_mode:speculative, total_gen_time_s:38.464183, per_batch_s:0.961605
 inference_mode:speculative, total_gen_time_s:32.699848, per_batch_s:0.817496
+inference_mode:standard, total_gen_time_s:2.353294, per_batch_s:0.058832
+inference_mode:speculative, total_gen_time_s:39.486517, per_batch_s:0.987163
+inference_mode:speculative, total_gen_time_s:41.044719, per_batch_s:1.026118
+inference_mode:standard, total_gen_time_s:16.667632, per_batch_s:0.416691
+inference_mode:speculative, total_gen_time_s:14.079021, per_batch_s:0.351976
+inference_mode:speculative, total_gen_time_s:24.301019, per_batch_s:0.607525
+inference_mode:speculative, total_gen_time_s:23.720051, per_batch_s:0.593001
+inference_mode:speculative, total_gen_time_s:23.235870, per_batch_s:0.580897
+inference_mode:standard, total_gen_time_s:13.513020, per_batch_s:0.337825
+inference_mode:standard, total_gen_time_s:13.476140, per_batch_s:0.336903
+inference_mode:standard, total_gen_time_s:16.402678, per_batch_s:0.410067
+inference_mode:standard, total_gen_time_s:2.373401, per_batch_s:0.059335
+inference_mode:standard, total_gen_time_s:2.371862, per_batch_s:0.059297
+inference_mode:standard, total_gen_time_s:4.631966, per_batch_s:0.115799

@@ -1,41 +1,41 @@
 export CUDA_VISIBLE_DEVICES=4
 
 model_name=timer_xl_draft
-token_num=7
+token_num=16
 token_len=96
 seq_len=$[$token_num*$token_len]
 # training one model with a context length
 
-# python -u run.py \
-#   # --task_name forecast \
-#   # --is_training 1 \
-#   # --root_path ./dataset/ETT-small/ \
-#   # --data_path ETTh2.csv \
-#   # --model_id ETTh2_draft \
-#   # --model $model_name \
-#   # --data MultivariateDatasetBenchmark  \
-#   # --seq_len $seq_len \
-#   # --input_token_len $token_len \
-#   # --output_token_len $token_len \
-#   # --test_seq_len $seq_len \
-#   # --test_pred_len 192 \
-#   # --batch_size 32 \
-#   # --learning_rate 5e-05 \
-#   # --train_epochs 15 \
-#   # --d_model 1024 \
-#   # --d_ff 2048 \
-#   # --e_layers 1 \
-#   # --n_heads 8 \
-#   # --use_norm \
-#   # --cosine \
-#   # --tmax 10 \
-#   # --valid_last \
-#   # --adaptation \
-#   # --pretrain_model_path ./checkpoints/pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0/checkpoint.pth \
-#   # --draft_scale_d_model 0.25 \
-#   # --draft_scale_n_heads 0.25 \
-#   # --draft_scale_d_ff 0.25 \
-#   # --draft_scale_e_layers 0.25 \
+python -u run.py \
+  --task_name forecast \
+  --is_training 1 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTh2.csv \
+  --model_id ETTh2_draft \
+  --model $model_name \
+  --data MultivariateDatasetBenchmark  \
+  --seq_len $seq_len \
+  --input_token_len $token_len \
+  --output_token_len $token_len \
+  --test_seq_len $seq_len \
+  --test_pred_len 336 \
+  --batch_size 64 \
+  --learning_rate 5e-05 \
+  --train_epochs 15 \
+  --d_model 1024 \
+  --d_ff 2048 \
+  --e_layers 1 \
+  --n_heads 8 \
+  --use_norm \
+  --cosine \
+  --tmax 10 \
+  --valid_last \
+  --adaptation \
+  --pretrain_model_path ./checkpoints/pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0/checkpoint.pth \
+  --draft_scale_d_model 0.25 \
+  --draft_scale_n_heads 0.25 \
+  --draft_scale_d_ff 0.25 \
+  --draft_scale_e_layers 0.25 \
 
 # testing the model on all forecast lengths
 for test_pred_len in 336
@@ -53,7 +53,7 @@ python -u run.py \
   --output_token_len $token_len \
   --test_seq_len $seq_len \
   --test_pred_len $test_pred_len \
-  --batch_size 32 \
+  --batch_size 64 \
   --d_model 1024 \
   --d_ff 2048 \
   --e_layers 1 \
@@ -64,7 +64,7 @@ python -u run.py \
   --draft_scale_n_heads 0.25 \
   --draft_scale_d_ff 0.25 \
   --draft_scale_e_layers 0.25 \
-  --test_dir forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl672_it96_ot96_lr5e-05_bt32_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0 \
+  --test_dir forecast_ETTh2_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0 \
   --trace_inference_breakdown
 
   # print timing for this test
