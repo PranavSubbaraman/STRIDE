@@ -1,3 +1,0 @@
-BASE per_batch_s:0.409183 mse:0.478619 mae:0.461746
-SPEC per_batch_s:0.589667 mse:0.460901 mae:0.453194 acceptance_pct:98.34
-SPEEDUP(base/spec):0.693922

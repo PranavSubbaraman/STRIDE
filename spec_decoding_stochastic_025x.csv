@@ -1,1 +1,0 @@
-batch_idx,round_i,sample_idx,kind,alpha,r,tol_accept,accept,mse,sse_p,sse_q,logp,logq,log_ratio,ratio,sigma_eff,sigma_mode,bias,mean_xi_minus_q,var_xi_minus_q,mean_xi_minus_p,var_xi_minus_p
