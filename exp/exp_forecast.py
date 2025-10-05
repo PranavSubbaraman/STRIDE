@@ -345,14 +345,14 @@ class Exp_Forecast(Exp_Basic):
                     draft_args.seq_len = self.args.spec_draft_seq_len
                     draft_args.input_token_len = self.args.spec_draft_seq_len  # For TTM
                 draft_model = draft_module.Model(draft_args).to(self.device)
-                print(f"[DEBUG] Draft model created with draft_stochastic={getattr(draft_args, 'draft_stochastic', False)}")
-                print(f"[DEBUG] Draft model has head_mean: {hasattr(draft_model, 'head_mean')}, has head: {hasattr(draft_model, 'head')}")
+                # print(f"[DEBUG] Draft model created with draft_stochastic={getattr(draft_args, 'draft_stochastic', False)}")
+                # print(f"[DEBUG] Draft model has head_mean: {hasattr(draft_model, 'head_mean')}, has head: {hasattr(draft_model, 'head')}")
                 if self.args.spec_draft_ckpt:
                     ckpt = torch.load(self.args.spec_draft_ckpt)
-                    has_mean_head = any('head_mean' in k for k in ckpt.keys())
-                    has_logvar_head = any('head_logvar' in k for k in ckpt.keys())
-                    has_single_head = any(k.startswith('head.') for k in ckpt.keys())
-                    print(f"[DEBUG] Checkpoint has head_mean: {has_mean_head}, head_logvar: {has_logvar_head}, single head: {has_single_head}")
+                    # has_mean_head = any('head_mean' in k for k in ckpt.keys())
+                    # has_logvar_head = any('head_logvar' in k for k in ckpt.keys())
+                    # has_single_head = any(k.startswith('head.') for k in ckpt.keys())
+                    # print(f"[DEBUG] Checkpoint has head_mean: {has_mean_head}, head_logvar: {has_logvar_head}, single head: {has_single_head}")
                     draft_model.load_state_dict(ckpt, strict=False)
                 draft_model.eval()
                 self._spec_draft = draft_model

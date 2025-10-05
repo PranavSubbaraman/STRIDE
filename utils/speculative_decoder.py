@@ -126,18 +126,18 @@ class SpeculativeDecoder:
                     # Sample using learned variance
                     sigma_q = torch.exp(0.5 * logvar_q)
                     sampled = mu_q + sigma_q * torch.randn_like(mu_q)
-                    # Debug: print once per batch
-                    if _k == 0 and len(q_list) == 1:  # First proposal of first round
-                        print(f"[DEBUG] Stochastic draft active: logvar range=[{logvar_q.min():.2f}, {logvar_q.max():.2f}], sigma range=[{sigma_q.min():.4f}, {sigma_q.max():.4f}]")
+                    # # Debug: print once per batch
+                    # if _k == 0 and len(q_list) == 1:  # First proposal of first round
+                    #     print(f"[DEBUG] Stochastic draft active: logvar range=[{logvar_q.min():.2f}, {logvar_q.max():.2f}], sigma range=[{sigma_q.min():.4f}, {sigma_q.max():.4f}]")
                 else:
                     # Original: treat draft output patch as mean of Gaussian q with fixed sigma
                     mu_q = draft_out[:, -self.args.output_token_len:, :]
                     q_list.append(mu_q)
                     sampled = mu_q + self.args.spec_sigma * torch.randn_like(mu_q)
-                    # Debug: print once per batch
-                    if _k == 0 and len(q_list) == 1:  # First proposal of first round
-                        is_tuple = isinstance(draft_out, tuple)
-                        print(f"[DEBUG] Non-stochastic path: draft_stochastic={draft_stochastic}, is_tuple={is_tuple}, output_shape={draft_out.shape if not is_tuple else (draft_out[0].shape, draft_out[1].shape)}")
+                    # # Debug: print once per batch
+                    # if _k == 0 and len(q_list) == 1:  # First proposal of first round
+                    #     is_tuple = isinstance(draft_out, tuple)
+                    #     print(f"[DEBUG] Non-stochastic path: draft_stochastic={draft_stochastic}, is_tuple={is_tuple}, output_shape={draft_out.shape if not is_tuple else (draft_out[0].shape, draft_out[1].shape)}")
                 
                 proposals.append(sampled)
                 context = torch.cat([context[:, self.args.input_token_len:, :], sampled], dim=1)
@@ -247,15 +247,15 @@ class SpeculativeDecoder:
                     
                     log_ratio = -(sse_p / (2.0 * sigma2_p)) + (sse_q / (2.0 * sigma2_q))
                     
-                    # Debug: print acceptance stats once
-                    if i == 0 and len(proposals) == self.k:  # First proposal after all generated
-                        print(f"[DEBUG ACCEPT] sigma2_q range=[{sigma2_q.min():.4f}, {sigma2_q.max():.4f}], sigma2_p={sigma2_p:.4f}")
-                        print(f"[DEBUG ACCEPT] sse_p range=[{sse_p.min():.2f}, {sse_p.max():.2f}]")
-                        print(f"[DEBUG ACCEPT] sse_q range=[{sse_q.min():.2f}, {sse_q.max():.2f}]")
-                        print(f"[DEBUG ACCEPT] log_ratio range=[{log_ratio.min():.2f}, {log_ratio.max():.2f}]")
-                        ratio_dbg = torch.exp(torch.clamp(log_ratio, max=20.0)) * self.args.spec_accept_bias
-                        alpha_dbg = torch.minimum(torch.ones_like(ratio_dbg), ratio_dbg)
-                        print(f"[DEBUG ACCEPT] alpha range=[{alpha_dbg.min():.4f}, {alpha_dbg.max():.4f}], mean={alpha_dbg.mean():.4f}")
+                    # # Debug: print acceptance stats once
+                    # if i == 0 and len(proposals) == self.k:  # First proposal after all generated
+                    #     print(f"[DEBUG ACCEPT] sigma2_q range=[{sigma2_q.min():.4f}, {sigma2_q.max():.4f}], sigma2_p={sigma2_p:.4f}")
+                    #     print(f"[DEBUG ACCEPT] sse_p range=[{sse_p.min():.2f}, {sse_p.max():.2f}]")
+                    #     print(f"[DEBUG ACCEPT] sse_q range=[{sse_q.min():.2f}, {sse_q.max():.2f}]")
+                    #     print(f"[DEBUG ACCEPT] log_ratio range=[{log_ratio.min():.2f}, {log_ratio.max():.2f}]")
+                    #     ratio_dbg = torch.exp(torch.clamp(log_ratio, max=20.0)) * self.args.spec_accept_bias
+                    #     alpha_dbg = torch.minimum(torch.ones_like(ratio_dbg), ratio_dbg)
+                    #     print(f"[DEBUG ACCEPT] alpha range=[{alpha_dbg.min():.4f}, {alpha_dbg.max():.4f}], mean={alpha_dbg.mean():.4f}")
                 else:
                     # Original: extract mean if tuple (but shouldn't happen in non-stochastic mode)
                     mu_q = q_i[0] if isinstance(q_i, tuple) else q_i

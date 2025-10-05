@@ -3358,3 +3358,255 @@ t_target_verify_total:15.428971, n_target_verify_calls:142
 t_target_sample_total:8.250341, n_target_sample_calls:110
 t_accept_cpu_total:1.842265
 
+================================================================================================================================================================
+================================================================================================================================================================
+================================================================================================================================================================
+================================================================================================================================================================
+
+SPECULATIVE DECODING HYPERPARAMETER SWEEP BELOW
+
+
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:standard
+t_baseline_forward_total:16.560249, n_baseline_calls:160
+comp_blocks_total:15.452009, per_call_avg:0.096575
+comp_blocks.attn_total:13.875051, per_call_avg:0.086719
+comp_blocks.mlp_conv1_act_total:0.505906, per_call_avg:0.003162
+comp_blocks.mlp_conv2_total:0.231687, per_call_avg:0.001448
+comp_blocks.norm1_total:0.182205, per_call_avg:0.001139
+comp_blocks.residual1_dropout_total:0.232148, per_call_avg:0.001451
+comp_blocks.residual2_norm2_total:0.209034, per_call_avg:0.001306
+comp_denorm_out_total:0.195001, per_call_avg:0.001219
+comp_embedding_total:0.409936, per_call_avg:0.002562
+comp_head_total:0.189049, per_call_avg:0.001182
+comp_norm_in_total:0.294576, per_call_avg:0.001841
+comp_patch_permute_unfold_total:0.004508, per_call_avg:0.000028
+comp_reshape_permute_out_total:0.003264, per_call_avg:0.000020
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.306038, n_draft_calls:426
+t_prep_verify_total:0.007102
+t_target_verify_total:17.023174, n_target_verify_calls:142
+t_target_sample_total:9.139871, n_target_sample_calls:110
+t_accept_cpu_total:0.176580
+
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.124515, n_draft_calls:426
+t_prep_verify_total:0.006966
+t_target_verify_total:15.922154, n_target_verify_calls:142
+t_target_sample_total:8.724946, n_target_sample_calls:110
+t_accept_cpu_total:0.189442
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:5.652882, n_draft_calls:225
+t_prep_verify_total:0.003567
+t_target_verify_total:8.297001, n_target_verify_calls:75
+t_target_sample_total:6.988715, n_target_sample_calls:71
+t_accept_cpu_total:0.144552
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:4.268058, n_draft_calls:141
+t_prep_verify_total:0.002250
+t_target_verify_total:5.286275, n_target_verify_calls:47
+t_target_sample_total:4.430944, n_target_sample_calls:47
+t_accept_cpu_total:0.128527
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.485127, n_draft_calls:123
+t_prep_verify_total:0.001925
+t_target_verify_total:4.665608, n_target_verify_calls:41
+t_target_sample_total:4.078574, n_target_sample_calls:41
+t_accept_cpu_total:0.134961
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.751895, n_draft_calls:120
+t_prep_verify_total:0.001900
+t_target_verify_total:4.574020, n_target_verify_calls:40
+t_target_sample_total:4.005434, n_target_sample_calls:40
+t_accept_cpu_total:0.163524
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:7.009816, n_draft_calls:400
+t_prep_verify_total:0.005198
+t_target_verify_total:5.279802, n_target_verify_calls:40
+t_target_sample_total:3.997604, n_target_sample_calls:40
+t_accept_cpu_total:0.209679
+
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:11.296583, n_draft_calls:480
+t_prep_verify_total:0.007684
+t_target_verify_total:17.181193, n_target_verify_calls:160
+t_target_sample_total:0.000000, n_target_sample_calls:0
+t_accept_cpu_total:0.135679
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:11.738619, n_draft_calls:480
+t_prep_verify_total:0.007709
+t_target_verify_total:17.264068, n_target_verify_calls:160
+t_target_sample_total:0.046350, n_target_sample_calls:2
+t_accept_cpu_total:0.133069
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:6.525213, n_draft_calls:225
+t_prep_verify_total:0.003790
+t_target_verify_total:8.248140, n_target_verify_calls:75
+t_target_sample_total:6.682058, n_target_sample_calls:71
+t_accept_cpu_total:0.155872
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:4.720479, n_draft_calls:147
+t_prep_verify_total:0.002412
+t_target_verify_total:5.487221, n_target_verify_calls:49
+t_target_sample_total:4.550288, n_target_sample_calls:49
+t_accept_cpu_total:0.158225
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:4.244551, n_draft_calls:141
+t_prep_verify_total:0.002286
+t_target_verify_total:5.262029, n_target_verify_calls:47
+t_target_sample_total:4.448616, n_target_sample_calls:47
+t_accept_cpu_total:0.155020
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:4.282968, n_draft_calls:129
+t_prep_verify_total:0.002052
+t_target_verify_total:4.831751, n_target_verify_calls:43
+t_target_sample_total:4.242093, n_target_sample_calls:43
+t_accept_cpu_total:0.159022
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:4.035445, n_draft_calls:123
+t_prep_verify_total:0.002959
+t_target_verify_total:4.506883, n_target_verify_calls:41
+t_target_sample_total:3.928702, n_target_sample_calls:41
+t_accept_cpu_total:0.147937
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.848252, n_draft_calls:120
+t_prep_verify_total:0.002032
+t_target_verify_total:4.416995, n_target_verify_calls:40
+t_target_sample_total:3.886808, n_target_sample_calls:40
+t_accept_cpu_total:0.145391
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.484410, n_draft_calls:120
+t_prep_verify_total:0.001951
+t_target_verify_total:4.387889, n_target_verify_calls:40
+t_target_sample_total:3.853573, n_target_sample_calls:40
+t_accept_cpu_total:0.140138
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.813308, n_draft_calls:120
+t_prep_verify_total:0.001856
+t_target_verify_total:4.421697, n_target_verify_calls:40
+t_target_sample_total:3.834782, n_target_sample_calls:40
+t_accept_cpu_total:0.129274
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:3.633418, n_draft_calls:120
+t_prep_verify_total:0.002010
+t_target_verify_total:4.455219, n_target_verify_calls:40
+t_target_sample_total:3.915291, n_target_sample_calls:40
+t_accept_cpu_total:0.134046
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:8.001643, n_draft_calls:327
+t_prep_verify_total:0.005256
+t_target_verify_total:11.962450, n_target_verify_calls:109
+t_target_sample_total:7.935273, n_target_sample_calls:104
+t_accept_cpu_total:0.178117
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:5.933495, n_draft_calls:225
+t_prep_verify_total:0.003587
+t_target_verify_total:8.195278, n_target_verify_calls:75
+t_target_sample_total:6.779421, n_target_sample_calls:71
+t_accept_cpu_total:0.139151
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:7.152403, n_draft_calls:280
+t_prep_verify_total:0.004510
+t_target_verify_total:7.848953, n_target_verify_calls:70
+t_target_sample_total:6.253617, n_target_sample_calls:67
+t_accept_cpu_total:0.187315
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:9.315030, n_draft_calls:360
+t_prep_verify_total:0.005237
+t_target_verify_total:8.999073, n_target_verify_calls:72
+t_target_sample_total:6.554575, n_target_sample_calls:69
+t_accept_cpu_total:0.178548
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:12.037856, n_draft_calls:432
+t_prep_verify_total:0.006058
+t_target_verify_total:9.142091, n_target_verify_calls:72
+t_target_sample_total:6.791330, n_target_sample_calls:68
+t_accept_cpu_total:0.200604
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.598009, n_draft_calls:462
+t_prep_verify_total:0.006348
+t_target_verify_total:8.503997, n_target_verify_calls:66
+t_target_sample_total:5.972935, n_target_sample_calls:62
+t_accept_cpu_total:0.220368
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.850181, n_draft_calls:560
+t_prep_verify_total:0.007344
+t_target_verify_total:8.626261, n_target_verify_calls:70
+t_target_sample_total:6.455129, n_target_sample_calls:66
+t_accept_cpu_total:0.248465
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:11.444275, n_draft_calls:657
+t_prep_verify_total:0.008726
+t_target_verify_total:9.189401, n_target_verify_calls:73
+t_target_sample_total:6.495344, n_target_sample_calls:69
+t_accept_cpu_total:0.275624
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:12.026928, n_draft_calls:740
+t_prep_verify_total:0.009541
+t_target_verify_total:9.539684, n_target_verify_calls:74
+t_target_sample_total:6.773089, n_target_sample_calls:71
+t_accept_cpu_total:0.288754
+
+setting:forecast_ETTh1_timer_xl_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosFalse_test_0
+mode:speculative
+t_draft_total:10.760322, n_draft_calls:456
+t_prep_verify_total:0.006364
+t_target_verify_total:8.460667, n_target_verify_calls:70
+t_target_sample_total:6.505690, n_target_sample_calls:66
+t_accept_cpu_total:0.192609
+
