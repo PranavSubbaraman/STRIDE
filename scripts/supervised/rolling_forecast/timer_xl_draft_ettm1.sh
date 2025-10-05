@@ -1,0 +1,75 @@
+export CUDA_VISIBLE_DEVICES=4
+
+model_name=timer_xl_draft
+token_num=16
+token_len=96
+seq_len=$[$token_num*$token_len]
+# training one model with a context length
+
+python -u run.py \
+  --task_name forecast \
+  --is_training 1 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_draft \
+  --model $model_name \
+  --data MultivariateDatasetBenchmark  \
+  --seq_len $seq_len \
+  --input_token_len $token_len \
+  --output_token_len $token_len \
+  --test_seq_len $seq_len \
+  --test_pred_len 336 \
+  --batch_size 64 \
+  --learning_rate 5e-05 \
+  --train_epochs 15 \
+  --d_model 1024 \
+  --d_ff 2048 \
+  --e_layers 1 \
+  --n_heads 8 \
+  --use_norm \
+  --cosine \
+  --tmax 10 \
+  --valid_last \
+  --adaptation \
+  --pretrain_model_path ./checkpoints/pretrain_draft_pretrain_ecl_025x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0/checkpoint.pth \
+  --draft_scale_d_model 0.25 \
+  --draft_scale_n_heads 0.25 \
+  --draft_scale_d_ff 0.25 \
+  --draft_scale_e_layers 0.25 \
+
+# testing the model on all forecast lengths
+for test_pred_len in 336
+do
+python -u run.py \
+  --task_name forecast \
+  --is_training 0 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_draft \
+  --model $model_name \
+  --data MultivariateDatasetBenchmark  \
+  --seq_len $seq_len \
+  --input_token_len $token_len \
+  --output_token_len $token_len \
+  --test_seq_len $seq_len \
+  --test_pred_len $test_pred_len \
+  --batch_size 64 \
+  --d_model 1024 \
+  --d_ff 2048 \
+  --e_layers 1 \
+  --n_heads 8 \
+  --use_norm \
+  --cosine \
+  --draft_scale_d_model 0.25 \
+  --draft_scale_n_heads 0.25 \
+  --draft_scale_d_ff 0.25 \
+  --draft_scale_e_layers 0.25 \
+  --test_dir forecast_ETTm1_draft_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr5e-05_bt64_wd0_el1_dm1024_dff2048_nh8_cosTrue_test_0 \
+  --trace_inference_breakdown
+
+  # print timing for this test
+  if [ -f result_inference_summary.txt ]; then
+    echo "Timing (summary):"
+    grep 'per_batch_s' result_inference_summary.txt | tail -n 1 || true
+  fi
+done
