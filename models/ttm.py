@@ -4,24 +4,6 @@ from layers.MLP import TTMLayer
 
 
 class Model(nn.Module):
-    """
-    TTM: Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series (NeurIPS 2024)
-
-    Paper: https://arxiv.org/pdf/2401.03955
-
-    GitHub: https://github.com/ibm-granite/granite-tsfm
-
-    Released Model: https://huggingface.co/ibm-granite/granite-timeseries-ttm-r1
-    
-    Citation: @inproceedings{Ekambaram2024TTM,
-        title={Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series},
-        author={Vijay Ekambaram and Arindam Jati and Pankaj Dayama and Sumanta Mukherjee and Nam H. Nguyen and Wesley M. Gifford and Chandra Reddy and Jayant Kalagnanam},
-        booktitle={Neural Information Processing Systems},
-        year={2024}
-    }
-    
-    Note: This implementation is a simplified version of the original implementation. Simplify some settings and model structures.
-    """
 
     def __init__(self, configs):
         super().__init__()

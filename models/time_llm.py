@@ -19,21 +19,6 @@ class FlattenHead(nn.Module):
 
 
 class Model(nn.Module):
-    """
-    Time-LLM: Time Series Forecasting by Reprogramming Large Language Models (ICLR 2024)
-
-    Paper: https://arxiv.org/abs/2310.01728
-    
-    GitHub: https://github.com/KimMeen/Time-LLM
-    
-    Citation: @inproceedings{Jin2024Time-LLM,
-        title={Time Series Forecasting by Reprogramming Large Language Models},
-        author={Ming Jin and Shiyu Wang and Lintao Ma and Zhixuan Chu and James Y.Zhang and Xiaoming Shi and Pin-Yu Chen and Yuxuan Liang and Yuan-Fang Li and Shirui Pan and Qingsong Wen},
-        booktitle={International Conference on Learning Representations},
-        year={2024}
-    }
-    Note: The implementation of Time-LLM based on (https://github.com/KimMeen/Time-LLM)
-    """
     def __init__(self, configs):
         super(Model, self).__init__()
         self.pred_len = configs.test_pred_len

@@ -1,7 +1,0 @@
-batch_idx,round_i,sample_idx,alpha,r,tol_accept,accept,mse,sigma,bias
-0,0,0,0.0,0.625,False,False,1.875,0.05,1.0
-0,0,1,0.0,0.9140625,False,False,1.8046875,0.05,1.0
-0,0,2,0.0,0.1572265625,False,False,1.734375,0.05,1.0
-1,0,0,0.0,0.53515625,False,False,2.34375,0.05,1.0
-1,0,1,0.0,0.1708984375,False,False,2.234375,0.05,1.0
-1,0,2,0.0,0.8359375,False,False,2.15625,0.05,1.0

@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Activate env and go to repo
 conda activate open-ltm
-cd /home/pranavs/speculative-time-series-project/OpenLTM
+cd ~/speculative-time-series-project/OpenLTM
 export CUDA_VISIBLE_DEVICES=0
 
 # Teacher (target timer_xl) checkpoint

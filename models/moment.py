@@ -28,21 +28,6 @@ class FlattenHead(nn.Module):
 
 
 class Model(nn.Module):
-    """
-    MOMENT: A Family of Open Time-series Foundation Models (ICML 2024)
-
-    Paper: https://arxiv.org/abs/2402.03885
-    
-    GitHub: https://github.com/moment-timeseries-foundation-model/moment
-    
-    Citation: @inproceedings{goswami2024moment,
-        title={MOMENT: A Family of Open Time-series Foundation Models},
-        author={Mononito Goswami and Konrad Szafer and Arjun Choudhry and Yifu Cai and Shuo Li and Artur Dubrawski},
-        booktitle={International Conference on Machine Learning},
-        year={2024}
-    }
-    Note: The current implementation of MOMENT is basically consistent with PatchTST (https://github.com/PatchTST/PatchTST)
-    """
     def __init__(self, configs):
         super().__init__()
         self.seq_len = configs.seq_len

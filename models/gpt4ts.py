@@ -4,21 +4,7 @@ from einops import rearrange
 from transformers.models.gpt2.modeling_gpt2 import GPT2Model
 
 
-class Model(nn.Module):
-    """
-    One Fits All: Power General Time Series Analysis by Pretrained LM (NeurIPS 2023 Spotlight)
-
-    Paper: https://arxiv.org/abs/2302.11939
-    
-    GitHub: https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All
-    
-    Citation: @inproceedings{zhou2023onefitsall,
-        title={{One Fits All}: Power General Time Series Analysis by Pretrained LM},
-        author={Tian Zhou, Peisong Niu, Xue Wang, Liang Sun, Rong Jin},
-        booktitle={NeurIPS},
-        year={2023}
-    }
-    """    
+class Model(nn.Module):   
     
     def __init__(self, configs):
         super(Model, self).__init__()

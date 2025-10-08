@@ -5,21 +5,6 @@ from transformers import LlamaForCausalLM, OPTForCausalLM
 from layers.MLP import AutoTimesMLP
 
 class Model(nn.Module):
-    """
-    AutoTimes: Autoregressive Time series Forecasters via Large Language Models (NeurIPS 2024)
-
-    Paper: https://arxiv.org/abs/2402.02370
-    
-    GitHub: https://github.com/thuml/AutoTimes
-    
-    Citation: @inproceedings{Liu2024autotimes,
-        title={AutoTimes: Autoregressive Time series Forecasters via Large Language Models},
-        author={Yong Liu and Guo Qin and Xiangdong Huang and Jianmin Wang and Mingsheng Long},
-        booktitle={Neural Information Processing Systems},
-        year={2024}
-    }
-    Note: This implementation is a simplified version of  https://github.com/thuml/AutoTimes
-    """
     def __init__(self, configs):
         super(Model, self).__init__()
         self.token_len = configs.input_token_len

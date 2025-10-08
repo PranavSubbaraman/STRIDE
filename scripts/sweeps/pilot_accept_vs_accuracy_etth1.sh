@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="/home/pranavs/speculative-time-series-project/OpenLTM"
+ROOT="~/speculative-time-series-project/OpenLTM"
 cd "$ROOT"
 
 source ~/miniconda3/etc/profile.d/conda.sh

@@ -4,20 +4,6 @@ from layers.Transformer_EncDec import TimerBlock, TimerLayer
 from layers.SelfAttention_Family import AttentionLayer, TimeAttention
 
 class Model(nn.Module):
-    """
-    Unified Training of Universal Time Series Forecasting Transformers (ICML 2024)
-
-    Paper: https://arxiv.org/abs/2402.02592
-    
-    GitHub: https://github.com/SalesforceAIResearch/uni2ts
-    
-    Citation: @inproceedings{woo2024moirai,
-        title={Unified Training of Universal Time Series Forecasting Transformers},
-        author={Woo, Gerald and Liu, Chenghao and Kumar, Akshat and Xiong, Caiming and Savarese, Silvio and Sahoo, Doyen},
-        booktitle={Forty-first International Conference on Machine Learning},
-        year={2024}
-    }
-    """
     def __init__(self, configs):
         super().__init__()
         self.input_token_len = configs.input_token_len

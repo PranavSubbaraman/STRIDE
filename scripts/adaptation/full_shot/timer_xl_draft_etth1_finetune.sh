@@ -26,7 +26,7 @@ python -u run.py \
   --use_norm \
   --valid_last \
   --adaptation \
-  --pretrain_model_path /home/pranavs/speculative-time-series-project/OpenLTM/checkpoints/pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0/checkpoint.pth \
+  --pretrain_model_path ~/speculative-time-series-project/OpenLTM/checkpoints/pretrain_draft_pretrain_ecl_07x_small_timer_xl_draft_MultivariateDatasetBenchmark_sl1536_it96_ot96_lr0.0001_bt8_wd0_el2_dm512_dff2048_nh8_cosTrue_test_0/checkpoint.pth \
   --draft_scale_d_model 0.7 \
   --draft_scale_n_heads 0.7 \
   --draft_scale_d_ff 0.7 \
