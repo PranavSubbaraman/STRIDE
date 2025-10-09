@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code in your research, please cite the following paper:"
+authors:
+  - family-names: "Subbaraman"
+    given-names: "Pranav"
+  - family-names: "Sun"
+    given-names: "Fang"
+  - family-names: "Yao"
+    given-names: "Yue"
+  - family-names: "Tang"
+    given-names: "Huacong"
+  - family-names: "Luo"
+    given-names: "Xiao"
+  - family-names: "Sun"
+    given-names: "Yizhou"
+title: "Accelerating Time Series Foundation Models with Speculative Decoding"
+type: conference-paper
+conference:
+  name: "To appear"
+year: 2025
+doi: ""
+url: "https://arxiv.org/abs/<arxiv_id>"
