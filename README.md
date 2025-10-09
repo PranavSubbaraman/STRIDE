@@ -286,4 +286,3 @@ python scripts/analysis/parse_sweep_results.py
    ```bash
    tail -20 result_inference_summary.txt
    ```
-# Citation
