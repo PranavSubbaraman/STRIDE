@@ -59,6 +59,13 @@ class UnivariateDatasetBenchmark(Dataset):
         elif self.data_type == 'ETTm' or self.data_type == 'ETTm1' or self.data_type == 'ETTm2':
             border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
             border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
+        elif self.data_type == 'Wike2000':
+            data_len = len(df_raw)
+            num_train = int(data_len * 0.7)
+            num_test = int(data_len * 0.2)
+            num_vali = data_len - num_train - num_test
+            border1s = [0, num_train - self.seq_len, data_len - num_test - self.seq_len]
+            border2s = [num_train, num_train + num_vali, data_len]
         else:
             data_len = len(df_raw)
             num_train = int(data_len * 0.7)
@@ -172,6 +179,13 @@ class MultivariateDatasetBenchmark(Dataset):
         elif self.data_type == 'ETTm' or self.data_type == 'ETTm1' or self.data_type == 'ETTm2':
             border1s = [0, 12 * 30 * 24 * 4 - self.seq_len, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4 - self.seq_len]
             border2s = [12 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 4 * 30 * 24 * 4, 12 * 30 * 24 * 4 + 8 * 30 * 24 * 4]
+        elif self.data_type == 'Wike2000':
+            data_len = len(df_raw)
+            num_train = int(data_len * 0.7)
+            num_test = int(data_len * 0.2)
+            num_vali = data_len - num_train - num_test
+            border1s = [0, num_train - self.seq_len, data_len - num_test - self.seq_len]
+            border2s = [num_train, num_train + num_vali, data_len]
         else:
             data_len = len(df_raw)
             num_train = int(data_len * 0.7)
