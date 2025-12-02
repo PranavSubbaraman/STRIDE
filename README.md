@@ -6,9 +6,10 @@
 - [Experiments](#experiments)
   - [1. Pretraining Draft Models](#1-pretraining-draft-models)
   - [2. Fine-tuning Target Models](#2-fine-tuning-target-models)
-  - [3. Distillation](#3-distillation)
-  - [4. Speculative Decoding Tests](#4-speculative-decoding-tests)
-  - [5. Parameter Sweeps](#5-parameter-sweeps)
+  - [3. Adaptation (Full Shot)](#3-adaptation-full-shot)
+  - [4. Distillation](#4-distillation)
+  - [5. Speculative Decoding Tests](#5-speculative-decoding-tests)
+  - [6. Parameter Sweeps](#6-parameter-sweeps)
 - [Key Parameters](#key-parameters)
 - [Results and Outputs](#results-and-outputs)
 
@@ -38,6 +39,11 @@ The following datasets are available in the `dataset/` directory:
 - **Electricity**: `electricity.csv`
 - **Solar**: `solar_AL.txt`
 - **PEMS**: `PEMS03.npz`, `PEMS04.npz`, `PEMS07.npz`, `PEMS08.npz`
+- **Wike2000**: `Wike2000.csv`
+
+### Dataset Download
+
+You can download the datasets, including Wike2000, from the [TSFM-Bench Google Drive](https://drive.google.com/file/d/1ZrDotV98JWCSfMaQ94XXd6vh0g27GIrB/view?usp=drive_link). Please extract the contents into the `dataset/` directory.
 
 ## Experiments
 
@@ -59,6 +65,7 @@ bash scripts/pretrain/increased_batch_and_seq_len/timer_xl_draft_weather_025x.sh
 **Other pretrain scripts:**
 - `timer_xl_draft_traffic_025x.sh`: Traffic dataset
 - `timer_xl_draft_ecl_025x.sh`: Electricity dataset
+- `timer_xl_wike2000.sh`: Wike2000 dataset
 - `timer_xl_draft_weather_001x.sh`: Smaller 0.01x draft model
 
 **Output:** Checkpoints saved to `./checkpoints/draft_pretrain_*`
@@ -87,9 +94,23 @@ bash scripts/supervised/rolling_forecast/timer_xl_ettm2.sh
 
 **Output:** Checkpoints in `./checkpoints/forecast_*_timer_xl_*`
 
-### 3. Distillation
+### 3. Adaptation (Full Shot)
+
+Adapt the pretrained model to new datasets (e.g., Wike2000) using full-shot adaptation.
+
+**Example: Adapt Timer-XL on Wike2000**
+```bash
+bash scripts/adaptation/full_shot/timer_xl_wike2000.sh
+```
+
+### 4. Distillation
 
 Fine-tune the pretrained draft model to mimic the target model distribution using distillation.
+
+**Example: Distill draft model on Wike2000**
+```bash
+bash scripts/distillation/wike2000_timer_xl_draft_from_target_stochastic.sh
+```
 
 **Example: Distill draft model on ETTm2 (stochastic)**
 ```bash
@@ -121,9 +142,14 @@ bash scripts/distillation/updated_distillation/ettm2_timer_xl_draft_from_target_
 
 **Output:** Checkpoints in `./checkpoints/forecast_*_draft_distill_stochastic_from_target_*`
 
-### 4. Speculative Decoding Tests
+### 5. Speculative Decoding Tests
 
 Run inference comparing baseline Timer-XL against speculative decoding with draft model.
+
+**Example: Test speculative decoding on Wike2000**
+```bash
+bash scripts/supervised/rolling_forecast/spec_decoding_tests/test_wike2000_timer_vs_spec_025x.sh
+```
 
 **Example: Test speculative decoding on weather**
 ```bash
@@ -164,7 +190,7 @@ bash scripts/supervised/rolling_forecast/spec_decoding_tests/test_ettm2_timer_vs
 - Detailed metrics in `result_inference_breakdown.txt`
 - Per-sample acceptance in debug CSV (e.g., `spec_decoding_new_stochastic_025x.csv`)
 
-### 5. Parameter Sweeps
+### 6. Parameter Sweeps
 
 **Example: Sweep spec_sigma and spec_accept_bias on ETTm1**
 ```bash
