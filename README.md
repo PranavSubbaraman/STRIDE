@@ -1,4 +1,5 @@
 # Accelerating Time Series Foundation Models with Speculative Decoding
+Pranav Subbaraman*, Fang Sun*, Yue Yao, Huacong Tang, Xiao Luo, Yizhou Sun
 
 ## Our paper: [arXiv](https://arxiv.org/abs/2511.18191)
 
