@@ -1,6 +1,6 @@
 # Accelerating Time Series Foundation Models with Speculative Decoding
 
-## Our paper: [arXiv](https://arxiv.org/abs/2511.18191_link)
+## Our paper: [arXiv](https://arxiv.org/abs/2511.18191)
 
 ## Table of Contents
 - [Setup](#setup)
